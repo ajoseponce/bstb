@@ -50,18 +50,7 @@
                             } ?>
                         </select>
                     </td>
-                    <td>
-                        Marca:
-                        <select  onchange="filtrar_calendario_equipo()" id="marca_filtro" name="marca_filtro" size="1">
-                            <option value="0">Seleccione marca</option>
-                            <?php
-                            $k=0;
-                            if($result_marcas){
-                                foreach ($result_marcas as $m) {
-                                    ?>
-                                    <option value="<?php echo $m->id_marca ?>" <?php if($m->id_marca==$_REQUEST['marca_filtro']){ echo "selected='selected'";} ?> ><?php echo $m->descripcion ?></option>
-                                <?php }} ?>
-                        </select>
+                    <td>&nbsp;
                     </td>
                 </tr>
 
