@@ -81,3 +81,5 @@ Icon
 !/archivos_preventivos/.gitkeep
 /archivos/*
 !/archivos/.gitkeep
+/lib/DB_Conectar.php
+
