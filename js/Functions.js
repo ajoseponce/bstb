@@ -347,9 +347,10 @@ function filtrar_calendario_equipo(){
         $("#sector_filtroID").val("");
     }
     var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
-    //var num_serie=$("#num_serie").val();
-    //var marca_filtro=$("#marca_filtro").val();
-    $("#tabla_listado").load('trae_calendario_mantenimiento.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro);
+    var desde=$("#periodo_desde").val();
+    var hasta=$("#periodo_hasta").val();
+
+    $("#tabla_listado").load('trae_calendario_mantenimiento.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro+'&desde='+desde+'&hasta='+hasta);
 }
 function filtrar_busqueda_equipo(){
     //alert('llega');

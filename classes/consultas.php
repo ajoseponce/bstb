@@ -3876,6 +3876,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
 
     }
     function getMantenimientosProgramadosPorMes($data=null){
+        //print_r($data);
         //$fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
         $query = "SELECT date_format(e.fecha, '%d-%m-%Y') as fecha,d.id_item,e.id_mantenimiento id_cabecera,d.id_mantenimiento_detalle detalle, date_format(e.fecha_debe, '%d-%m-%Y') as debe ,e.fecha_deberia, CONCAT_WS('-',teq.armado,eq.num_interno) equipo ,e.en_termino"
             . " FROM mantenimiento_cabecera e 
@@ -3887,7 +3888,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             "
             . " WHERE 1 ";
 //        $query .=" AND e.fecha_deberia = '01-03-2017 00:00:00";
-            $query .=" AND (e.fecha_deberia between '2017-03-01 00:00:00' AND '2017-03-31 23:59:59')";
+           // $query .=" AND (e.fecha_deberia between '2017-03-01 00:00:00' AND '2017-03-31 23:59:59')";
 
         if($data['lugar_filtro']){
             $query.=" AND  l.id_lugar = '".$data['lugar_filtro']."'";
@@ -3901,9 +3902,10 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         if($data['num_serie']){
             $query.=" AND  eq.nro_serie='".$data['num_serie']."'";
         }
-        if($data['periodo_filtro']){
+        //if($data['desde']){
+            $query .=" AND (e.fecha_deberia between '2017-".$data['desde']."-01 00:00:00' AND '2017-".$data['hasta']."-31 23:59:59')";
             //$query.=" AND  e.marca='".$data['marca_filtro']."'";
-        }
+        //}
         //$query.=" group by d.id_item ";
         //echo $query;
         $result = $this->db->loadObjectList($query);
