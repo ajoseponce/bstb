@@ -55,6 +55,7 @@
                 <div id="header-nav-section" class="span4 clearfix">
                     <!-- Header Nav -->
                     <ul class="nav pull-right">
+                        <?php if($_SESSION['id']==24){ ?>
                         <li class="dropdown dropdown-notifications">
                             <?php $nc_modificadas = $consultas->getNC_modificadas();
 
@@ -77,6 +78,7 @@
                                 </ul>
                             <?php } ?>
                         </li>
+                        <?php } ?>
                         <!-- Theme Options, functionality initialized at main.js - templateOptions() -->
                         <?php $ve_mantenieminto = $consultas->getAplicativoSolicitudes();
                         if($ve_mantenieminto){
