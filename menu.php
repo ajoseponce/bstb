@@ -55,6 +55,28 @@
                 <div id="header-nav-section" class="span4 clearfix">
                     <!-- Header Nav -->
                     <ul class="nav pull-right">
+                        <li class="dropdown dropdown-notifications">
+                            <?php $nc_modificadas = $consultas->getNC_modificadas();
+
+                            $contador_nc_modificadas = $consultas->getNC_modificadasCount(); ?>
+                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                <strong><?php echo $contador_nc_modificadas; ?></strong>
+                                <img src="img/caution.png" title="Menu Opciones">
+                            </a>
+                            <?php if($nc_modificadas){
+                                ?>
+                                <ul class="dropdown-menu"><?php
+                                    foreach ($nc_modificadas as $nc){
+                                        ?>
+                                            <li>
+                                                <div style="cursor: pointer;" class="alert" onclick="location.href='controlador.php?action=respuesta_no_conformidades&id_no_conformidad=<?php echo $nc->id_no_conformidad; ?>'">
+                                                    <img src="img/no_conformidad.png" title="Cargar Mantenimiento">NC: <?php echo $nc->id_no_conformidad; ?> Se modifico
+                                                </div>
+                                            </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                        </li>
                         <!-- Theme Options, functionality initialized at main.js - templateOptions() -->
                         <?php $ve_mantenieminto = $consultas->getAplicativoSolicitudes();
                         if($ve_mantenieminto){

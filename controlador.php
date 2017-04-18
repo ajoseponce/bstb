@@ -2228,6 +2228,10 @@ $action = $_REQUEST["action"];
             include('header.php');
             include('menu.php');
             /*********************/
+//            $sql = "UPDATE no_conformidad SET modificado='N' WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
+//            mysql_query($sql);
+            /*******************frespuesta**/
+
             $result = $consultas->getNoConformidadById($_REQUEST['id_no_conformidad']);
             $formulario = 'forms/form_no_conformidades.php';
             break;
@@ -2378,6 +2382,8 @@ $action = $_REQUEST["action"];
             include('header.php');
             include('menu.php');
             /***************fin includes******************/
+            $sql = "UPDATE no_conformidad SET modificado='N' WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
+            mysql_query($sql);
             $result_r = $consultas->getRespuestaNoConformidad($_REQUEST['id_no_conformidad']);
             $result = $consultas->getNoConformidadById($_REQUEST['id_no_conformidad']);
             /*********************/
@@ -2398,9 +2404,12 @@ $action = $_REQUEST["action"];
             include('lib/DB_Conectar.php');
             include('classes/consultas.php');
             include('header.php');
+            $sql = "UPDATE no_conformidad SET modificado='S' WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
+            mysql_query($sql);
             include('menu.php');
             $sql = "UPDATE no_conformidad SET estado='R' WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
             mysql_query($sql);
+
             $result = $consultas->save_respuesta_nc($_REQUEST);
             $mensaje = "Su respuesta  se ha cargado correctamente. Gracias";
             $formulario = 'forms/form_mensaje.php';

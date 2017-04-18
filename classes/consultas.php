@@ -3945,6 +3945,30 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         if($result)return $result;
         else return 0;
     }
+    function getNC_modificadas(){
+
+        $query = "SELECT s.* FROM no_conformidad s WHERE modificado='S'";
+
+            //echo $query;
+
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
+    function getNC_modificadasCount(){
+
+        $query = "SELECT count(s.id_no_conformidad) total  FROM no_conformidad s WHERE modificado='S'";
+
+        //echo $query;
+
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0]->total;
+        else
+            return false;
+    }
 
 }     
 $consultas= new Consultas($db, $dbPg);
