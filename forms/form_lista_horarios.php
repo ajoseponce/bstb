@@ -11,7 +11,7 @@
                 <div class="controls">
                     <select id="anio" onchange="buscar_horarios()">
                         <option value='2016'>2016</option>
-                        <option value='2017'>2017</option>
+                        <option value='2017' selected="selected">2017</option>
 
                     </select>
                 </div>
@@ -45,7 +45,7 @@
 <div id="listado">
 
 </div>
-    
+
 </div>
 <script src="js/AutoSuggest.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -97,4 +97,3 @@ function saber_mes($mes) {
 ?>
 
 </html><?php include_once 'footer.php' ?>
-
