@@ -7,7 +7,6 @@ $result = $consultas->getMantenimientosActualizar();
 <table>
 
     <tr style="background: red;" >
-
         <th>id Equipo</th>
         <th>id tipo euipo</th>
         <th>tipo mantenieminto</th>
@@ -16,7 +15,7 @@ $result = $consultas->getMantenimientosActualizar();
         <th>fecha deberia</th>
         <th>fecha debe</th>
         <th>item</th>
-        <th>tiene</th>
+        <th>Tiene</th>
     </tr>
 
     <?php

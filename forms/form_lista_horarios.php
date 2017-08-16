@@ -12,7 +12,6 @@
                     <select id="anio" onchange="buscar_horarios()">
                         <option value='2016'>2016</option>
                         <option value='2017' selected="selected">2017</option>
-
                     </select>
                 </div>
             </div>

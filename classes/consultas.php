@@ -156,8 +156,8 @@ class Consultas
 			return $result[0];
 		else
 			return false;
-	}
-        
+	    }
+
         function getProcesoCitacion($periodo){
 		$query = "SELECT * FROM proceso_citaciones pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
                 //echo $query;
@@ -166,7 +166,7 @@ class Consultas
 			return $result[0];
 		else
 			return false;
-	}
+	    }
         function getProcesoMedicion($periodo){
 		$query = "SELECT * FROM medicion_analisis_mejoras pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
                 //echo $query;
@@ -175,12 +175,22 @@ class Consultas
 			return $result[0];
 		else
 			return false;
-	}
+	    }
         function getMenu(){
+            $query = "SELECT * FROM menu a "
+                . " WHERE 1 ";
+
+            $result = $this->db->loadObjectList($query);
+            if($result)
+                return $result;
+            else
+                return false;
+        }
+        function getMenuUsuario(){
 		$query = "SELECT * FROM aplicativos a "
                         . " INNER JOIN usuario_aplicativos ua ON ua.id_aplicativo=a.id_aplicativo"
                         . " WHERE ua.id_aplicativo!='16' AND ua.id_usuario='".$_SESSION['id']."'";
-                
+
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -216,9 +226,9 @@ class Consultas
         //////////////////********************/////////////////7
         function save_datos($data){
             $table = new Table($this->db, 'colecta_externa');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -234,9 +244,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -246,9 +256,9 @@ class Consultas
         //////////////////********************/////////////////7
         function save_datos_relacion($data){
             $table = new Table($this->db, 'relacion_area_poe');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
@@ -258,9 +268,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -278,9 +288,9 @@ class Consultas
             }
             //d
             $table = new Table($this->db, 'poe_cabecera');
-            
-            if($data['id_poe']){ 
-                $table->find($data['id_poe']); 
+
+            if($data['id_poe']){
+                $table->find($data['id_poe']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -306,31 +316,31 @@ class Consultas
             $table->descripcion = $data['descripcion_registro'];
             $table->nombre_archivo = $nombre_doc_registro;
             $table->estado = 'A';
-            
-                        
+
+
             if($table->save()){
                 return $table->id_registro;
             }else{
                 return 0;
             }
         }
-        
+
          function save_datos_area($data){
             //session_start();
             $table = new Table($this->db, 'areas');
-            
-            if($data['id_area']){ 
-                $table->find($data['id_area']); 
+
+            if($data['id_area']){
+                $table->find($data['id_area']);
                 //$table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 //$table->fecha_carga = date('Y-m-d H:i:s');
             }
             $table->descripcion = $data['descripcion'];
-            
+
             $table->estado = 'A';
             //$table->fecha_carga = date('Y-m-d H:i:s');
             $table->id_usuario = $_SESSION['id'];
-                        
+
             if($table->save()){
                 return $table->id_area;
             }else{
@@ -340,9 +350,9 @@ class Consultas
         ////////////**********insercion en atencion*********/////////////
         function save_atencion($data){
             $table = new Table($this->db, 'proceso_atencion');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -362,22 +372,22 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
                 return 0;
             }
         }
-        
+
         ////////////**********insercion en aferesis*********/////////////
         function save_aferesis($data){
             $table = new Table($this->db, 'aferesis');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -390,9 +400,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -402,9 +412,9 @@ class Consultas
         ////////////**********insercion en aferesis*********/////////////
         function save_apoyo_insumos($data){
             $table = new Table($this->db, 'proceso_apoyo_insumos');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -417,9 +427,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -429,9 +439,9 @@ class Consultas
         ////////////**********insercion en calificacion bilogica imouno*********/////////////
         function save_inmuno($data){
             $table = new Table($this->db, 'calif_bio_inmuno');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -439,7 +449,7 @@ class Consultas
             $table->periodo = $data['periodo'];
             $table->anio = date('Y');
             $table->num_serologia = $data['num_serologia'];
-            $table->porcentaje_serologia = $data['porcentaje_serologia'];    
+            $table->porcentaje_serologia = $data['porcentaje_serologia'];
             $table->nro_hiv_ac = $data['nro_hiv_ac'];
             $table->nro_hiv_p24 = $data['nro_hiv_p24'];
             $table->nro_hbv_HbsAg = $data['nro_hbv_HbsAg'];
@@ -455,9 +465,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -467,9 +477,9 @@ class Consultas
         ////////////**********insercion en calificacion bilogica imouno analitics*********/////////////
         function save_inmuno_analiticas($data){
             $table = new Table($this->db, 'calif_bio_inmuno_analiticas');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -481,14 +491,14 @@ class Consultas
             $table->nro_fenotipo = $data['nro_fenotipo'];
             $table->nro_cooms_indirecta = $data['nro_cooms_indirecta'];
             $table->nro_cooms_indirecta_mas = $data['nro_cooms_indirecta_mas'];
-            
+
             /******/
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -498,9 +508,9 @@ class Consultas
         ////////////**********insercion en calificacion bilogica imouno domantes*********/////////////
         function save_inmuno_donantes($data){
             $table = new Table($this->db, 'calif_bio_inmuno_donantes');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -513,14 +523,14 @@ class Consultas
             $table->nro_fenotipo = $data['nro_fenotipo'];
             $table->nro_cooms_indirecta = $data['nro_cooms_indirecta'];
             $table->nro_cooms_indirecta_mas = $data['nro_cooms_indirecta_mas'];
-            
+
             /******/
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -530,9 +540,9 @@ class Consultas
         ////////////**********insercion en produccion_hemocomponentes*********/////////////
         function save_produccion_hemocomponentes($data){
             $table = new Table($this->db, 'produccion_hemocomponentes');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -552,9 +562,9 @@ class Consultas
             $table->estado = 'A';
            // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -564,9 +574,9 @@ class Consultas
         ////////////**********insercion en produccion_hemocomponentes*  especiales********/////////////
         function save_produccion_hemocomponentes_especiales($data){
             $table = new Table($this->db, 'produccion_hemocomponentes_especiales');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -584,9 +594,9 @@ class Consultas
             $table->estado = 'A';
             // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -596,9 +606,9 @@ class Consultas
         ////////////**********insercion en almacenamoento  hemocomponentes********/////////////
         function save_almacenamiento_hemocomponentes($data){
             $table = new Table($this->db, 'almacenamiento_hemocomponentes');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -616,9 +626,9 @@ class Consultas
             $table->estado = 'A';
             // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -628,9 +638,9 @@ class Consultas
         ////////////**********insercion en almacenamoento  hemoderivados********/////////////
         function save_almacenamiento_hemoderivados($data){
             $table = new Table($this->db, 'almacenamiento_hemoderivados');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -648,9 +658,9 @@ class Consultas
             $table->estado = 'A';
             // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -660,9 +670,9 @@ class Consultas
         ////////////**********insercion en transfusion********/////////////
         function save_transfusion($data){
             $table = new Table($this->db, 'proceso_transfusion');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -683,9 +693,9 @@ class Consultas
             $table->estado = 'A';
             // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -695,9 +705,9 @@ class Consultas
         ////////////**********insercion en citaciones********/////////////
         function save_citaciones($data){
             $table = new Table($this->db, 'proceso_citaciones');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -707,14 +717,14 @@ class Consultas
             $table->pendiente_informar = $data['pendiente_informar'];
             $table->pendiente_resultados = $data['pendiente_resultados'];
             $table->realizadas = $data['realizadas'];
-            
+
             /******/
             $table->estado = 'A';
             // $table->fecha_carga = date('Y-m-d H:i:s');
             $table->usuario = 1;
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_registro;
             }else{
@@ -724,9 +734,9 @@ class Consultas
         ////////////**********insercion en medicion********/////////////
         function save_medicion($data){
             $table = new Table($this->db, 'medicion_analisis_mejoras');
-            
-            if($data['id_registro']){ 
-                $table->find($data['id_registro']); 
+
+            if($data['id_registro']){
+                $table->find($data['id_registro']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
@@ -755,7 +765,7 @@ class Consultas
             }
         }
         function getAplicativos(){
-                
+
 		$query = "SELECT a.*, m.descripcion nombre_menu_agrupador FROM aplicativos a
                   LEFT JOIN menu_aplicativo ma ON ma.id_aplicativo=a.id_aplicativo
                   LEFT JOIN menu m ON m.id_menu=ma.id_menu
@@ -800,7 +810,7 @@ class Consultas
 			return false;
 	}
         function getAplicativosNotificacion(){
-                
+
 		$query = "SELECT COUNT(id_registro) total FROM usuario_aplicativos a WHERE id_aplicativo='16' AND id_usuario='".$_SESSION['id']."' ";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -810,9 +820,9 @@ class Consultas
 			return false;
 	}
         function getControlIndicadores($tabla){
-                
+
 		$query = "SELECT COUNT(id_registro) AS total FROM $tabla ";
-                //echo $query; 
+                //echo $query;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->total;
@@ -883,7 +893,7 @@ class Consultas
             return false;
         }
         function getAreas(){
-                
+
 		$query = "SELECT * FROM areas a WHERE estado='A' ";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -945,7 +955,7 @@ class Consultas
             global $error;
 
             $table = new Table($this->db, 'personas');
-            if($data['id_persona']){ 
+            if($data['id_persona']){
 		    $table->find($data['id_persona']);
             }
             $fecha_nac=substr($data['fecha_nacimiento'], 6, 4)."-".substr($data['fecha_nacimiento'], 3, 2)."-".substr($data['fecha_nacimiento'], 0, 2);
@@ -972,11 +982,11 @@ class Consultas
                 return $table->id_persona;
             }
 		else
-			
-			return false;	
+
+			return false;
         }
         function getRelaciones(){
-                
+
 		$query = "SELECT r.id_registro, pc.descripcion poe, a.descripcion area "
                         . " FROM relacion_area_poe r"
                         . " INNER JOIN poe_cabecera pc ON pc.id_poe=r.id_poe"
@@ -990,7 +1000,7 @@ class Consultas
 			return false;
 	}
         function getRelacionesbyID($id_registro){
-                
+
 		$query = "SELECT r.id_registro, pc.descripcion poe, pc.id_poe poeID, a.descripcion area , a.id_area areaID "
                         . " FROM relacion_area_poe r"
                         . " INNER JOIN poe_cabecera pc ON pc.id_poe=r.id_poe"
@@ -1004,7 +1014,7 @@ class Consultas
 			return false;
 	}
         function getRegistros($_poe){
-                
+
 		$query = "SELECT p.*, pc.descripcion poe"
                         . " FROM poe_registros p "
                         . " inner join poe_cabecera pc on pc.id_poe=p.id_poe"
@@ -1017,10 +1027,10 @@ class Consultas
 			return false;
 	}
         function getNombrePoes($id_poe){
-                
+
 		$query = "SELECT pc.descripcion poe"
                         . " FROM poe_cabecera pc "
-                        
+
                         . " WHERE pc.id_poe='".$id_poe."' ";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1065,12 +1075,12 @@ class Consultas
             }
         }
         function getExamenes(){
-                
+
 		$query = "SELECT e.*, p.descripcion poe"
                         . " FROM examen e "
                         . " INNER JOIN  poe_cabecera p ON p.id_poe=e.id_poe "
                         . " WHERE e.estado='A' ";
-		
+
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1078,12 +1088,12 @@ class Consultas
 			return false;
 	}
         function getExamenesPorValidad(){
-                
+
 		$query = "SELECT e.*, p.descripcion poe"
                         . " FROM examen e "
                         . " INNER JOIN  poe_cabecera p ON p.id_poe=e.id_poe "
                         . " WHERE e.estado!='A' ";
-		
+
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1091,10 +1101,10 @@ class Consultas
 			return false;
 	}
          function getExamen($id_examen){
-                
+
 		$query = "SELECT e.* "
                         . " FROM examen_preguntas e "
-                        
+
                         . " WHERE e.id_examen='".$id_examen."' ";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1104,12 +1114,12 @@ class Consultas
 			return false;
 	}
         function getRespuestas($id_pregunta, $id_examen){
-                
+
 		$query = "SELECT e.* "
                         . " FROM examen_preguntas_respuestas e "
-                        
+
                         . " WHERE e.id_pregunta='".$id_pregunta."' AND e.id_examen='".$id_examen."'";
-		
+
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1117,10 +1127,10 @@ class Consultas
 			return false;
 	}
         function getRespuestasCorrectas($id_examen, $id_pregunta){
-                
+
 		$query = "SELECT e.id_respuesta "
                         . " FROM examen_preguntas_respuestas e "
-                        
+
                         . " WHERE e.correcto='S' AND e.id_examen='".$id_examen."' AND e.id_pregunta='".$id_pregunta."'";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1147,7 +1157,7 @@ class Consultas
             $table->id_examen = $data['id_examen'];
             $table->id_usuario = $_SESSION['id'];
             $table->calificacion = $calificacion;
-            
+
             if($table->save()){
                // return $table->id_examen;
             }else{
@@ -1155,7 +1165,7 @@ class Consultas
             }
         }
         function getRindioExamen($id_examen){
-                
+
 		$query = "SELECT e.calificacion "
                         . " FROM examen_calificacion_usuario e "
                         . " WHERE e.id_examen='".$id_examen."' AND e.id_usuario='".$_SESSION['id']."'";
@@ -1167,7 +1177,7 @@ class Consultas
 			return 0;
 	}
         function getCalificaciones($id_usuario=null, $id_examen=null){
-                
+
 		$query = "SELECT CONCAT(p.nombre,' ',p.apellido) nombre, e.descripcion examen,ec.calificacion nota "
                         . " FROM examen_calificacion_usuario ec "
                         . " INNER JOIN examen e ON e.id_examen=ec.id_examen "
@@ -1179,7 +1189,7 @@ class Consultas
                         }
                         if ($id_usuario){
                             $query.= " AND ec.id_usuario='".$id_usuario."'";
-                        }        
+                        }
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
 		if($result)
@@ -1188,7 +1198,7 @@ class Consultas
 			return 0;
 	}
         function getEquipos(){
-                
+
 		$query = "SELECT e.*, m.descripcion nombre_marca, te.armado,te.descripcion descripcion_tipo, "
                         . "l.descripcion lugar_nombre,s.descripcion sector_nombre, p.descripcion proveedor_nombre,
                         te.descripcion equipo,date_format(e.fecha_ingreso, '%d/%m/%Y') as fecha_ingreso  "
@@ -1207,7 +1217,7 @@ class Consultas
 			return 0;
 	}
         function getEquiposFiltros($data){
-                
+
 		$query = "SELECT e.*, m.descripcion nombre_marca,date_format(e.fecha_ingreso, '%d/%m/%Y') as fecha_ingreso , te.armado, "
                         . "l.descripcion lugar_nombre,s.descripcion sector_nombre,te.descripcion descripcion_tipo, p.descripcion proveedor_nombre,te.descripcion equipo  "
                         . " FROM equipos e "
@@ -1276,7 +1286,7 @@ class Consultas
 			return 0;
 	}
         function getEquipoByID($idequipo){
-                
+
 		$query = "SELECT e.*, date_format(e.fecha_ingreso, '%d/%m/%Y') as fecha_ingreso ,te.armado "
                         . " FROM equipos e "
                         . " LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=e.tipo_equipo"
@@ -1408,14 +1418,14 @@ class Consultas
             //print_r($data);
             $table = new Table($this->db, 'equipos');
             $fecha_ingreso=substr($data['fecha_ingreso'], 6, 4)."-".substr($data['fecha_ingreso'], 3, 2)."-".substr($data['fecha_ingreso'], 0, 2)." 00:00:00";
-            if($data['id_equipo']){ 
-                $table->find($data['id_equipo']); 
+            if($data['id_equipo']){
+                $table->find($data['id_equipo']);
                 $table->fecha_modificacion = date('Y-m-d H:i:s');
             }else{
                 $table->fecha_carga = date('Y-m-d H:i:s');
             }
             $table->tipo_equipo = $data['tipo_equipo'];
-            $table->num_interno = $data['num_interno']; 
+            $table->num_interno = $data['num_interno'];
             $table->num_patrimonio = $data['num_patrimonio'];
             if($ficha){
             $table->ficha_tecnica = $ficha;
@@ -1446,9 +1456,9 @@ class Consultas
             $table->estado_registro = 'A';
             $table->observaciones=$data['observaciones'];
             $table->usuario = $_SESSION['id'];
-            
+
             //$table->usuario = 1;
-            
+
             if($table->save()){
                 return $table->id_equipo;
             }else{
@@ -1456,11 +1466,11 @@ class Consultas
             }
         }
         function getAplicacionesPersona($id_pers){
-                
+
 		$query = "SELECT  a.nombre_menu aplicacion, ua.id_registro relacion"
                         . " FROM usuario_aplicativos ua "
                         ." INNER JOIN usuarios u ON u.id_usuario=ua.id_usuario "
-                        ." INNER JOIN aplicativos a ON a.id_aplicativo=ua.id_aplicativo " 
+                        ." INNER JOIN aplicativos a ON a.id_aplicativo=ua.id_aplicativo "
                         ." WHERE u.id_usuario='".$id_pers."'";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1482,28 +1492,8 @@ class Consultas
         else
             return 0;
     }
-        function save_aplicativo_persona($data){
-            $table = new Table($this->db, 'usuario_aplicativos');
-            $table->id_usuario = $data['personaID'];
-            $table->id_aplicativo = $data['aplicativoID'];
-            //$table->estado = 'XV';
-            if($table->save()){
-                //return $table->id_examen;
-            }else{
-                return 0;
-            }
-        }
-    function save_aplicativo_menu($data){
-        $table = new Table($this->db, 'menu_aplicativo');
-        $table->id_menu = $data['id_menu'];
-        $table->id_aplicativo = $data['aplicativoID'];
-        //$table->estado = 'XV';
-        if($table->save()){
-            //return $table->id_examen;
-        }else{
-            return 0;
-        }
-    }
+
+
         function getPersonaNombre($id_pers){
             $query = "SELECT CONCAT_WS(' ', p.nombre, p.apellido) nombre"
                         . " FROM personas p"
@@ -1547,93 +1537,93 @@ class Consultas
 		else
 			return false;
 	}
-        
+
         /*********************/
         function save_marca($data){
             global $error;
 
             $table = new Table($this->db, 'marcas');
-            if($data['id_marca']){ 
+            if($data['id_marca']){
 		$table->find($data['id_marca']);
             }
-            
+
             $table->descripcion = ucwords($data['descripcion']);
-            
+
             $table->estado = 'A';
-            
+
             if($table->save()){
                 return $table->id_marca;
             }
 		else
-			
-			return false;	
+
+			return false;
         }
         /**********************************************************/
         function save_proveedor($data){
             global $error;
 
             $table = new Table($this->db, 'proveedor');
-            if($data['id_proveedor']){ 
+            if($data['id_proveedor']){
 		$table->find($data['id_proveedor']);
             }
-            
+
             $table->descripcion = ucwords($data['descripcion']);
             $table->direccion = $data['direccion'];
             $table->telefonos = $data['telefonos'];
             $table->contacto = $data['contacto'];
             $table->mail = $data['mail'];
             $table->estado = 'A';
-            
+
             if($table->save()){
                 return $table->id_proveedor;
             }
 		else
-			
-			return false;	
+
+			return false;
         }
          /**********************************************************/
         function save_lugar($data){
             global $error;
 
             $table = new Table($this->db, 'lugar');
-            if($data['id_lugar']){ 
+            if($data['id_lugar']){
 		$table->find($data['id_lugar']);
             }
             $table->descripcion = ucwords($data['descripcion']);
             $table->id_sector = $data['id_sector'];
-            
+
             $table->estado = 'A';
-            
+
             if($table->save()){
                 return $table->id_lugar;
             }
 		else
-			
-			return false;	
+
+			return false;
         }
          /**********************************************************/
         function save_tipo_equipo($data){
             global $error;
 
             $table = new Table($this->db, 'tipo_equipo');
-            if($data['id_tipo_equipo']){ 
+            if($data['id_tipo_equipo']){
 		$table->find($data['id_tipo_equipo']);
             }
-            
+
             $table->descripcion = ucwords($data['descripcion']);
             $table->armado = ucwords($data['armado']);
-            
+
             $table->estado = 'A';
-            
+
             if($table->save()){
                 return $table->id_tipo_equipo;
             }
 		else
-			
-			return false;	
+
+			return false;
         }
         /***************************mantenimiento*******************************/
-        
+
         function save_item_observaciones($data){
             global $error;
             $table = new Table($this->db, 'mantenimiento_item_tipo_equipo');
@@ -1647,8 +1637,8 @@ class Consultas
             if($table->save()){
                 return $table->id_registro;
             }
-		else	
-                    return false;	
+		else
+                    return false;
         }
         function save_item_mantenimiento($data){
             global $error;
@@ -1671,13 +1661,13 @@ class Consultas
             if($table->save()){
                 return $table->id_registro;
             }
-		else	
-                    return false;	
+		else
+                    return false;
         }
         function getItems($equipo, $mantenimiento){
             if($equipo!=0 && $mantenimiento!=0){
 		$query = "SELECT a.* FROM mantenimiento_item_tipo_equipo a WHERE 1 ";
-                
+
                 $query .= " AND a.id_tipo_equipo='".$equipo."' AND a.tipo_mantenimiento='".$mantenimiento."'" ;
                 }
                //echo $query;
@@ -1763,9 +1753,9 @@ class Consultas
             if($table->save()){
                 return $table->id_mantenimiento_detalle;
             }
-		else	
-                    return false;	
-        }  
+		else
+                    return false;
+        }
         function getMantenimientosByEquipo($id_equipo, $tipo_mantenimiento=null){
 
 		$query = "SELECT m.*,date_format(fecha, '%d/%m/%Y') as fecha, CONCAT(p.nombre,' ',p.apellido) nombre_usuario "
@@ -1786,7 +1776,7 @@ class Consultas
 		$query = "SELECT m.*, mte.titulo item "
                         . " FROM mantenimiento_detalle m "
                         . " LEFT JOIN  mantenimiento_item_tipo_equipo mte ON mte.id_registro=m.id_item"
-                        
+
                         . " WHERE 1 ";
                 $query .= " AND m.id_mantenimiento_cabecera='".$id_mantenieminto."' ORDER BY tipo ASC" ;
             //echo $query;
@@ -1798,7 +1788,7 @@ class Consultas
 	}
         /***************************************************************************/
         function chequear_existencia($descri, $tabla){
-                
+
 		$query = "SELECT COUNT(t.id_".$tabla.") total FROM ".$tabla." t WHERE t.descripcion='".$descri."'";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1818,7 +1808,7 @@ class Consultas
         }
          /***************************************************************************/
         function chequear_existencia_marcas($descri, $tabla){
-                
+
 		$query = "SELECT COUNT(t.id_marca) total FROM ".$tabla." t WHERE t.descripcion='".$descri."'";
 		//echo $query;
                 $result = $this->db->loadObjectList($query);
@@ -1850,8 +1840,8 @@ class Consultas
             if($table->save()){
                 return $table->id_capacitacion;
             }
-		else	
-                    return false;	
+		else
+                    return false;
         }
         function save_pre_capacitacion($data){
             //////************formateo de fecha********////////////
@@ -1961,12 +1951,12 @@ class Consultas
             $table = new Table($this->db, 'capacitacion_detalle');
             $table->id_capacitacion = $id_capacitacion;
             $table->id_persona = $id_persona;
-            
+
             if($table->save()){
                 return $table->id_detalle_capacitacion;
             }
-		else	
-                    return false;	
+		else
+                    return false;
         }
         function save_pre_detalle_capacitacion($id_pre_capacitacion, $id_persona){
             global $error;
@@ -1993,7 +1983,7 @@ class Consultas
                 return false;
         }
         function getCapacitaciones(){
-                
+
 		$query = "SELECT c.*, date_format(c.fecha_creacion, '%d/%m/%Y %H:%i') as fecha_creacion, date_format(c.fecha_capacitacion, '%d/%m/%Y') as fecha_capacitacion, p.descripcion poe,CONCAT_WS(' ', pr.apellido, pr.nombre) nombre_capacitador "
                         . " FROM capacitacion c  "
                         . " LEFT JOIN poe_cabecera p ON p.id_poe=c.id_poe "
@@ -2008,7 +1998,7 @@ class Consultas
 			return false;
 	    }
         function getPreCapacitaciones(){
-    
+
             $query = "SELECT c.*, date_format(c.fecha_creacion, '%d/%m/%Y %H:%i') as fecha_creacion, date_format(c.fecha_pre_capacitacion, '%d/%m/%Y %H:%i') as fecha_pre_capacitacion,CONCAT_WS(' ', pr.apellido, pr.nombre) nombre_capacitador "
                 . " FROM pre_capacitacion c  "
                 . " LEFT JOIN usuarios u ON u.id_usuario=c.usuario "
@@ -2037,7 +2027,7 @@ class Consultas
                 return false;
         }
         function getIntegrantesCapacitaciones($capacitacion){
-                
+
 		$query = "SELECT CONCAT_WS(' ',p.apellido,p.nombre) integrante, c.id_persona"
                         . " FROM capacitacion_detalle c  "
                         . " LEFT JOIN personas p ON p.id_persona=c.id_persona "
@@ -2430,8 +2420,8 @@ class Consultas
     }
 
     function getNoConformidadByFiltro($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null){
-        $query = "SELECT p.*,date_format(p.fecha_no_conformidad, '%d/%m/%Y') as fecha, 
-        date_format(p.fecha_no_conformidad, '%H:%i') as hora, s.descripcion sector , 
+        $query = "SELECT p.*,date_format(p.fecha_no_conformidad, '%d/%m/%Y') as fecha,
+        date_format(p.fecha_no_conformidad, '%H:%i') as hora, s.descripcion sector ,
         sd.descripcion sector_derivado_desc,a.descripcion proceso , ncp.descripcion respuesta,
         ncp.descripcion_analisis,ncp.descripcion_accion,
         date_format(ncp.fecha_accion, '%d/%m/%Y') as fecha_accion ,
@@ -2536,10 +2526,10 @@ class Consultas
     }
     function getSectores(){
         $query = "SELECT e.*, s.descripcion servicio "
-            . " FROM sector e 
+            . " FROM sector e
             LEFT JOIN servicio s ON s.id_servicio=e.id_servicio"
             . " WHERE 1 ORDER BY e.descripcion ASC";
-        
+
         $result = $this->db->loadObjectList($query);
         if($result)return $result;
         else return 0;
@@ -2663,7 +2653,7 @@ class Consultas
             LEFT JOIN responsable_sector rs on rs.id_sector=p.sector_derivado
             LEFT JOIN personas pr on pr.id_persona=rs.id_persona
             LEFT JOIN usuarios u on u.id_persona=pr.id_persona
-            LEFT JOIN usuarios uc on uc.id_usuario=p.usuario   
+            LEFT JOIN usuarios uc on uc.id_usuario=p.usuario
             LEFT JOIN personas pi on pi.id_persona=uc.id_persona
             WHERE 1 AND u.id_usuario='".$_SESSION['id']."' ORDER BY fecha_no_conformidad DESC " ;
 
@@ -2854,7 +2844,7 @@ class Consultas
     function getPersonasRol($rol){
 
         $query = "SELECT p.id_persona, CONCAT_WS(' ', p.nombre, p.apellido ) nombre
-                    FROM  personas p 
+                    FROM  personas p
                   WHERE rol='".$rol."' ";
         //echo $query;
         $result = $this->db->loadObjectList($query);
@@ -2875,7 +2865,7 @@ class Consultas
         }
     }
     function getUsuarios(){
-        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac FROM usuarios u 
+        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
                 WHERE 1 ORDER BY p.apellido, p.nombre";
         $result = $this->db->loadObjectList($query);
@@ -2885,7 +2875,7 @@ class Consultas
             return false;
     }
     function getDatosUsuario(){
-        $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u 
+        $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
                 WHERE u.id_usuario='".$_SESSION[id]."'";
         $result = $this->db->loadObjectList($query);
@@ -2895,8 +2885,8 @@ class Consultas
             return false;
     }
     function getGuardias(){
-        $query = "SELECT ug.*, concat_ws(' ',p.apellido,p.nombre) persona,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia,l.descripcion lugar 
-        FROM guardia_tecnicos ug 
+        $query = "SELECT ug.*, concat_ws(' ',p.apellido,p.nombre) persona,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia,l.descripcion lugar
+        FROM guardia_tecnicos ug
                 INNER JOIN personas p ON p.id_persona=ug.id_persona
                 LEFT JOIN lugar_guardia l ON l.id_lugar_guardia=ug.id_lugar
                 WHERE 1";
@@ -2907,8 +2897,8 @@ class Consultas
             return false;
     }
     function getGuardiasByID($_dato){
-        $query = "SELECT ug.*, concat_ws(' ',p.apellido,p.nombre) persona,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia ,l.descripcion lugar 
-        FROM guardia_tecnicos ug 
+        $query = "SELECT ug.*, concat_ws(' ',p.apellido,p.nombre) persona,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia ,l.descripcion lugar
+        FROM guardia_tecnicos ug
                 INNER JOIN personas p ON p.id_persona=ug.id_persona
                 LEFT JOIN lugar_guardia l ON l.id_lugar_guardia=ug.id_lugar
                 WHERE ug.id_registro='".$_dato."'";
@@ -2978,8 +2968,8 @@ class Consultas
         else return 0;
     }
     function getGuardiasUsuario(){
-        $query = "SELECT ug.*,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia ,l.descripcion lugar 
-        FROM guardia_tecnicos ug 
+        $query = "SELECT ug.*,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia ,l.descripcion lugar
+        FROM guardia_tecnicos ug
                 LEFT JOIN lugar_guardia l ON l.id_lugar_guardia=ug.id_lugar
                 LEFT JOIN usuarios u ON u.id_persona=ug.id_persona
                 WHERE u.id_usuario='".$_SESSION['id']."'";
@@ -2991,7 +2981,7 @@ class Consultas
             return false;
     }
     function getMantenimientosBySector($sector=null, $tipo=null, $tipo_equipo=null){
-        $query = "SELECT DISTINCT(mi.id_registro), mi.tipo_mantenimiento, te.descripcion tipo_equipo, mi.titulo,mi.descripcion mantenimiento, s.descripcion sector,mi.frecuencia 
+        $query = "SELECT DISTINCT(mi.id_registro), mi.tipo_mantenimiento, te.descripcion tipo_equipo, mi.titulo,mi.descripcion mantenimiento, s.descripcion sector,mi.frecuencia
 FROM mantenimiento_item_tipo_equipo mi
 INNER JOIN tipo_equipo te ON te.id_tipo_equipo=mi.id_tipo_equipo
 INNER JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo
@@ -3014,8 +3004,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getSolicitudesManteniemientos(){
 
-        $query = "SELECT s.*, e.num_interno, t.armado, 
-        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para, 
+        $query = "SELECT s.*, e.num_interno, t.armado,
+        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para,
         date_format(s.fecha_solicitud, '%d/%m/%Y %H:%i') as fecha_solicitud,
          date_format(s.fecha_derivado, '%d/%m/%Y %H:%i') as fecha_derivado,
         t.descripcion tipo_equipo, CONCAT_WS(' ',p.nombre,p.apellido) usuario,se.descripcion sector_des
@@ -3137,8 +3127,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT s.*,e.num_interno,date_format(s.requerido_para, '%d-%m-%Y') as requerido_para,
         date_format(s.fecha_solicitud, '%d-%m-%Y') as fecha_solicitud,te.armado,te.descripcion,
          CONCAT_WS(' ',p.apellido,p.nombre) nombre_persona
-        FROM solicitud_mantenimiento s 
-        
+        FROM solicitud_mantenimiento s
+
         LEFT JOIN equipos e ON e.id_equipo=s.id_equipo
         LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=e.tipo_equipo
         LEFT JOIN usuarios u ON u.id_usuario=s.id_usuario
@@ -3182,10 +3172,10 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getSolicitudesByUsuario(){
 
-        $query = "SELECT s.*, e.num_interno, t.armado, 
-        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para, 
-        date_format(s.fecha_solicitud, '%d/%m/%Y %H:%i') as fecha_solicitud, 
-        date_format(s.fecha_derivado, '%d/%m/%Y %H:%i') as fecha_derivado, 
+        $query = "SELECT s.*, e.num_interno, t.armado,
+        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para,
+        date_format(s.fecha_solicitud, '%d/%m/%Y %H:%i') as fecha_solicitud,
+        date_format(s.fecha_derivado, '%d/%m/%Y %H:%i') as fecha_derivado,
         t.descripcion tipo_equipo, CONCAT_WS(' ',p.nombre,p.apellido) usuario,se.descripcion sector_des
          ,CASE when s.estado_solicitud='SOL' then 1
   when s.estado_solicitud='TRAT' then 2
@@ -3233,7 +3223,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
-    
+
     function save_nota_solicitud($data, $nombre, $proviene){
         global $error;
         //////************formateo de fecha********////////////
@@ -3276,7 +3266,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT COUNT(id_solicitud) total"
             . " FROM solicitud_mantenimiento s "
             . " LEFT JOIN equipos e ON e.id_equipo=s.id_equipo"
-            . " WHERE s.estado_solicitud!='VAL' AND s.estado_equipo='S' AND e.id_equipo='".$idequipo."' 
+            . " WHERE s.estado_solicitud!='VAL' AND s.estado_equipo='S' AND e.id_equipo='".$idequipo."'
             ";
         if($fecha_inicio){
             $query .= " AND (fecha_solicitud<'".$fecha_inicio." 00:00:00' OR fecha_solicitud='".$fecha_inicio."')";
@@ -3291,9 +3281,9 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getSolicitudByIDEquipo($id_equipo){
 
-        $query = "SELECT s.*, e.num_interno, t.armado, 
-        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para, 
-        date_format(s.fecha_solicitud, '%d/%m/%Y') as fecha_solicitud, 
+        $query = "SELECT s.*, e.num_interno, t.armado,
+        date_format(s.requerido_para, '%d/%m/%Y') as requerido_para,
+        date_format(s.fecha_solicitud, '%d/%m/%Y') as fecha_solicitud,
         t.descripcion tipo_equipo, CONCAT_WS(' ',p.nombre,p.apellido) usuario,se.descripcion sector_des
          ,CASE when s.estado_solicitud='SOL' then 1
   when s.estado_solicitud='TRAT' then 2
@@ -3334,7 +3324,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoEnDichaFecha($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         $query = "SELECT mc.id_mantenimiento,date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_deberia between '".$fecha_filtro." 00:00:00' AND '".$fecha_filtro." 23:59:59'";
         //echo $query."<br><br><br><br><br>";
@@ -3347,7 +3337,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoDebeTenerFecha($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_debe = '".$fecha_filtro."'";
         //echo $query."<br><br><br><br><br>";
@@ -3360,7 +3350,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoDebeTenerFechaPrev($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 3, 4)."-".substr($fecha, 0, 2);
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha_debe, '%Y-%m') = '".$fecha_filtro."'";
         //echo $query."<br><br><br><br><br>";
@@ -3373,7 +3363,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoDeberiaTenerFecha($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         $query = "SELECT mc.id_mantenimiento, date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_deberia = '".$fecha_filtro."'";
         //echo $query."<br><br><br><br><br>";
@@ -3386,7 +3376,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoDeberiaTenerFechaPrev($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 3, 4)."-".substr($fecha, 0, 2);
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha_deberia, '%Y-%m') = '".$fecha_filtro."'";
         //echo $query."<br><br><br><br><br>";
@@ -3400,7 +3390,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         //$fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         //$fecha_filtro2=substr($fecha2, 6, 4)."-".substr($fecha2, 3, 2)."-".substr($fecha2, 0, 2);
         $query = "SELECT mc.id_mantenimiento, date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, md.valor ,mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha between '".$fecha." 00:00:00' AND '".$fecha2." 23:59:59'";
         //echo $query;
@@ -3414,7 +3404,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $fecha_filtro=substr($fecha, 0, 7);
         $fecha_filtro2=substr($fecha2, 0, 7);
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, md.valor ,mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%Y-%m') between '".$fecha_filtro."' AND '".$fecha_filtro2."'";
         // echo $query;
@@ -3427,7 +3417,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoUltimo($item, $equipo){
         //$fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         $query = "SELECT  date_format(fecha, '%d-%m-%Y') fecha, date_format(fecha, '%Y-%m-%d  %H:%i:%s') fecha_sin_formato, en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_deberia, '%Y-%m-%d') as fecha_deberia_sf, fecha_debe
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' ORDER BY fecha_sin_formato DESC";
         //echo $query."<br><br><br><br><br><br><br>";
@@ -3455,7 +3445,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getMantenimientoPrevUltimo($item, $equipo){
         //$fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
         $query = "SELECT  date_format(fecha, '%d-%m-%Y') fecha, date_format(fecha, '%Y-%m-%d') fecha_sin_formato, en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_deberia, '%Y-%m-%d') as fecha_deberia_sf, fecha_debe
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' ORDER BY fecha_sin_formato DESC";
         //echo $query;
@@ -3467,7 +3457,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getMantenimientoEnDichoPeriodo($item, $fecha, $equipo){
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%m-%Y') = '".$fecha."'";
         //echo $query;
@@ -3481,7 +3471,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $fecha_filtro=substr($fecha, 0, 4)."-".substr($fecha, 5, 2);
         $fecha_filtro2=substr($fecha2, 0, 4)."-".substr($fecha2, 5, 2);
         $query = "SELECT date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, md.valor ,mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%Y-%m') between '".$fecha_filtro."'  AND '".$fecha_filtro2."'";
         //echo $query;
@@ -3494,7 +3484,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getDetalleMantenimientoRealizado($equipo,$item){
 
         $query = "SELECT md.id_mantenimiento_cabecera,md.valor detalle, date_format(mc.fecha, '%d-%m-%Y %H:%i') as fecha_realizado, date_format(mc.fecha_deberia, '%d-%m-%Y') as fecha_deberia
-        FROM mantenimiento_cabecera mc 
+        FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_mantenimiento_cabecera='".$item."' AND mc.id_equipo='".$equipo."'";
         //echo $query;
@@ -3592,15 +3582,16 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             case "09": $retorno="21"; break;
             case "10": $retorno="22"; break;
             case "11": $retorno="23"; break;
+						case "12": $retorno="12"; break;
         }
         $fecha_filtro=substr($horario, 0, 2)."-".substr($horario, 3, 2)."-".substr($horario, 6, 4)." ".$retorno.":".substr($horario, 14, 2).":".substr($horario, 17, 2);
         //echo $fecha_filtro."<br><br>";
         return $fecha_filtro;
     }
     function save_horario_persona_unico($id_persona_reloj,$fecha,$horario){
-        
+
         $fecha_filtro=$fecha." ".$horario.":00";
-        
+
         $table = new Table($this->db, 'horarios_personas');
         $table->id_persona_reloj = $id_persona_reloj;
         $table->horario = $fecha_filtro;
@@ -3612,7 +3603,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
 
     function getNoConformidadByFiltroReporte($id_proceso=null, $id_sector=null, $fecha_desde=null, $fecha_hasta=null,$principal){
-        $query = "SELECT COUNT(p.id_no_conformidad) total 
+        $query = "SELECT COUNT(p.id_no_conformidad) total
             FROM no_conformidad  p
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
@@ -3631,7 +3622,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         if($id_sector) {
             $query .= " AND p.id_sector='".$id_sector."'";
         }
-        
+
         if($fecha_desde && $fecha_hasta==null){
             $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
             $query .=" AND p.fecha_no_conformidad>='".$fecha_desde."'";
@@ -3667,7 +3658,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             return 0;
     }
     function getNoConformidadByOrigenReporte($id_proceso=null, $id_sector=null, $fecha_desde=null, $fecha_hasta=null,$principal){
-        $query = "SELECT COUNT(p.id_no_conformidad) total 
+        $query = "SELECT COUNT(p.id_no_conformidad) total
             FROM no_conformidad  p
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
@@ -3829,7 +3820,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getMantenimientosActualizar($equipo=null){
         $query = "SELECT e.*,d.id_item  "
-            . " FROM mantenimiento_cabecera e 
+            . " FROM mantenimiento_cabecera e
             INNER JOIN mantenimiento_detalle d ON d.id_mantenimiento_cabecera =e.id_mantenimiento"
             . " WHERE 1 ";
         if($equipo){
@@ -3842,7 +3833,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getDebeActualizar($fecha,$equipo,$tipomante,$item){
         $query = "SELECT count(id_mantenimiento) total "
-            . " FROM mantenimiento_cabecera e 
+            . " FROM mantenimiento_cabecera e
             INNER JOIN mantenimiento_detalle d ON d.id_mantenimiento_cabecera =e.id_mantenimiento"
             . " WHERE 1 ";
         $query .=" AND e.fecha_deberia = '".$fecha."' AND  e.id_equipo='".$equipo."' AND  e.tipo_mantenimiento='".$tipomante."' AND  d.id_item='".$item."'";
@@ -3879,12 +3870,12 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         //print_r($data);
         //$fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
         $query = "SELECT date_format(e.fecha, '%d-%m-%Y') as fecha,d.id_item,e.id_mantenimiento id_cabecera,d.id_mantenimiento_detalle detalle, date_format(e.fecha_debe, '%d-%m-%Y') as debe ,e.fecha_deberia, CONCAT_WS('-',teq.armado,eq.num_interno) equipo ,e.en_termino"
-            . " FROM mantenimiento_cabecera e 
+            . " FROM mantenimiento_cabecera e
             INNER JOIN mantenimiento_detalle d ON d.id_mantenimiento_cabecera =e.id_mantenimiento
             INNER JOIN equipos eq ON eq.id_equipo =e.id_equipo
             INNER JOIN tipo_equipo teq ON teq.id_tipo_equipo =eq.tipo_equipo
             INNER JOIN mantenimiento_item_tipo_equipo mte ON mte.id_registro=d.id_item AND mte.tipo_mantenimiento=1 AND mte.id_tipo_equipo=e.tipo_equipo
-            
+
             "
             . " WHERE 1 ";
 //        $query .=" AND e.fecha_deberia = '01-03-2017 00:00:00";
@@ -3914,11 +3905,11 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getMantenimientosProgramadosUltPorMes($data=null){
 
-        $query = "SELECT  tst.id_equipo ,         
+        $query = "SELECT  tst.id_equipo ,
                   (SELECT  e.fecha_debe FROM mantenimiento_cabecera e WHERE e.id_equipo=tst.id_equipo order by e.fecha_debe DESC limit 1) fecha_debe,
-                  td.id_item, CONCAT_WS('-',teq.armado,eq.num_interno) equipo 
+                  td.id_item, CONCAT_WS('-',teq.armado,eq.num_interno) equipo
                   FROM mantenimiento_cabecera tst
-                  INNER JOIN mantenimiento_detalle td ON td.id_mantenimiento_cabecera =tst.id_mantenimiento 
+                  INNER JOIN mantenimiento_detalle td ON td.id_mantenimiento_cabecera =tst.id_mantenimiento
                   INNER JOIN equipos eq ON eq.id_equipo =tst.id_equipo
             INNER JOIN tipo_equipo teq ON teq.id_tipo_equipo =eq.tipo_equipo WHERE 1";
 
@@ -3970,5 +3961,5 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             return false;
     }
 
-}     
+}
 $consultas= new Consultas($db, $dbPg);
