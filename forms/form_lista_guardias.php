@@ -5,6 +5,24 @@
                     <button onclick="location.href='controlador.php?action=carga_guardia'" id="addRow" class="btn btn-success"><i class="icon-plus"></i> Cargar una nueva guardia</button>
                 </div>
         <div class="block-content">
+
+            <table class="table">
+                <thead>
+                <tr style="background: red;" ><th colspan="2">Filtros de Busqueda</th></tr>
+                </thead>
+                <tbody>
+                
+                <tr>
+                    <td>Fecha Desde
+                        <input type="text"  value="" id="fecha_desde"  name="fecha_desde" type="text">
+                    </td>
+                    <td>Fecha Hasta
+                        <input type="text"  value="" id="fecha_hasta"  name="fecha_hasta" type="text">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="listado">
             <div id="listado" class="block-content" style="overflow: auto;">
                 <table class="table">
                     <thead>
@@ -57,3 +75,29 @@
 </body>
 </html>
 <?php include_once 'footer.php' ?>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script>
+    $j=jQuery.noConflict();
+    $j(function() {
+        //alert('bueno');
+        $j("#fecha_desde").datepicker({
+            dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            onSelect:  function(dateText) {
+                trae_guardias();
+            },
+            monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
+        });
+        $j("#fecha_hasta").datepicker({
+            dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            onSelect:  function(dateText) {
+                trae_guardias();
+            },
+            monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
+        });
+    });
+    //        function  ver_cambio(){
+    //
+    //        }
+</script>

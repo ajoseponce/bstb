@@ -773,3 +773,10 @@ function trae_reporte_competencia(){
         $('[data-toggle="popover"]').popover();
     });
 }
+function trae_guardias(){
+    var fecha_desde=$("#fecha_desde").val();
+    var fecha_hasta=$("#fecha_hasta").val();
+    $("#listado").load('trae_guardias.php?fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta,function() {
+        $('[data-toggle="popover"]').popover();
+    });
+}

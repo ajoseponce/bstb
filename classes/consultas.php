@@ -2884,12 +2884,31 @@ class Consultas
         else
             return false;
     }
-    function getGuardias(){
+    function getGuardias($fecha_desde=null,$fecha_hasta=null){
         $query = "SELECT ug.*, concat_ws(' ',p.apellido,p.nombre) persona,date_format(ug.fecha_guardia, '%d/%m/%Y') as fecha_guardia,l.descripcion lugar
         FROM guardia_tecnicos ug
                 INNER JOIN personas p ON p.id_persona=ug.id_persona
                 LEFT JOIN lugar_guardia l ON l.id_lugar_guardia=ug.id_lugar
-                WHERE 1";
+                WHERE 1 ";
+
+        if($fecha_desde==null && $fecha_hasta==null){
+            $query .=" AND date_format(ug.fecha_guardia, '%m/%Y')='".date('m/Y')."'";
+        }
+        if($fecha_desde && $fecha_hasta==null){
+            $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
+            $query .=" AND ug.fecha_guardia>='".$fecha_desde."'";
+        }
+        if($fecha_desde==null && $fecha_hasta){
+            $fecha_hasta=substr($fecha_hasta, 6, 4)."-".substr($fecha_hasta, 3, 2)."-".substr($fecha_hasta, 0, 2)." 23:59:00";
+            $query .=" AND ug.fecha_guardia<='".$fecha_hasta."'";
+        }
+
+        if($fecha_desde && $fecha_hasta){
+            $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
+            $fecha_hasta=substr($fecha_hasta, 6, 4)."-".substr($fecha_hasta, 3, 2)."-".substr($fecha_hasta, 0, 2)." 23:59:00";
+            $query .=" AND (ug.fecha_guardia between '".$fecha_desde."' AND '".$fecha_hasta."')";
+        }
+                //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
