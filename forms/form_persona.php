@@ -22,21 +22,8 @@
         <h4>Datos Personas</h4>
     </div>
     <div class="block-content">
-        <?php echo "sexoo".$result->sexo; ?>
+
         <form id="form_datos" method="post" class="form-horizontal" >
-            <!-- Default Inputs -->
-<!--            <div class="control-group">-->
-<!--                <label class="control-label" id="label_codigo" for="general-text">Codigo DNI </label>-->
-<!--                <div class="controls">-->
-<!--                    <input value="" id="codigo"  name="codigo"   class="span5" type="text" onchange="cargar_datos(this.value)">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="control-group">-->
-<!--                <label class="control-label" id="label_codigo" for="general-text">Codigo 2 </label>-->
-<!--                <div class="controls">-->
-<!--                    <input type="file" accept="image/*;capture=camera">-->
-<!--                </div>-->
-<!--            </div>-->
         <div class="control-group">
             <label class="control-label" for="general-text">Nombre </label>
             <div class="controls">
