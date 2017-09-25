@@ -892,6 +892,21 @@ class Consultas
 
             return false;
         }
+        function save_aplicativo_persona($data){
+        global $error;
+
+        $table = new Table($this->db, 'usuario_aplicativos');
+        
+        $table->id_usuario = $data['personaID'];
+        $table->id_aplicativo = $data['aplicativoID'];
+
+        if($table->save()){
+            return $table->id_registro;
+        }
+        else
+
+            return false;
+        }
         function getAreas(){
 
 		$query = "SELECT * FROM areas a WHERE estado='A' ";
