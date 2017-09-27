@@ -51,12 +51,30 @@
                         </select>
                     </td>
                 </tr>
+                
                 <tr>
                     <td>Fecha Desde
                         <input type="text"  value="" id="fecha_desde"  name="fecha_desde" type="text">
                     </td>
                     <td>Fecha Hasta
                         <input type="text"  value="" id="fecha_hasta"  name="fecha_hasta" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Origen de hallazgo:
+                        <select id="origen"  onchange="trae_nc()" name="origen" size="1">
+                            <option value="">Seleccione un estado</option>
+                            <option value="e">Espontanea del BSTB</option>
+                            <option value="ai">Auditoria Interna</option>
+                            <option value="ae">Auditoria Externa</option>
+                            <option value="p">Proveedor</option>
+                            <option value="r">Reclamo de Parte Interesada</option>
+                            <option value="st">STH</option>
+                        </select>
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
                 <tr>

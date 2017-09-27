@@ -2434,7 +2434,7 @@ class Consultas
         }
     }
 
-    function getNoConformidadByFiltro($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null){
+    function getNoConformidadByFiltro($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null, $origen=null){
         $query = "SELECT p.*,date_format(p.fecha_no_conformidad, '%d/%m/%Y') as fecha,
         date_format(p.fecha_no_conformidad, '%H:%i') as hora, s.descripcion sector ,
         sd.descripcion sector_derivado_desc,a.descripcion proceso , ncp.descripcion respuesta,
@@ -2472,6 +2472,9 @@ class Consultas
         if($tipo) {
             $query .= " AND p.tipo='".$tipo."'";
         }
+        if($origen) {
+            $query .= " AND p.origen='".$origen."'";
+        }
         if($fecha_desde && $fecha_hasta==null){
             $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
             $query .=" AND p.fecha_no_conformidad>='".$fecha_desde."'";
@@ -2487,7 +2490,7 @@ class Consultas
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= " ORDER BY nombre_estado ASC, p.fecha_no_conformidad DESC";
-        //echo $query;
+       // echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
