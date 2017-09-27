@@ -7,7 +7,7 @@
  */
 session_start();
 
-$result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['estado'],$_REQUEST['tipo'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
+$result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['estado'],$_REQUEST['tipo'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],$_REQUEST['origen']);
     $k=0;
 ?>
     <table>

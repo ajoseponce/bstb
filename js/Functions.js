@@ -571,7 +571,8 @@ function exporta_pdf_nc() {
     var tipo=$("#tipo").val();
     var fecha_desde=$("#fecha_desde").val();
     var fecha_hasta=$("#fecha_hasta").val();
-    var data= 'id_proceso='+id_proceso+'&id_sector='+id_sector+'&estado='+estado+'&tipo='+tipo+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta;
+    var origen=$("#origen").val();
+    var data= 'id_proceso='+id_proceso+'&id_sector='+id_sector+'&estado='+estado+'&tipo='+tipo+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta+'&origen='+origen;
     window.open('imprimir_nc.php?'+data, '_blanck');
 }
 
