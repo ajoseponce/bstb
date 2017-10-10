@@ -74,6 +74,8 @@
                         </select>
                     </td>
                     <td>
+                        Nro. de hallazgo:
+                        <input type="text"  value="" onchange="trae_nc()" id="numero"  name="numero" type="text">
                         
                     </td>
                 </tr>

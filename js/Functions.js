@@ -497,7 +497,8 @@ function trae_nc(){
     var fecha_desde=$("#fecha_desde").val();
     var fecha_hasta=$("#fecha_hasta").val();
     var origen=$("#origen").val();
-    $("#listado").load('trae_no_conformidades.php?id_sector='+id_sector+'&tipo='+tipo+'&id_proceso='+id_proceso+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta+'&origen='+origen,function() {
+    var numero=$("#numero").val();
+    $("#listado").load('trae_no_conformidades.php?id_sector='+id_sector+'&tipo='+tipo+'&numero='+numero+'&id_proceso='+id_proceso+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta+'&origen='+origen,function() {
         $('[data-toggle="popover"]').popover();
     });
 }
