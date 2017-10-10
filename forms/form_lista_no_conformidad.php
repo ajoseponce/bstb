@@ -34,8 +34,8 @@
                             <option value="">Seleccione un estado</option>
                             <option value="N">Nueva</option>
                             <option value="As">Derivado</option>
-                            <option value="V">Implementado(Eficacia no Verificada)</option>
                             <option value="R">Respondido/Tratado</option>
+                            <option value="V">Implementado(Eficacia no Verificada)</option>
                             <option value="C">Cerrada</option>
                             <option value="A">Anulada</option>
                         </select>
