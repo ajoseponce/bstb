@@ -21,7 +21,7 @@
                         <img src="img/limpiar.png" style="cursor: pointer;" onclick="limpiar_sector()">
                     </td>
                     <td>
-                        Proocesos:
+                        Procesos:
                         <input  id="proceso"  name="proceso" style="width: 400px;"  class="input-large" value="" type="text">
                         <input  id="procesoID"  name="procesoID" type="hidden" value="">
                         <img src="img/limpiar.png" style="cursor: pointer;" onclick="limpiar_proceso()">
