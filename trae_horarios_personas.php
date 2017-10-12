@@ -9,7 +9,7 @@ include('lib/DB_Conectar.php');
 include('classes/consultas.php');
 /*print_r($_REQUEST);
 exit;*/
-$result = $consultas->getPersonasReloj();
+$result = $consultas->getPersonasReloj($_REQUEST['persona']);
 $número_dias = cal_days_in_month(CAL_GREGORIAN, $_REQUEST['periodo'], $_REQUEST['anio']); //calcula la cantidad de dias  del maes
 ?>
 <div style="display:none; border: 1px solid black; position: fixed; width: 80%; height:80%; margin-top: -100px; background: #FFF; " id="ventana_carga_horario">

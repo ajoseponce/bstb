@@ -3584,11 +3584,15 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             return 0;
         }
     }
-    function getPersonasReloj(){
+    function getPersonasReloj($persona=null){
         $query = "SELECT CONCAT_WS(' ', p.apellido, p.nombre) nombre, id_reloj"
             . " FROM personas p"
-
-            ." WHERE p.id_reloj is not null ORDER BY nombre ASC";
+            ." WHERE p.id_reloj is not null ";
+            if($persona){
+               $query .= " AND p.id_persona='".$persona."' "; 
+            }
+            $query .= "  ORDER BY nombre ASC";
+            
         //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)

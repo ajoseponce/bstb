@@ -31,7 +31,7 @@
                     <div class="controls">
                         <input  id="persona"  name="persona"  class="input-large" value="" type="text">
                         <input  id="personaID"  name="personaID"  class="input-large" value="" type="hidden">
-
+                        <img src="img/limpiar.png" style="cursor: pointer;" onclick="borrar_filtros_horarios()">    
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
         $("#cantidad_intgrantes").val(parseInt($("#cantidad_intgrantes").val())-1);
     }
 
-    newSuggest('persona', 'personaID', 'P');
+    newSuggestReloj('persona', 'personaID', 'P');
 </script>
 </body>
 <?php

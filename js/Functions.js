@@ -108,6 +108,19 @@ function newSuggest(input, inputHidden, flag){
 	};
         var as_json = new bsn.AutoSuggest(input, options);
 }
+function newSuggestReloj(input, inputHidden, flag){
+//alert('hola');
+    var options = {
+        script:"lib/ajax.php?flag=" + flag + "&", 
+        varname:"search",
+        json:true,
+        callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+        buscar_horarios();
+        }
+
+    };
+        var as_json = new bsn.AutoSuggest(input, options);
+}
 function newSuggestListaEquipo(input, inputHidden, flag){
 //alert('hola');
     var options = {
@@ -724,7 +737,13 @@ function cierraModal(){
 function buscar_horarios(){
     var value=$("#periodo").val();
     var anio=$("#anio").val();
-    $("#listado").load('trae_horarios_personas.php?periodo='+value+'&anio='+anio);
+    var persona=$("#personaID").val();
+    $("#listado").load('trae_horarios_personas.php?periodo='+value+'&anio='+anio+'&persona='+persona);
+}
+function borrar_filtros_horarios(){
+    $("#personaID").val("");
+    $("#persona").val("");
+    buscar_horarios();
 }
 function guardarHorarioPersona() {
 
