@@ -562,6 +562,17 @@ function exporta_equipos(){
 
 
 }
+function exporta_horarios(){
+    
+    var value=$("#periodo").val();
+    var anio=$("#anio").val();
+    var persona=$("#personaID").val();
+    var url = 'exporta_horarios.php?periodo='+value+'&anio='+anio+'&persona='+persona;
+    
+    window.open(url , '_blank');
+
+
+}
 function verPopoupModal(value){
     $("#equipoID").val(value);
     $("#personas_equipo").load('trae_personas_x_equipo.php?id_equipo='+value);

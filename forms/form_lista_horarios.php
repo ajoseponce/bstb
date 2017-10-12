@@ -34,6 +34,12 @@
                         <img src="img/limpiar.png" style="cursor: pointer;" onclick="borrar_filtros_horarios()">    
                     </div>
                 </div>
+                <div class="control-group" >
+                    <!-- <label class="control-label" for="general-text">Exportar listado</label> -->
+                    <div class="controls" style="float: right;">
+                         <img src="img/exel.png" onclick="exporta_horarios()" style="cursor: pointer;" />
+                    </div>
+                </div>
 
             </div>
 
