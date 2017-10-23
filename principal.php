@@ -18,8 +18,21 @@ $result_guardias = $consultas->getGuardiasUsuario();
 $result_capa = $consultas->getCapacitacionesUsuario();
 ?>
 <div id="page-content">
+    <?php if($_SESSION[id]==48){
+
+     ?>
+    <div class="span12">
+            <div class="block-title">
+                <h4>Buenos  Dias Hermosa que tengas una hermosa jornada!!
+                </h4>
+            </div>
+        </div>
+    <?php        
+    } ?>    
     <div class="row-fluid">
+        
         <div class="span6">
+
             <div class="block block-tabs block-themed">
 
                 <ul class="nav nav-tabs" data-toggle="tabs">
