@@ -907,6 +907,21 @@ class Consultas
 
             return false;
         }
+        function save_aplicativo_menu($data){
+        global $error;
+
+        $table = new Table($this->db, 'menu_aplicativo');
+        
+        $table->id_menu = $data['id_menu'];
+        $table->id_aplicativo = $data['aplicativoID'];
+
+        if($table->save()){
+            return $table->id_registro;
+        }
+        else
+
+            return false;
+        }
         function getAreas(){
 
 		$query = "SELECT * FROM areas a WHERE estado='A' ";
@@ -3301,6 +3316,17 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
+    function getAplicativoSolicitudesCompra(){
+
+        $query = "SELECT count(s.id_registro) total  FROM usuario_aplicativos s WHERE id_aplicativo='64' AND s.id_usuario='".$_SESSION['id']."'";
+        //echo $query;
+
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0]->total;
+        else
+            return false;
+    }
     function getCountSolicitudByIDEquipo($idequipo,$fecha_inicio=null){
 
         $query = "SELECT COUNT(id_solicitud) total"
@@ -4004,6 +4030,72 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
+    function getSolicitudCompra(){
+
+        $query = "SELECT s.*, date_format(s.fecha_hora, '%d-%m-%Y %H:%i') as fecha_solicitud,
+         date_format(s.requerido_para, '%d-%m-%Y') as fecha_requerido,CONCAT_WS(' ', p.apellido, p.nombre) solicitante , sc.descripcion area_solicitante_descripcion
+                    FROM solicitud_orden_compra s "
+                . " LEFT JOIN usuarios u ON u.id_usuario=s.id_solicitante"
+                . " LEFT JOIN personas p ON p.id_persona=u.id_persona"
+                . " LEFT JOIN sector sc ON sc.id_sector=s.area_solicitante"
+                . " WHERE 1 ";
+// echo $query;
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
+    function getMisSolicitudCompra(){
+
+        $query = "SELECT s.*, date_format(s.fecha_hora, '%d-%m-%Y %H:%i') as fecha_solicitud,
+         date_format(s.requerido_para, '%d-%m-%Y') as fecha_requerido,CONCAT_WS(' ', p.apellido, p.nombre) solicitante , sc.descripcion area_solicitante_descripcion
+                    FROM solicitud_orden_compra s "
+                . " LEFT JOIN usuarios u ON u.id_usuario=s.id_solicitante"
+                . " LEFT JOIN personas p ON p.id_persona=u.id_persona"
+                . " LEFT JOIN sector sc ON sc.id_sector=s.area_solicitante"
+                . " WHERE s.id_solicitante='".$_SESSION['id']."' ";
+// echo $query;
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
+    function save_solicitud_compra($data){
+        if($data['requerido_para']){
+                $fecha_requerido=substr($data['requerido_para'], 6, 4)."-".substr($data['requerido_para'], 3, 2)."-".substr($data['requerido_para'], 0, 2);
+            }else{
+                $fecha_requerido="";
+            }
+            $table = new Table($this->db, 'solicitud_orden_compra');
+
+            if($data['id_registro']){
+                $table->find($data['id_solicitud_compra']);
+            }else{
+                $table->fecha_hora = date('Y-m-d H:i:s');
+            }
+            $table->id_solicitante = $data['usuarioID'];
+            $table->area_solicitante = $data['sectorID'];
+            $table->prioridad = $data['prioridad'];
+            $table->correctivo = $data['correctivo'];
+            $table->requerido_para = $fecha_requerido;
+            $table->preventivo = $data['preventivo'];
+            $table->mantenimiento = $data['mantenimiento'];
+            $table->observaciones = $data['observaciones'];
+            $table->estado = 'N';
+           // $table->fecha_carga = date('Y-m-d H:i:s');
+           // $table->usuario = 1;
+
+            //$table->usuario = 1;
+
+            if($table->save()){
+                return $table->id_solicitud_compra;
+            }else{
+                return 0;
+            }
+        }
+
 
 }
 $consultas= new Consultas($db, $dbPg);

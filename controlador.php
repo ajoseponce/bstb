@@ -3295,6 +3295,56 @@ $action = $_REQUEST["action"];
             /*********************/
             $formulario = 'forms/form_calendario_mantenimiento.php';
             break;
+        case "cargar_solcitud_compra":
+            $estado_azul = "none";
+            $estado_amarillo = "none";
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /*********************/
+            $formulario = 'forms/form_solicitud_compra.php';
+            break;
+         case "listar_solcitud_compra":
+            
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /*********************/
+            $result = $consultas->getSolicitudCompra();
+            $formulario = 'forms/form_lista_solicitud_compra.php';
+            break;   
+        case "guardar_solicitud_compra":
+            include('lib/DB_Conectar.php');
+            //include('lib/DB_Conectar_Pg.php');
+            include('classes/consultas.php');
+
+            $result = $consultas->save_solicitud_compra($_REQUEST);
+            //$result_hemo = $consultas->save_persona_hemotrans($_REQUEST);
+            include('header.php');
+            include('menu.php');
+
+            //$result_user = $consultas->getPersonas();
+            $result = $consultas->getSolicitudCompra();
+            /*********************/
+            $formulario = 'forms/form_lista_solicitud_compra.php';
+            //exit;
+            break;
+        case "listar_mis_solicitudes_compras":
+            
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /*********************/
+            $result = $consultas->getMisSolicitudCompra();
+            $formulario = 'forms/form_lista_solicitud_compra.php';
+        break;      
+        /*********carga de poes*********/    
     }
 
    
