@@ -1,7 +1,7 @@
 <?php
 include('lib/DB_Conectar.php');
 include('classes/consultas.php');
-$tot = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
+$tot = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['estado'],$_REQUEST['tipo'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
 $nuevos = $consultas->getNoConformidadByFiltroReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'N');
 $asignados = $consultas->getNoConformidadByFiltroReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'As');
 $respondidos = $consultas->getNoConformidadByFiltroReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'R');
