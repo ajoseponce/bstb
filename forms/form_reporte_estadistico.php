@@ -25,7 +25,7 @@ $sector = $consultas->getNoConformidadBySectorReporte($_REQUEST['id_proceso'],$_
 $procesos = $consultas->getNoConformidadByProcesoReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
 
 $total=count($tot);
-function porcentaje($total, $parte, $redondear = 2) {
+function porcentaje($total, $parte, $redondear = 0) {
     return round($parte / $total * 100, $redondear);
 }
 ?>
