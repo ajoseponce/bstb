@@ -2508,7 +2508,7 @@ class Consultas
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= " ORDER BY nombre_estado ASC, p.fecha_no_conformidad DESC";
-        echo $query;
+        //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
