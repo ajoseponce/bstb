@@ -908,17 +908,17 @@ class Consultas
             return false;
         }
         function save_aplicativo_menu($data){
-        global $error;
+            global $error;
 
-        $table = new Table($this->db, 'menu_aplicativo');
-        
-        $table->id_menu = $data['id_menu'];
-        $table->id_aplicativo = $data['aplicativoID'];
+            $table = new Table($this->db, 'menu_aplicativo');
+            
+            $table->id_menu = $data['id_menu'];
+            $table->id_aplicativo = $data['aplicativoID'];
 
-        if($table->save()){
-            return $table->id_registro;
-        }
-        else
+            if($table->save()){
+                return $table->id_registro;
+            }
+            else
 
             return false;
         }
@@ -2508,7 +2508,7 @@ class Consultas
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= " ORDER BY nombre_estado ASC, p.fecha_no_conformidad DESC";
-       // echo $query;
+        echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
