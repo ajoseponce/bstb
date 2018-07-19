@@ -144,8 +144,8 @@
                             <td class="span1 text-left"><?php
                                 echo ($r->nivel_riesgo=='')?"No Aplica":"";
                                 echo ($r->nivel_riesgo=='Extremo')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Extremo":"";
-                                echo ($r->nivel_riesgo=='Alto')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Medio":"";
-                                echo ($r->nivel_riesgo=='Medio')?"<img src='img/semaforo_amarillo.png' style='width: 35px; height: 45px;'/>Bajo":"";
+                                echo ($r->nivel_riesgo=='Alto')?"<img src='img/semaforo_amarillo.png' style='width: 35px; height: 45px;'/>Alto":"";
+                                echo ($r->nivel_riesgo=='Medio')?"<img src='img/semaforo_verde.png' style='width: 35px; height: 45px;'/>Medio":"";
                                 echo ($r->nivel_riesgo=='Bajo')?"Bajo":"";
                                 ?>
 
