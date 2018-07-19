@@ -81,7 +81,7 @@
                 </tr>
                 <tr>
                     <td>
-                        Origen de hallazgo:
+                        Nivel de Riego:
                             <select id="nivel_riesgo"  onchange="trae_nc()"  name="nivel_riesgo" size="1">
                                 <option value="">No Aplica</option>
                                 <option value="Extremo">Extremo</option>
