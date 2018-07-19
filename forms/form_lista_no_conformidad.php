@@ -141,7 +141,10 @@
                                 echo ($r->tipo=='m')?"Mejora":"";
                                 ?>
                             </td>
-                            <td class="span1 text-left"><?php echo ($r->nivel_riesgo)?$r->nivel_riesgo:"No Aplica"; ?></td>
+                            <td class="span1 text-left">
+                                <img src="img/semaforo_verde.png" style="cursor: pointer; width: 35px; height: 35px;"/>
+<!--                                --><?php //echo ($r->nivel_riesgo)?$r->nivel_riesgo:"No Aplica"; ?>
+                            </td>
                             <td class="span1 text-center"><?php
                                 echo ($r->estado=='N')?"Nuevo":"";
                                 echo ($r->estado=='As')?"Derivado":"";
