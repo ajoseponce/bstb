@@ -2449,7 +2449,7 @@ class Consultas
         }
     }
 
-    function getNoConformidadByFiltro($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null, $origen=null, $numero=null){
+    function getNoConformidadByFiltro($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null, $origen=null, $numero=null, $nivel_riesgo=null){
         $query = "SELECT p.*,date_format(p.fecha_no_conformidad, '%d/%m/%Y') as fecha,
         date_format(p.fecha_no_conformidad, '%H:%i') as hora, s.descripcion sector ,
         sd.descripcion sector_derivado_desc,a.descripcion proceso , ncp.descripcion respuesta,
@@ -2492,6 +2492,9 @@ class Consultas
         }
         if($numero) {
             $query .= " AND p.id_no_conformidad='".$numero."'";
+        }
+        if($nivel_riesgo) {
+            $query .= " AND p.nivel_riesgo='".$nivel_riesgo."'";
         }
         if($fecha_desde && $fecha_hasta==null){
             $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
@@ -4096,6 +4099,28 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             }
         }
 
+    function getUsuariosByNombre(){
+        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac FROM usuarios u
+                INNER JOIN personas p ON u.id_persona=p.id_persona
+                WHERE 1 ORDER BY p.apellido, p.nombre";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
 
+    function checkLogin($user, $pass, $count=0){
+        global $conn;
+
+//$pass = md5($pass);
+
+        $SQL = "SELECT COUNT(*) AS C FROM bstb.usuarios WHERE nombre='".$user."' AND clave='".$pass."' AND estado='A'";
+        $result = $this->db->loadObjectList($SQL);
+        if($result[0]->C)
+            return true;
+        else
+            return false;
+    }
 }
 $consultas= new Consultas($db, $dbPg);

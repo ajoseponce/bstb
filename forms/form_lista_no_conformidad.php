@@ -80,6 +80,24 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        Origen de hallazgo:
+                        <select id="origen"  onchange="trae_nc()" name="origen" size="1">
+                            <select id="nivel_riesgo"  name="nivel_riesgo" size="1">
+                                <option value="">No Aplica</option>
+                                <option value="Extremo">Extremo</option>
+                                <option value="Alto">Alto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Bajo">Bajo</option>
+
+                            </select>
+
+                        </select>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" style="text-align: right;">
                         <img src="img/pdf.png"   onclick="exporta_pdf_nc()" style="cursor: pointer;" />
                     </td>
