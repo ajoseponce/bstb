@@ -74,7 +74,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="general-text">Nivel de Riesgo</label>
+                    <div class="controls">
+                        <select id="nivel_riesgo"  name="nivel_riesgo" size="1">
+                            <option <?php echo ($result->nivel_riesgo=='')?"selected":""; ?> value="">No Aplica</option>
+                            <option <?php echo ($result->nivel_riesgo=='Extremo')?"selected":""; ?> value="Extremo">Extremo</option>
+                            <option <?php echo ($result->nivel_riesgo=='Alto')?"selected":""; ?> value="Alto">Alto</option>
+                            <option <?php echo ($result->nivel_riesgo=='Medio')?"selected":""; ?> value="Medio">Medio</option>
+                            <option <?php echo ($result->nivel_riesgo=='Bajo')?"selected":""; ?> value="Bajo">Bajo</option>
 
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="form-actions">
