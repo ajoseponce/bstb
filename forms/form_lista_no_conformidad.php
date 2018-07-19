@@ -141,7 +141,7 @@
                                 echo ($r->tipo=='m')?"Mejora":"";
                                 ?>
                             </td>
-                            <td class="span1 text-left"><?php echo $r->nivel_riesgo; ?></td>
+                            <td class="span1 text-left"><?php echo ($r->nivel_riesgo)?$r->nivel_riesgo:"No Aplica"; ?></td>
                             <td class="span1 text-center"><?php
                                 echo ($r->estado=='N')?"Nuevo":"";
                                 echo ($r->estado=='As')?"Derivado":"";
