@@ -15,6 +15,7 @@ $result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST
         <th style="width: 15%;">Proceso</th>
         <th style="width: 35%;">Descripcion</th>
         <th style="width: 10%; text-align: center;">Tipo</th>
+        <th style="width: 10%; text-align: center;">Nivel de Riesgo</th>
         <th style="width: 10%; text-align: center;">Estado</th>
         <th style="width: 10%; text-align: center;">Asignado</th>
         <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
@@ -24,7 +25,6 @@ $result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST
         <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
         <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
         <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
-        
     </tr>
     </thead>
     <tbody>
@@ -57,6 +57,15 @@ $result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST
                     echo ($r->tipo=='m')?"Mejora":"";
                     ?>
                 </td>
+                <td class="span1 text-left"><?php
+                    echo ($r->nivel_riesgo=='')?"No Aplica":"";
+                    echo ($r->nivel_riesgo=='Extremo')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Extremo":"";
+                    echo ($r->nivel_riesgo=='Alto')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Medio":"";
+                    echo ($r->nivel_riesgo=='Medio')?"<img src='img/semaforo_amarillo.png' style='width: 35px; height: 45px;'/>Bajo":"";
+                    echo ($r->nivel_riesgo=='Bajo')?"Bajo":"";
+                    ?>
+
+                </td>
                 <td class="span1 text-center"><?php
                     echo ($r->estado=='N')?"Nuevo":"";
                     echo ($r->estado=='As')?"Derivado":"";
@@ -65,7 +74,6 @@ $result = $consultas->getNoConformidadByFiltro($_REQUEST['id_proceso'],$_REQUEST
                     echo ($r->estado=='C')?"Cerrado     ":"";
                     echo ($r->estado=='A')?"Anulada":"";
                     ?></td>
-
                 <td class="span1 text-center">
                     <?php if($r->estado=='R' || $r->estado=='As'){ ?>
                         <img src="img/usuario.png" style="cursor: pointer;"  title="<?php echo  "Sector: ".$r->sector_derivado_desc; ?> " data-toggle="popover" data-html="true"  data-trigger="hover" data-content="<strong><?php echo  "Resp: ".$r->responsable_sector; ?></strong>" >

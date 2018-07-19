@@ -99,7 +99,7 @@
                     <th style="width: 15%;">Proceso</th>
                     <th style="width: 35%;">Descripcion</th>
                     <th style="width: 10%; text-align: center;">Tipo</th>
-                    <th style="width: 10%; text-align: center;">Riesgo</th>
+                    <th style="width: 10%; text-align: center;">Nivel de Riesgo</th>
                     <th style="width: 10%; text-align: center;">Estado</th>
                     <th style="width: 10%; text-align: center;">Asignado</th>
                     <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>

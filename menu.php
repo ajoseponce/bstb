@@ -114,7 +114,7 @@
                                 </li>
                                 <li>
                                     <div style="cursor: pointer;" class="alert" onclick="location.href='controlador.php?action=listar_ver_no_conformidad'">
-                                        <img src="img/no_conformidad.png" title="Cargar No Conformididad">Cargar No Conformididad
+                                        <img src="img/no_conformidad.png" title="Cargar Hallazgo">Cargar Hallazgo
                                     </div>
                                 </li>
                                 <li>
