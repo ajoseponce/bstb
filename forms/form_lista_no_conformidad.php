@@ -99,6 +99,7 @@
                     <th style="width: 15%;">Proceso</th>
                     <th style="width: 35%;">Descripcion</th>
                     <th style="width: 10%; text-align: center;">Tipo</th>
+                    <th style="width: 10%; text-align: center;">Riesgo</th>
                     <th style="width: 10%; text-align: center;">Estado</th>
                     <th style="width: 10%; text-align: center;">Asignado</th>
                     <th style="width: 15%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th>
@@ -140,6 +141,7 @@
                                 echo ($r->tipo=='m')?"Mejora":"";
                                 ?>
                             </td>
+                            <td class="span1 text-left"><?php echo $r->nivel_riesgo; ?></td>
                             <td class="span1 text-center"><?php
                                 echo ($r->estado=='N')?"Nuevo":"";
                                 echo ($r->estado=='As')?"Derivado":"";
