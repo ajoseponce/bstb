@@ -141,9 +141,14 @@
                                 echo ($r->tipo=='m')?"Mejora":"";
                                 ?>
                             </td>
-                            <td class="span1 text-left">
-                                <img src="img/semaforo_verde.png" style="cursor: pointer; width: 35px; height: 35px;"/>
-<!--                                --><?php //echo ($r->nivel_riesgo)?$r->nivel_riesgo:"No Aplica"; ?>
+                            <td class="span1 text-left"><?php
+                                echo ($r->nivel_riesgo=='')?"No Aplica":"";
+                                echo ($r->estado=='Extremo')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Extremo":"";
+                                echo ($r->estado=='Alto')?"<img src='img/semaforo_rojo.png' style='width: 35px; height: 45px;'/>Medio":"";
+                                echo ($r->estado=='Medio')?"<img src='img/semaforo_amarillo.png' style='width: 35px; height: 45px;'/>Bajo":"";
+                                echo ($r->estado=='Bajo')?"Bajo":"";
+                                ?>
+
                             </td>
                             <td class="span1 text-center"><?php
                                 echo ($r->estado=='N')?"Nuevo":"";
