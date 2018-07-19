@@ -82,17 +82,13 @@
                 <tr>
                     <td>
                         Origen de hallazgo:
-                        <select id="origen"  onchange="trae_nc()" name="origen" size="1">
-                            <select id="nivel_riesgo"  name="nivel_riesgo" size="1">
+                            <select id="nivel_riesgo"  onchange="trae_nc()"  name="nivel_riesgo" size="1">
                                 <option value="">No Aplica</option>
                                 <option value="Extremo">Extremo</option>
                                 <option value="Alto">Alto</option>
                                 <option value="Medio">Medio</option>
                                 <option value="Bajo">Bajo</option>
-
                             </select>
-
-                        </select>
                     </td>
                     <td>
                     </td>
