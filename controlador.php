@@ -2419,7 +2419,7 @@ $action = $_REQUEST["action"];
             include('classes/consultas.php');
             include('header.php');
             include('menu.php');
-            $sql = "UPDATE no_conformidad SET sector_derivado='" . $_REQUEST['sector_derivadoID'] . "', estado='As', fecha_derivado=NOW() WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
+            $sql = "UPDATE no_conformidad SET sector_derivado='" . $_REQUEST['sector_derivadoID'] . "',  nivel_riesgo='" . $_REQUEST['nivel_riesgo'] . "',  estado='As', fecha_derivado=NOW() WHERE id_no_conformidad='" . $_REQUEST['id_no_conformidad'] . "'";
 
             mysql_query($sql);
 
