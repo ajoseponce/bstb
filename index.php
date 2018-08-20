@@ -1,41 +1,39 @@
 <?php
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
+
 session_start();
 /**************INCLUDES*****************************/
 include('lib/DB_Conectar.php');
 include('lib/functions.php');
+include('classes/consultas.php');
 /******************************************************/
 if(isset($_SESSION['id'])){
   header('Location: principal.php');
 }
 $alerta="none";
+
 if(isset($_POST["btnSubmit"])){
-//    echo "entro";
-//    exit;
     if(checkLogin($_POST["usuario"], $_POST["password"])){
         //session_start();
-        $sql = "SELECT * FROM bstb.usuarios WHERE nombre='".$_POST['usuario']."'";
+        $usuario = $consultas->getDatosUsuarioByNombre($_POST['usuario']);
 
-        //echo $sql;
-        $usuario_datos=@mysql_query($sql);
         $_SESSION["_userName"] = $_POST["usuario"];
         $_SESSION["_userPass"] = md5($_POST["password"]);
-        $usuario=mysql_fetch_array($usuario_datos);
 
-        $id_user=$usuario[0];
-        $_SESSION['id']=$usuario[0];
-        $_SESSION['id_persona']=$usuario[3];
+        $id_user=$usuario->id_usuario;
+        $_SESSION['id']=$usuario->id_usuario;
+        $_SESSION['id_persona']=$usuario->id_persona;
 
-        $nombre=@mysql_query("SELECT * FROM bstb.personas WHERE id_persona='".$usuario[3]."'");
-        $nombre_comp=mysql_fetch_array($nombre);
-        $_SESSION['nombre']=$nombre_comp['nombre'].' '.$nombre_comp['apellido'];
+        $_SESSION['nombre']=$usuario->persona;
         //header('Location:index_dominio.php');
         header('Location:principal.php');
     }
     else{
+
         session_start();
         session_destroy(); //hago esto para poder destruir la session y probar si me niega el acceso a una pagina que tenga requireLogin
-        //$error->add('',LEVEL_ERROR_WARNING,'Su usuario o contraseña son incorrectos.');
-        //$error = "error";
+
         $alerta="";
     }
 }

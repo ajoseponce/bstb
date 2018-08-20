@@ -4122,5 +4122,15 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
+    function getDatosUsuarioByNombre($nombre){
+        $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
+                INNER JOIN personas p ON u.id_persona=p.id_persona
+                WHERE u.nombre='".$nombre."'";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0];
+        else
+            return false;
+    }
 }
 $consultas= new Consultas($db, $dbPg);

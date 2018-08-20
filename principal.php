@@ -23,7 +23,7 @@ $result_capa = $consultas->getCapacitacionesUsuario();
      ?>
     <div class="span12">
             <div class="block-title">
-                <h4>Buenos  Dias Hermosa que tengas una hermosa jornada!!
+<!--                <h4>Buenos  Dias Hermosa que tengas una hermosa jornada!!-->
                 </h4>
             </div>
         </div>
