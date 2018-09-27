@@ -556,10 +556,11 @@ function exporta_equipos(){
         var tipo_equipo=$("#tipo_equipo").val();
         var num_serie=$("#num_serie").val();
         var marca=$("#marca").val();
+        var sector_filtroID=$("#sector_filtroID").val();
+        var lugar_filtro=$("#lugar_filtro").val();
 
-    
-        var url = 'exporta_equipos.php?lugar_filtro='+lugar_filtro+'&marca='+marca+'&tipo_equipo='+tipo_equipo+'&num_serie='+num_serie;
-    window.open(url , '_blank');
+        var url = 'exporta_equipos.php?lugar_filtro='+lugar_filtro+'&marca='+marca+'&tipo_equipo='+tipo_equipo+'&num_serie='+num_serie+'&sector_filtroID='+sector_filtroID+'&lugar_filtro='+lugar_filtro;
+        window.open(url , '_blank');
 
 
 }
