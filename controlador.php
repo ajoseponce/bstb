@@ -3343,7 +3343,37 @@ $action = $_REQUEST["action"];
             /*********************/
             $result = $consultas->getMisSolicitudCompra();
             $formulario = 'forms/form_lista_solicitud_compra.php';
-        break;      
+        break;
+        case "listar_pedidos_materiales":
+
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /*********************/
+            $result = $consultas->getSolicitudPedidos();
+            $formulario = 'forms/form_lista_pedidos.php';
+            break;
+        case "baja_usuario":
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            /***************/
+            $sql = "UPDATE usuarios SET estado='B' WHERE id_usuario='" . $_REQUEST['usuarioID'] . "'";
+            //echo $sql;
+            mysql_query($sql);
+            ?>
+            <script>
+                alert("Se dio de baja el usuario correctamente . Para volver a activarlo contacte a soporte de sistemas");
+            </script>
+            <?php
+            include('header.php');
+            include('menu.php');
+            $result_usuarios = $consultas->getUsuarios();
+            /*********************/
+            $formulario = 'forms/form_lista_usuarios.php';
+            /***************/
+            break;
         /*********carga de poes*********/    
     }
 

@@ -47,7 +47,8 @@
                             <td class="span1 text-left"><?php echo $r->usuario; ?></td>
                             <td class="span1 text-left"><?php echo $r->clave; ?></td>
                             <td>
-                                <a href="controlador.php?action=edita_usuario&usuarioID=<?php echo (int)$r->id_usuario ?>"><img style="cursor: pointer;" src="img/edit.png"/>
+<!--                                <a href="controlador.php?action=edita_usuario&usuarioID=--><?php //echo (int)$r->id_usuario ?><!--"><img style="cursor: pointer;" src="img/edit.png"/>-->
+                                <a href="controlador.php?action=baja_usuario&usuarioID=<?php echo (int)$r->id_usuario ?>"><img style="cursor: pointer;" src="img/delete.png"/>
                             </td>
 
 

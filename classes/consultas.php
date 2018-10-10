@@ -2904,9 +2904,10 @@ class Consultas
         }
     }
     function getUsuarios(){
-        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac FROM usuarios u
+        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac 
+                FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
-                WHERE 1 ORDER BY p.apellido, p.nombre";
+                WHERE u.estado='A' ORDER BY p.apellido, p.nombre";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -4129,6 +4130,26 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
+        else
+            return false;
+    }
+    function getSolicitudPedidos(){
+        $query = "SELECT pm* FROM pedidos_materiales pm
+                
+                WHERE 1";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
+    function getSolicitudPedidosDetalle(){
+        $query = "SELECT pm* FROM pedidos_materiales_detalle pm
+                
+                WHERE 1";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
         else
             return false;
     }
