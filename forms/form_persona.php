@@ -118,6 +118,8 @@
                     <option value="Medico" <?php echo (($result->rol)=='Medico')?"selected":""; ?>>Medico/a</option>
                     <option value="Contador" <?php echo (($result->rol)=='Contador')?"selected":""; ?>>Contador/a</option>
                     <option value="Chofer" <?php echo (($result->rol)=='Chofer')?"selected":""; ?>>Chofer</option>
+                    <option value="Licenciado" <?php echo (($result->rol)=='Licenciado')?"selected":""; ?>>Licenciado</option>
+                    <option value="Ingeniero" <?php echo (($result->rol)=='Ingeniero')?"selected":""; ?>>Ingeniero</option>
                 </select>
             </div>
         </div>
