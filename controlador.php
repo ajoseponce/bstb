@@ -3374,6 +3374,25 @@ $action = $_REQUEST["action"];
             $formulario = 'forms/form_lista_usuarios.php';
             /***************/
             break;
+        case "baja_persona":
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            /***************/
+            $sql = "UPDATE personas SET cod_estado='B' WHERE id_persona='" . $_REQUEST['personaID'] . "'";
+            //echo $sql;
+            mysql_query($sql);
+            ?>
+            <script>
+                alert("Se dio de baja la correctamente . Para volver a activarlo contacte a soporte de sistemas");
+            </script>
+            <?php
+            include('header.php');
+            include('menu.php');
+            $result_personas = $consultas->getpersonas();
+            /*********************/
+            $formulario = 'forms/form_lista_personas.php';
+            /***************/
+            break;
         /*********carga de poes*********/    
     }
 

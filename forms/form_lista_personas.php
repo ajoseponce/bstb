@@ -50,6 +50,7 @@
                 <td class="span1 text-left"><?php echo $r->rol; ?></td>
                 <td>
                     <a href="controlador.php?action=edita_persona&personaID=<?php echo (int)$r->id_persona ?>"><img style="cursor: pointer;" src="img/edit.png"/>
+                        <a href="controlador.php?action=baja_persona&personaID=<?php echo (int)$r->id_persona ?>"><img style="cursor: pointer;" src="img/delete.png"/>
                 </td>
                 
                 

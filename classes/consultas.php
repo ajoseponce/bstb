@@ -943,7 +943,7 @@ class Consultas
 			return false;
 	}
         function getpersonas(){
-		$query = "SELECT a.*,date_format(a.fecha_nacimiento, '%d/%m/%Y')as fecha_nacimiento FROM personas a " ;
+		$query = "SELECT a.*,date_format(a.fecha_nacimiento, '%d/%m/%Y')as fecha_nacimiento FROM personas a WHERE cod_estado='A' " ;
                 //echo $query;
 		$result = $this->db->loadObjectList($query);
 		if($result)
