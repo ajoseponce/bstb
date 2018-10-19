@@ -34,6 +34,7 @@
                 <th style="width: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                 <th style="width: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                 <th style="width: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th style="width: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -105,6 +106,11 @@
                         <a href="controlador.php?action=cierra_solicitud&id_solicitud=<?php echo (int)$r->id_solicitud ?>"><img style="cursor: pointer;" src="img/final.png"/>
                             <?php } ?>
                     </td>
+                    <td class="span1 text-left">
+                        <?php if($r->estado_solicitud=='CERR'){ ?>
+                        <a href="controlador.php?action=validar_solicitud&id_solicitud=<?php echo (int)$r->id_solicitud ?> "><img style="cursor: pointer;" src="img/you_ok.png"/>
+                            <?php } ?>
+                    </td>
                 </tr>
                 <tr style="display:none;" id="descripcion_<?php echo $r->id_solicitud; ?>">
                     <td colspan="12">
@@ -113,6 +119,7 @@
                     <td >
                         <img onclick="cierre_descripcion(<?php echo $r->id_solicitud ?>)" src="img/delete.png"  style="cursor: pointer;"/>
                     </td>
+
                 </tr>
                 <tr style="display:none;" id="nota_<?php echo $r->id_solicitud; ?>">
                     <td colspan="12">
@@ -147,6 +154,7 @@
                     <td>
                         <img onclick="cierre_notas(<?php echo $r->id_solicitud ?>)" src="img/delete.png"  style="cursor: pointer;"/>
                     </td>
+
                 </tr>
             <?php  }}else{ ?>
             <tr>
