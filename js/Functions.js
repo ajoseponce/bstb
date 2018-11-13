@@ -815,3 +815,7 @@ function trae_guardias(){
         $('[data-toggle="popover"]').popover();
     });
 }
+function verDetalleMantenimiento(tipo_equipo, tipo_mantenimiento, nombre){
+    $("#nombre_mantenimiento").html("Detalle de "+nombre);
+    $("#detalle_mante").load('traer_item_mantenimiento_detalle.php?tipo_equipo='+encodeURIComponent(tipo_equipo)+'&tipo_mantenimiento='+tipo_mantenimiento);
+}

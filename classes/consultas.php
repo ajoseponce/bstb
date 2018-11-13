@@ -1696,7 +1696,7 @@ class Consultas
         }
         function getItems($equipo, $mantenimiento){
             if($equipo!=0 && $mantenimiento!=0){
-		$query = "SELECT a.* FROM mantenimiento_item_tipo_equipo a WHERE 1 ";
+		$query = "SELECT a.*, c.descripcion cond FROM mantenimiento_item_tipo_equipo a LEFT JOIN condicion c ON c.letra=a.condicion WHERE 1 ";
 
                 $query .= " AND a.id_tipo_equipo='".$equipo."' AND a.tipo_mantenimiento='".$mantenimiento."'" ;
                 }

@@ -33,8 +33,7 @@
                         <option value="1">De Primer Nivel</option>
                         <option value="2">Preventivo</option>
                         <option value="3">Calibracion</option>
-                        <!--<option value="3">Calibracion</option>-->
-                    
+
                 </select>
             </div>
         </div>
@@ -74,9 +73,9 @@
                 <select id="condicion" name="condicion" size="1">
                         <option value="0">Seleccione una Condicion</option>
                         <?php if($condicion){
-                        foreach ($condicion as $c) {  ?>
-                            <option  value="<?php echo $c->letra; ?>"> <?php echo $c->descripcion; ?></option>
-                        <?php
+                            foreach ($condicion as $c) {  ?>
+                                <option  value="<?php echo $c->letra; ?>"> <?php echo $c->descripcion; ?></option>
+                            <?php
                             }
                         } ?>
                 </select>

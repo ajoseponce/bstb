@@ -107,7 +107,7 @@
         </div>
         <div id="personas_equipo"></div>
     </div>
-
+    <?php include 'detalle_mantenimiento.php'; ?>
 <div id="tabla_listado" class="double-scroll">
 <table class="table">
 
@@ -156,7 +156,7 @@
                 if($mpn->total!=0){
                     if($mpn->titulo!='N/A') {
                         ?>
-                        <img src='./img/green_alert.png'/>
+                      <a href="#modal_detalle_mantenimeinto"  onclick="verDetalleMantenimiento('<?php echo $r->tipo_equipo; ?>', '1', 'Mantenimiento de Primer Nivel')"  data-toggle="modal"><img src='./img/green_alert.png'/></a>
                         <?php
                     }else{ ?>
                         <img src='./img/no_aplica.png'/>
@@ -170,7 +170,8 @@
                 if($mp->total!=0){
                     if($mp->titulo!='N/A') {
                         ?>
-                        <img src='./img/green_alert.png'/>
+                        <a href="#modal_detalle_mantenimeinto"  onclick="verDetalleMantenimiento('<?php echo $r->tipo_equipo; ?>', '2', 'Mantenimiento preventivo')"  data-toggle="modal"><img src='./img/green_alert.png'/></a>
+<!--                        <img src='./img/green_alert.png'/>-->
                         <?php
                     }else{ ?>
                         <img src='./img/no_aplica.png'/>
@@ -184,7 +185,7 @@
                 if($mc->total!=0){
                     if($mc->titulo!='N/A') {
                         ?>
-                        <img src='./img/green_alert.png'/>
+                        <a href="#modal_detalle_mantenimeinto"  onclick="verDetalleMantenimiento('<?php echo $r->tipo_equipo; ?>', '3', ' Calibracion')"  data-toggle="modal"><img src='./img/green_alert.png'/></a>
                         <?php
                     }else{ ?>
                         <img src='./img/no_aplica.png'/>
