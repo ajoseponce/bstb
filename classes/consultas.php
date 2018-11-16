@@ -3061,7 +3061,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
-    function getSolicitudesManteniemientos(){
+    function getSolicitudesManteniemientos($lugar=null, $sector=null, $tipo=null, $estado=null){
 
         $query = "SELECT s.*, e.num_interno, t.armado,
         date_format(s.requerido_para, '%d/%m/%Y') as requerido_para,
@@ -3075,12 +3075,26 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
   end as color_estado, pr.descripcion proveedor "
             . " FROM solicitud_mantenimiento s "
             . " LEFT JOIN equipos e ON e.id_equipo=s.id_equipo "
+            . " LEFT JOIN lugar l ON l.id_lugar=e.lugar"
             . " LEFT JOIN tipo_equipo t ON t.id_tipo_equipo=e.tipo_equipo "
             . " LEFT JOIN usuarios u ON u.id_usuario=s.id_usuario "
             . " LEFT JOIN personas p ON p.id_persona=u.id_persona "
             . " LEFT JOIN sector se ON se.id_sector=s.id_sector "
             . " LEFT JOIN proveedor pr ON pr.id_proveedor=s.proveedor_derivado "
-            . " WHERE 1 ORDER BY color_estado ASC, s.fecha_solicitud DESC ";
+            . " WHERE 1 ";
+        if($lugar){
+            $query .= " AND l.id_lugar='".$lugar."'";
+        }
+        if($sector){
+            $query .= " AND s.id_sector='".$sector."'";
+        }
+        if($tipo){
+            $query .= " AND e.tipo_equipo='".$tipo."'";
+        }
+        if($estado){
+            $query .= " AND s.estado_solicitud='".$estado."'";
+        }
+        $query .= "ORDER BY color_estado ASC, s.fecha_solicitud DESC ";
         //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)

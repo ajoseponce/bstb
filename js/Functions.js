@@ -819,3 +819,36 @@ function verDetalleMantenimiento(tipo_equipo, tipo_mantenimiento, nombre){
     $("#nombre_mantenimiento").html("Detalle de "+nombre);
     $("#detalle_mante").load('traer_item_mantenimiento_detalle.php?tipo_equipo='+encodeURIComponent(tipo_equipo)+'&tipo_mantenimiento='+tipo_mantenimiento);
 }
+
+function filtrar_listado_solicitudes(){
+    //alert('llega');
+    var lugar_filtro=$("#lugar_filtro").val();
+    if($("#lugar").val()==""){
+        lugar_filtro="";
+        $("#lugar_filtro").val("");
+    }
+    var sector_filtroID=$("#sector_filtroID").val();
+    if($("#sector_filtro").val()==""){
+        sector_filtroID="";
+        $("#sector_filtroID").val("");
+    }
+    var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
+    var estado_filtro=$("#estado_filtro").val();
+
+    $("#tabla_listado").load('trae_solicitudes.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro+'&estado_filtro='+estado_filtro);
+}
+
+function newSuggestListaSolicitudes(input, inputHidden, flag){
+
+    var options = {
+        script:"lib/ajax.php?flag=" + flag + "&",
+        varname:"search",
+        json:true,
+        callback: function (obj) {
+            document.getElementById(inputHidden).value = obj.id;
+            filtrar_listado_solicitudes()
+        }
+
+    };
+    var as_json = new bsn.AutoSuggest(input, options);
+}

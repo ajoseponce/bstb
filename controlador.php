@@ -2916,6 +2916,10 @@ $action = $_REQUEST["action"];
             include('header.php');
             include('menu.php');
             /***************fin includes******************/
+            $tipo_equipo = $consultas->getTipoEquipo();
+            $result_marcas = $consultas->getMarcas();
+            $result_lugares = $consultas->getLugares();
+
             $result = $consultas->getSolicitudesManteniemientos();
             /*********************/
             $formulario = 'forms/form_lista_solicitudes.php';
