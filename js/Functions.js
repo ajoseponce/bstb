@@ -375,12 +375,11 @@ function filtrar_busqueda_equipo(){
     $("#tabla_listado").load('trae_busqueda_equipo.php?marca='+marca+'&tipo_equipo='+tipo_equipo+'&lugar_filtro='+lugar);
 }
 function filtrar_busqueda_equipo_hist(){
-    //alert('llega');
-    var descripcion=$("#descripcion").val();
-    var tipo_equipo=$("#tipo_equipo").val();
-    var num_serie=$("#num_serie").val();
-    var marca=$("#marca").val();
-    $("#tabla_listado").load('trae_busqueda_equipo_historial.php?marca='+marca+'&tipo_equipo='+tipo_equipo);
+
+    var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
+    var marca_filtro=$("#marca_filtro").val();
+
+    $("#tabla_listado").load('trae_busqueda_equipo_historial.php?marca_filtro='+marca_filtro+'&tipo_equipo_filtro='+tipo_equipo_filtro);
 }
 
 function buscar_item_matenimiento(){

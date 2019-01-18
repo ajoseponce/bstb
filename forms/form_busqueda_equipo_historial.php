@@ -15,7 +15,7 @@
         <tr>
             <td>
                 Tipo Equipo: 
-                <select id="tipo_equipo"  onchange="filtrar_busqueda_equipo_hist()" name="tipo_equipo" size="1">
+                <select id="tipo_equipo_filtro"  onchange="filtrar_busqueda_equipo_hist()" name="tipo_equipo_filtro" size="1">
                         <option value="0">Seleccione un tipo</option>
                     <?php if($tipo_equipo){
                         foreach ($tipo_equipo as $t) {  ?>
@@ -27,7 +27,7 @@
             </td>    
             <td>
                 Marca: 
-                <select  onchange="filtrar_busqueda_equipo_hist()" id="marca" name="marca" size="1">
+                <select  onchange="filtrar_busqueda_equipo_hist()" id="marca_filtro" name="marca_filtro" size="1">
                     <option value="0">Seleccione marca</option>
                     <?php
                     $k=0;
