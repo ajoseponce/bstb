@@ -551,15 +551,21 @@ function eliminarRelacionEquipoPersona(relacion) {
     });
 }
 function exporta_equipos(){
-    
         var lugar_filtro=$("#lugar_filtro").val();
-        var tipo_equipo=$("#tipo_equipo").val();
-        var num_serie=$("#num_serie").val();
-        var marca=$("#marca").val();
+        if($("#lugar").val()==""){
+            lugar_filtro="";
+            $("#lugar_filtro").val("");
+        }
         var sector_filtroID=$("#sector_filtroID").val();
-        var lugar_filtro=$("#lugar_filtro").val();
+        if($("#sector_filtro").val()==""){
+            sector_filtroID="";
+            $("#sector_filtroID").val("");
+        }
+        var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
+        var num_serie=$("#num_serie").val();
+        var marca_filtro=$("#marca_filtro").val();
 
-        var url = 'exporta_equipos.php?lugar_filtro='+lugar_filtro+'&marca='+marca+'&tipo_equipo='+tipo_equipo+'&num_serie='+num_serie+'&sector_filtroID='+sector_filtroID+'&lugar_filtro='+lugar_filtro;
+        var url = 'exporta_equipos.php?lugar_filtro='+lugar_filtro+'&marca_filtro='+marca_filtro+'&tipo_equipo_filtro='+tipo_equipo_filtro+'&num_serie='+num_serie+'&sector_filtroID='+sector_filtroID+'&lugar_filtro='+lugar_filtro;
         window.open(url , '_blank');
 
 
