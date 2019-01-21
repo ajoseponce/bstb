@@ -3570,7 +3570,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT md.id_mantenimiento_cabecera,md.valor detalle, date_format(mc.fecha, '%d-%m-%Y %H:%i') as fecha_realizado, date_format(mc.fecha_deberia, '%d-%m-%Y') as fecha_deberia
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
-        WHERE md.id_mantenimiento_cabecera='".$item."' AND mc.id_equipo='".$equipo."'";
+        WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."'";
         //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4141,6 +4141,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
                 WHERE u.nombre='".$nombre."'";
+        echo $query;
+
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
