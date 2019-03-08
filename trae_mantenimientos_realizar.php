@@ -152,6 +152,32 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
 $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcula la cantidad de dias  del maes
 
 ?>
+<div style="display:none; border: 1px solid black; position: fixed; width: 55%; height:80%; margin-top: -150px; background: #FFF; " id="ventana_carga">
+    <div class="modal-header">
+        <button type="button" onclick="cierraModal()" class="close" data-dismiss="modal">×</button>
+        <h4> Carga Mantenimiento  </h4>
+    </div>
+    <div style="background-color: white;">
+        <h3>Observacion/Motivo de retraso</h3>
+        <p>
+            <textarea id="observaciones" style="width: 1253px; height: 197px;"></textarea>
+            <input type="hidden" id="item">
+            <input type="hidden" id="estado_mant">
+            <br>
+            Deberia Cargarse:
+            <input type="text" readonly id="fecha_deberia">
+            <br>
+            Debe
+            <input type="text" readonly id="fecha_debe">
+        </p>
+    </div>
+    <div style="background-color: white;">
+        <button type="button" onclick="guardarMantenimiento()" class="btn btn-success">Guardar Mantenimiento</button>
+    </div>
+
+</div>
+<div style="display:none; border: 1px solid black; position: fixed; width: 50%; height:60%; margin-top: -150px; background: #FFF; " id="detalle_mantenimiento">
+</div>
 <table width="100%" class="sui-table">
     <tr>
         <td style="text-align: right">
@@ -195,7 +221,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                         /************buscar mantenieminto de equipos    *************/
 //                    $cont_sol = $consultas->getCountSolicitudByIDEquipo($_REQUEST['id_equipo'],$fecha_filtro);
 //                    if($cont_sol==0) {
-
+//echo $v->frecuencia;
                         if ($count_mantenimiento == 0) {
                             switch ($v->frecuencia) {
                                 case "1":
@@ -247,7 +273,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
 
                                         break;
                                     case "7":
-                                       // echo $ultimo->fecha_debe;
+                                        //echo $ultimo->fecha_debe;
 //                                        exit;
                                         if ($Mto_del_Dia) {
                                             if($Mto_del_Dia->en_termino=="R"){
@@ -294,7 +320,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                                         $fecha_debe = date('Y-m-j', $fecha_debe);
                                                         $fecha_debe=arregla_dia($fecha_debe);
                                                         $fecha_deberia = $ultimo->fecha_debe;
-                                                        $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"RF\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
+                                                        $icono = "---<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"RF\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
                                                         $alert="N";
                                                     }else{
                                                         ////////////si no se hizo el ultimo mantenieminto ingresa aca
@@ -386,7 +412,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                                                 $fecha_debe = date('Y-m-j', $fecha_debe);
                                                                 $fecha_debe=arregla_dia($fecha_debe);
                                                                 $fecha_deberia = $ultimo->fecha_debe;
-                                                                $icono = "--<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"RF\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
+                                                                $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"RF\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
                                                             }
                                                         }
                                                     }
@@ -735,32 +761,7 @@ function saber_dia($dia) {
 }
 //(cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")) , 0 );
 ?>
-<div style="display:none; border: 1px solid black; position: fixed; width: 80%; height:80%; margin-top: -500px; background: #FFF; " id="ventana_carga">
-    <div class="modal-header">
-        <button type="button" onclick="cierraModal()" class="close" data-dismiss="modal">×</button>
-        <h4> Carga Mantenimiento  </h4>
-    </div>
-    <div style="background-color: white;">
-        <h3>Observacion/Motivo de retraso</h3>
-        <p>
-            <textarea id="observaciones" style="width: 1253px; height: 197px;"></textarea>
-            <input type="hidden" id="item">
-            <input type="hidden" id="estado_mant">
-            <br>
-            Deberia Cargarse:
-            <input type="text" readonly id="fecha_deberia">
-            <br>
-            Debe
-            <input type="text" readonly id="fecha_debe">
-        </p>
-    </div>
-    <div style="background-color: white;">
-        <button type="button" onclick="guardarMantenimiento()" class="btn btn-success">Guardar Mantenimiento</button>
-    </div>
 
-</div>
-<div style="display:none; border: 1px solid black; position: fixed; width: 80%; height:80%; margin-top: -500px; background: #FFF; " id="detalle_mantenimiento">
-</div>
 <?php
 function arregla_dia($fecha){
     $cadena=explode("-", $fecha);
