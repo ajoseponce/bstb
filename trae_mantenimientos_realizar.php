@@ -15,10 +15,12 @@ $result = $consultas->getMantenimientosActualizar($_REQUEST['id_equipo']);
 
     $k=0;
     if($result){
+       // echo "entra";
         foreach ($result as $r) {
             if($r->fecha_debe<date('Y-m-d')) {
                 $tiene = $consultas->getDebeActualizar($r->fecha_debe, $r->id_equipo, $r->tipo_mantenimiento, $r->id_item);
                 if ($tiene == 0) {
+
                     $f = $consultas->getItemsMantenimeinto($r->tipo_equipo, $r->tipo_mantenimiento,$r->id_item);
                     $contador++;
 
@@ -115,17 +117,6 @@ $result = $consultas->getMantenimientosActualizar($_REQUEST['id_equipo']);
                             //echo "----->".$dias_count;
                             break;
                     }
-
-//                    //$fecha_debe = strtotime('+7 day', strtotime($r->fecha_debe));
-//                    $fecha_debe = date('Y-m-j', $fecha_debe);
-//                    $fecha_debe = arregla_dia($fecha_debe);
-//                    $fecha_deberia = $r->fecha_debe;
-//                    $sibueno = "deberia " . $fecha_deberia . " debe tener " . $fecha_debe;
-
-                   // $id_cabecera = $consultas->save_mantenimiento_cabecera_manual($r->id_equipo, $r->tipo_equipo, $r->tipo_mantenimiento, $fecha_deberia, $fecha_debe);
-                   // $valor = "Mantenieminto no relaizado";
-                   // $id_detallle = $consultas->save_mantenimiento_detalle($id_cabecera, $r->id_item, $valor);
-
                 } else {
                     $sibueno = "";
                 }
@@ -223,6 +214,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
 //                    if($cont_sol==0) {
 //echo $v->frecuencia;
                         if ($count_mantenimiento == 0) {
+                            //echo "hola";
                             switch ($v->frecuencia) {
                                 case "1":
                                     $fecha_debe = strtotime('+1 day', strtotime($fecha_filtro));
@@ -259,18 +251,22 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                             ////////*********tiiene algun mateniemineto ***********8//////
                            // echo $fecha_bloke;
                             if ($fecha_bloke == date('d-m-Y')) {
-
+//echo "siii";
                                 $Mto_del_Dia = $consultas->getMantenimientoEnDichaFecha($item, $fecha_bloke, $_REQUEST['id_equipo']);
                                 switch ($v->frecuencia) {
                                     case "1":
                                         if ($Mto_del_Dia) {
+
                                             $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
                                         } else {
                                                 /////////////debe carcula fecha proxima///////////////
-                                            $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"R\")' data-toggle='modal' src='img/menu_azul.png'>";
+                                            $fecha_debe = strtotime('+1 day', strtotime($fecha_filtro));
+                                                                                $fecha_debe = date('Y-m-j', $fecha_debe);
+                                                                                $fecha_debe=arregla_dia($fecha_debe);
+                                                                                $fecha_deberia = $fecha_filtro;
+                                            $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"R\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
                                         }
-                                        //$fecha_filtro=substr($fecha_bloke, 6, 4)."-".substr($fecha_bloke, 3, 2)."-".substr($fecha_bloke, 0, 2);
-
+                                        
                                         break;
                                     case "7":
                                         //echo $ultimo->fecha_debe;
@@ -508,7 +504,11 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                 switch ($v->frecuencia) {
                                     case "1":
                                         if ($Mto_del_Dia) {
-                                            $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(" . $item . "," . $_REQUEST['id_equipo'] . ")'>";
+                                            if($Mto_del_Dia->en_termino=='NR'){
+                                                $icono = "<img src='img/rojo.png'>";
+                                            }else{
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(" . $item . "," . $_REQUEST['id_equipo'] . ")'>";
+                                            }
                                         } else {
                                             $icono = "<img src='img/rojo.png'>";
                                         }
