@@ -3801,11 +3801,11 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
             LEFT JOIN sector sd on sd.id_sector=p.sector_derivado
-            WHERE p.origen='".$principal."' " ;
+            WHERE 1 " ;
         if($principal){
             $query .=  " AND p.origen='".$principal."'";
         }else{
-            $query .=  " AND p.origen IS NULL";
+            $query .=  " AND p.origen IS NULL ";
         }
         if($id_proceso){
             $query .=  " AND p.id_proceso='".$id_proceso."'";
@@ -3831,7 +3831,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query .= "  ";
         //;
         //echo $query;
-       // echo "</br>";
+        //echo "</br>";
 
         $result = $this->db->loadObjectList($query);
         if($result)
