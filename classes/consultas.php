@@ -3805,7 +3805,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         if($principal){
             $query .=  " AND p.origen='".$principal."'";
         }else{
-            $query .=  " AND p.origen IS NULL ";
+            $query .=  " AND p.origen='' ";
         }
         if($id_proceso){
             $query .=  " AND p.id_proceso='".$id_proceso."'";
@@ -3830,8 +3830,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         }
         $query .= "  ";
         //;
-        echo $query;
-        echo "</br>";
+//        echo $query;
+//        echo "</br>";
 
         $result = $this->db->loadObjectList($query);
         if($result)
