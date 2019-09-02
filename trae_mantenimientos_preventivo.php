@@ -56,6 +56,12 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                     //echo $fecha_bloke;
                         if ($count_mantenimiento_prev == 0) {
                                 switch ($v->frecuencia) {
+                                    case "30":
+                                        $fecha_debe = strtotime('+1 month', strtotime($fecha_filtro));
+                                        $fecha_debe = date('Y-m-j', $fecha_debe);
+                                        $fecha_debe=arregla_dia($fecha_debe);
+                                        $fecha_deberia = $fecha_filtro;
+                                        break;
                                     case "60":
                                         $fecha_debe = strtotime('+2 month', strtotime($fecha_filtro));
                                         $fecha_debe = date('Y-m-j', $fecha_debe);
@@ -93,7 +99,40 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                             if ($fecha_bloke == date('m-Y')) {
                                 $Mto_del_Dia = $consultas->getMantenimientoEnDichoPeriodo($item, $fecha_bloke, $_REQUEST['id_equipo']);
                                 switch ($v->frecuencia) {
+                                    case "30":
+                                        //echo "si";
+                                        if ($Mto_del_Dia) {
+                                            if($Mto_del_Dia->en_termino=="R"){
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                            }else{
+                                                $icono = "<img src='img/line.png'>";
+                                                //$icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                            }
+                                        } else {
+                                            $Mto_del_Dia = $consultas->getMantenimientoDebeTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
+                                            if ($Mto_del_Dia) {
+                                                $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"R\")' data-toggle='modal' src='img/menu_azul.png'>";
+                                            }else{
+                                                $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
+                                                if ($Mto_del_Dia) {
+                                                    $icono = "<img src='img/amarillo.png'>";
+                                                }else{
 
+                                                    if($alert=="S"){
+                                                        $fecha_debe = strtotime('+1 month', strtotime($ultimo->fecha_debe));
+                                                        $fecha_debe = date('Y-m-j', $fecha_debe);
+                                                        $fecha_debe=arregla_dia($fecha_debe);
+                                                        $fecha_deberia = $ultimo->fecha_debe;
+                                                        $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"RF\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
+                                                        $alert="N";
+                                                    }else{
+                                                        $icono = "<img src='img/line.png'>";
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                        break;
                                     case "60":
                                         //echo "si";
                                         if ($Mto_del_Dia) {

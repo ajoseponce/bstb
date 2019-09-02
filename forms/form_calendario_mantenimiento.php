@@ -138,7 +138,7 @@
                     center: '',
                     right: ''
                 },
-                defaultDate: '2017-'+periodo+'-01',
+                defaultDate: '2019-'+periodo+'-01',
                 locale: 'es',
 
                 buttonIcons: false, // show the prev/next text

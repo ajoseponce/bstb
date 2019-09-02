@@ -736,7 +736,7 @@ function guardarMantenimiento() {
 
 }
 function verModal(value,estado,fecha_deberia,fecha_debe){
-    //alert(fecha_deberia);
+
     $("#item").val(value);
     $("#estado_mant").val(estado);
     $("#fecha_deberia").val(fecha_deberia);
@@ -856,4 +856,17 @@ function newSuggestListaSolicitudes(input, inputHidden, flag){
 
     };
     var as_json = new bsn.AutoSuggest(input, options);
+}
+function filtrar_listado_equipo_calibracion(){
+    //alert('llega');
+
+    var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
+
+    var marca_filtro=$("#marca_filtro").val();
+    $("#tabla_listado").load('trae_equipos_calibracion.php?marca_filtro='+marca_filtro+'&tipo_equipo_filtro='+tipo_equipo_filtro);
+}
+function verPopoupModalCalibracion(value){
+    //alert('llega');
+    $("#equipoID").val(value);
+
 }

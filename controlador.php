@@ -3397,7 +3397,55 @@ $action = $_REQUEST["action"];
             $formulario = 'forms/form_lista_personas.php';
             /***************/
             break;
-        /*********carga de poes*********/    
+        /*********carga de poes*********/
+        case "lista_productos":
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /***************fin includes******************/
+            //$result_proveedors = $consultas->getProductos();
+            /*********************/
+            $formulario = 'forms/form_lista_productos.php';
+            break;
+        case "carga_productos":
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            /***************fin includes******************/
+            //$result_proveedors = $consultas->getProductos();
+            /*********************/
+            $formulario = 'forms/form_productos.php';
+            break;
+        case "listar_equipos_para_calibracion":
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            $tipo_equipo = $consultas->getTipoEquipo();
+            $result_marcas = $consultas->getMarcas();
+            $result_proveedores = $consultas->getProveedores();
+
+            $formulario = 'forms/form_lista_equipos_calibracion.php';
+            break;
+        case "guardar_calibracion":
+            /***************includes******************/
+            include('lib/DB_Conectar.php');
+            include('classes/consultas.php');
+            include('header.php');
+            include('menu.php');
+            echo "aca llego bein la puta madre";
+            exit;
+            $tipo_equipo = $consultas->getTipoEquipo();
+            $result_marcas = $consultas->getMarcas();
+            $result_proveedores = $consultas->getProveedores();
+
+            $formulario = 'forms/form_lista_equipos_calibracion.php';
+            break;
     }
 
    

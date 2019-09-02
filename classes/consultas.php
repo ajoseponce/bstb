@@ -42,7 +42,7 @@ class Consultas
                         . " AND pc.periodo='".$periodo."' "
                         . " AND pai.periodo='".$periodo."' "
                         . " AND mam.periodo='".$periodo."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -60,7 +60,7 @@ class Consultas
 	}
         function getProcesoAtencion($periodo){
 		$query = "SELECT * FROM proceso_atencion pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -69,7 +69,7 @@ class Consultas
 	}
         function getAferesis($periodo){
 		$query = "SELECT * FROM aferesis pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -78,7 +78,7 @@ class Consultas
 	}
         function getApoyoInsumos($periodo){
 		$query = "SELECT * FROM proceso_apoyo_insumos pa WHERE pa.periodo='".$periodo."'";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -87,7 +87,7 @@ class Consultas
 	}
         function getCalifBioInmuno($periodo){
 		$query = "SELECT * FROM calif_bio_inmuno pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -96,7 +96,7 @@ class Consultas
 	}
         function getCalifBioInmunoAnaliticos($periodo){
 		$query = "SELECT * FROM calif_bio_inmuno_analiticas pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -105,7 +105,7 @@ class Consultas
 	}
         function getCalifBioInmunoDonantes($periodo){
 		$query = "SELECT * FROM calif_bio_inmuno_donantes pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -114,7 +114,7 @@ class Consultas
 	}
         function getProduccionHemocomponentes($periodo){
 		$query = "SELECT * FROM produccion_hemocomponentes pa WHERE pa.periodo='".$periodo."' AND pa.anio='2015' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -123,7 +123,7 @@ class Consultas
 	}
         function getProduccionHemocomponentesEspeciales($periodo){
 		$query = "SELECT * FROM produccion_hemocomponentes_especiales pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -132,7 +132,7 @@ class Consultas
 	}
         function getAlmacenamientoHemocomponentes($periodo){
 		$query = "SELECT * FROM almacenamiento_hemocomponentes pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -141,7 +141,7 @@ class Consultas
 	}
         function getAlmacenamientoHemoderivados($periodo){
 		$query = "SELECT * FROM almacenamiento_hemoderivados pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -150,7 +150,7 @@ class Consultas
 	}
         function getProcesoTransfusion($periodo){
 		$query = "SELECT * FROM proceso_transfusion pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -160,7 +160,7 @@ class Consultas
 
         function getProcesoCitacion($periodo){
 		$query = "SELECT * FROM proceso_citaciones pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -169,7 +169,7 @@ class Consultas
 	    }
         function getProcesoMedicion($periodo){
 		$query = "SELECT * FROM medicion_analisis_mejoras pa WHERE pa.periodo='".$periodo."' AND pa.anio='".date('Y')."' ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -770,7 +770,7 @@ class Consultas
                   LEFT JOIN menu_aplicativo ma ON ma.id_aplicativo=a.id_aplicativo
                   LEFT JOIN menu m ON m.id_menu=ma.id_menu
                   WHERE 1 ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -788,7 +788,7 @@ class Consultas
                         if($id_area){
                         $query .=  " AND pa.id_area='".$id_area."'";
                         }
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -802,7 +802,7 @@ class Consultas
                         . "INNER JOIN persona_area pa ON pa.id_area=rap.id_area "
                         . "INNER JOIN usuarios u ON u.id_persona=pa.id_persona "
                         . "WHERE u.id_usuario='".$_SESSION['id']."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -812,7 +812,7 @@ class Consultas
         function getAplicativosNotificacion(){
 
 		$query = "SELECT COUNT(id_registro) total FROM usuario_aplicativos a WHERE id_aplicativo='16' AND id_usuario='".$_SESSION['id']."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->total;
@@ -822,7 +822,7 @@ class Consultas
         function getControlIndicadores($tabla){
 
 		$query = "SELECT COUNT(id_registro) AS total FROM $tabla ";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->total;
@@ -831,7 +831,7 @@ class Consultas
 	}
         function getContador(){
 		$query = "SELECT * FROM contador pa";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -840,7 +840,7 @@ class Consultas
 	}
         function getUltimoNumero(){
 		$query = "SELECT * FROM contador pa";
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->turno;
@@ -849,7 +849,7 @@ class Consultas
 	}
         function getPoeById($ide){
 		$query = "SELECT *, date_format(fecha_version, '%d/%m/%Y') as fecha_version FROM poe_cabecera pc WHERE pc.id_poe='".$ide."'" ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -858,7 +858,7 @@ class Consultas
 	}
         function getAreaById($ide){
 		$query = "SELECT * FROM areas a WHERE a.id_area='".$ide."'" ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -867,7 +867,7 @@ class Consultas
         }
         function getAplicativosById($ide){
             $query = "SELECT * FROM aplicativos a WHERE a.id_aplicativo='".$ide."'" ;
-            //echo $query;
+            //;
             $result = $this->db->loadObjectList($query);
             if($result)
                 return $result[0];
@@ -925,7 +925,7 @@ class Consultas
         function getAreas(){
 
 		$query = "SELECT * FROM areas a WHERE estado='A' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -935,7 +935,7 @@ class Consultas
         function getPersonaById($ide){
 		$query = "SELECT a.*,date_format(fecha_nacimiento, '%d/%m/%Y')as fecha_nacimiento
 		 ,date_format(fecha_ingreso, '%d/%m/%Y')as fecha_ingreso FROM personas a WHERE a.id_persona='".$ide."'" ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -944,7 +944,7 @@ class Consultas
 	}
         function getpersonas(){
 		$query = "SELECT a.*,date_format(a.fecha_nacimiento, '%d/%m/%Y')as fecha_nacimiento FROM personas a WHERE cod_estado='A' " ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -953,7 +953,7 @@ class Consultas
         }
         function getPaises(){
             $query = "SELECT p.* FROM paises p " ;
-            //echo $query;
+            //;
             $result = $this->dbPg->loadObjectList($query);
             if($result)
                 return $result;
@@ -963,7 +963,7 @@ class Consultas
         function getProvincias($idpais){
             $query = "SELECT p.* FROM provincias p WHERE p.idpais='".$idpais."' ORDER BY provincia
              ASC" ;
-            //echo $query;
+            //;
             $result = $this->dbPg->loadObjectList($query);
             if($result)
                 return $result;
@@ -973,7 +973,7 @@ class Consultas
         function getLocalidad($idprovincia){
             $query = "SELECT p.* FROM localidades p WHERE p.idprovincia='".$idprovincia."' ORDER BY localidad
                  ASC" ;
-            //echo $query;
+            //;
             $result = $this->dbPg->loadObjectList($query);
             if($result)
                 return $result;
@@ -1022,7 +1022,7 @@ class Consultas
                         . " INNER JOIN poe_cabecera pc ON pc.id_poe=r.id_poe"
                         . " INNER JOIN areas a ON a.id_area=r.id_area"
                         . " WHERE r.estado='A' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1036,7 +1036,7 @@ class Consultas
                         . " INNER JOIN poe_cabecera pc ON pc.id_poe=r.id_poe"
                         . " INNER JOIN areas a ON a.id_area=r.id_area"
                         . " WHERE r.id_registro='".$id_registro."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -1049,7 +1049,7 @@ class Consultas
                         . " FROM poe_registros p "
                         . " inner join poe_cabecera pc on pc.id_poe=p.id_poe"
                         . " WHERE p.estado='A' AND p.id_poe='".$_poe."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1062,7 +1062,7 @@ class Consultas
                         . " FROM poe_cabecera pc "
 
                         . " WHERE pc.id_poe='".$id_poe."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->poe;
@@ -1136,7 +1136,7 @@ class Consultas
                         . " FROM examen_preguntas e "
 
                         . " WHERE e.id_examen='".$id_examen."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1162,7 +1162,7 @@ class Consultas
                         . " FROM examen_preguntas_respuestas e "
 
                         . " WHERE e.correcto='S' AND e.id_examen='".$id_examen."' AND e.id_pregunta='".$id_pregunta."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->id_respuesta;
@@ -1199,7 +1199,7 @@ class Consultas
 		$query = "SELECT e.calificacion "
                         . " FROM examen_calificacion_usuario e "
                         . " WHERE e.id_examen='".$id_examen."' AND e.id_usuario='".$_SESSION['id']."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->calificacion;
@@ -1220,7 +1220,7 @@ class Consultas
                         if ($id_usuario){
                             $query.= " AND ec.id_usuario='".$id_usuario."'";
                         }
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1239,7 +1239,7 @@ class Consultas
                         . " LEFT JOIN sector s ON s.id_sector=e.id_sector"
                         . " LEFT JOIN proveedor p ON p.id_proveedor=e.representante"
                         . " WHERE 1 ORDER BY te.armado, e.num_interno";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1273,7 +1273,7 @@ class Consultas
                     $query.=" AND  e.marca='".$data['marca_filtro']."'";
                 }
             $query.="  ORDER BY te.armado, e.num_interno";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1308,7 +1308,7 @@ class Consultas
                     $query.=" AND  e.marca='".$data['marca_filtro']."'";
                 }
             $query.=" GROUP BY id_equipo ORDER BY te.armado, e.num_interno";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1321,7 +1321,7 @@ class Consultas
                         . " FROM equipos e "
                         . " LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=e.tipo_equipo"
                         . " WHERE 1 AND e.id_equipo='".$idequipo."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -1349,7 +1349,7 @@ class Consultas
             if($data['marca']){
                 $query.=" AND  e.marca='".$data['marca']."' ";
             }
-           // echo $query;
+           // ;
             $query.="  GROUP BY e.id_equipo";
             $result = $this->db->loadObjectList($query);
             if($result)
@@ -1502,7 +1502,7 @@ class Consultas
                         ." INNER JOIN usuarios u ON u.id_usuario=ua.id_usuario "
                         ." INNER JOIN aplicativos a ON a.id_aplicativo=ua.id_aplicativo "
                         ." WHERE u.id_usuario='".$id_pers."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1515,7 +1515,7 @@ class Consultas
             . " FROM menu_aplicativo ma "
             ." INNER JOIN aplicativos a ON a.id_aplicativo=ma.id_aplicativo "
             ." WHERE ma.id_menu='".$id_menu."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -1529,7 +1529,7 @@ class Consultas
                         . " FROM personas p"
                         ." INNER JOIN usuarios u ON u.id_persona=p.id_persona "
                         ." WHERE u.id_usuario='".$id_pers."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->nombre;
@@ -1541,7 +1541,7 @@ class Consultas
                         . " FROM equipos e"
                         ." WHERE e.tipo_equipo='".$tipo_equipo."' "
                     . "ORDER BY e.fecha_carga DESC";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->num_interno;
@@ -1551,7 +1551,7 @@ class Consultas
         /************************abm marcas************/////////
         function getMarcaById($ide){
 		$query = "SELECT a.* FROM marcas a WHERE a.id_marca='".$ide."'" ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0];
@@ -1560,7 +1560,7 @@ class Consultas
 	}
         function getmarcas(){
 		$query = "SELECT a.* FROM marcas a WHERE estado='A' ORDER BY descripcion ASC" ;
-                //echo $query;
+                //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1700,7 +1700,7 @@ class Consultas
 
                 $query .= " AND a.id_tipo_equipo='".$equipo."' AND a.tipo_mantenimiento='".$mantenimiento."'" ;
                 }
-               //echo $query;
+               //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1731,7 +1731,7 @@ class Consultas
                     $query .= " AND a.id_registro='" . $item . "' ";
                 }
             $query .= "  ORDER BY tipo ASC" ;
-               // echo $query;
+               // ;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1809,7 +1809,7 @@ class Consultas
 
                         . " WHERE 1 ";
                 $query .= " AND m.id_mantenimiento_cabecera='".$id_mantenieminto."' ORDER BY tipo ASC" ;
-            //echo $query;
+            //;
 		$result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -1820,7 +1820,7 @@ class Consultas
         function chequear_existencia($descri, $tabla){
 
 		$query = "SELECT COUNT(t.id_".$tabla.") total FROM ".$tabla." t WHERE t.descripcion='".$descri."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->total;
@@ -1829,7 +1829,7 @@ class Consultas
 	    }
         function chequear_existencia_equipo($data){
             $query = "SELECT COUNT(t.id_equipo) total FROM equipos t WHERE t.tipo_equipo='".$data['tipo_equipo']."' and  t.num_interno='".$data['num_interno']."'";
-            //echo $query;
+            //;
             $result = $this->db->loadObjectList($query);
             if($result)
                 return $result[0]->total;
@@ -1840,7 +1840,7 @@ class Consultas
         function chequear_existencia_marcas($descri, $tabla){
 
 		$query = "SELECT COUNT(t.id_marca) total FROM ".$tabla." t WHERE t.descripcion='".$descri."'";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result[0]->total;
@@ -2020,7 +2020,7 @@ class Consultas
                         . " LEFT JOIN usuarios u ON u.id_usuario=c.usuario "
                         . " LEFT JOIN personas pr ON pr.id_persona=u.id_persona "
                         . " WHERE 1 ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -2034,7 +2034,7 @@ class Consultas
                 . " LEFT JOIN usuarios u ON u.id_usuario=c.usuario "
                 . " LEFT JOIN personas pr ON pr.id_persona=u.id_persona "
                 . " WHERE 1 ";
-            //echo $query;
+            //;
             $result = $this->db->loadObjectList($query);
             if($result)
                 return $result;
@@ -2049,7 +2049,7 @@ class Consultas
                  INNER JOIN usuarios u ON u.id_usuario=c.usuario
                  INNER JOIN personas p ON p.id_persona=u.id_persona"
                 . " WHERE 1 ORDER BY fecha_sf DESC";
-            //echo $query;
+            //;
             $result = $this->db->loadObjectList($query);
             if($result)
                 return $result;
@@ -2062,7 +2062,7 @@ class Consultas
                         . " FROM capacitacion_detalle c  "
                         . " LEFT JOIN personas p ON p.id_persona=c.id_persona "
                         . " WHERE c.id_capacitacion='".$capacitacion."' ";
-		//echo $query;
+		//;
                 $result = $this->db->loadObjectList($query);
 		if($result)
 			return $result;
@@ -2075,7 +2075,7 @@ class Consultas
             . " FROM pre_capacitacion_detalle c  "
             . " LEFT JOIN personas p ON p.id_persona=c.id_persona "
             . " WHERE c.id_pre_capacitacion='".$pre_capacitacion."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2088,7 +2088,7 @@ class Consultas
             . " FROM colecta_detalle c  "
             . " LEFT JOIN personas p ON p.id_persona=c.id_persona "
             . " WHERE c.id_colecta='".$colecta."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2101,7 +2101,7 @@ class Consultas
             . " FROM capacitacion c  "
             . " LEFT JOIN poe_cabecera p ON p.id_poe=c.id_poe "
             . " WHERE c.id_capacitacion='".$capacitacion."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2113,7 +2113,7 @@ class Consultas
         $query = "SELECT c.* ,date_format(c.fecha_pre_capacitacion, '%d/%m/%Y') as fecha_pre_capacitacion,date_format(c.fecha_pre_capacitacion, '%H:%i') as hora_pre_capacitacion "
             . " FROM pre_capacitacion c "
             . " WHERE c.id_pre_capacitacion='".$precapacitacion."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2125,7 +2125,7 @@ class Consultas
         $query = "SELECT c.* ,date_format(c.fecha_colecta, '%d/%m/%Y') as fecha_colecta "
             . " FROM colecta c  "
             . " WHERE c.id_colecta='".$colecta."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2137,7 +2137,7 @@ class Consultas
         $query = "SELECT rc.* "
             . " FROM bstb.colecta_resultado rc  "
             . " WHERE rc.id_colecta='".$colecta."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2149,7 +2149,7 @@ class Consultas
         $query = "SELECT COUNT(rc.id_registro) total "
             . " FROM bstb.usuario_hemovigilancia rc  "
             . " WHERE rc.id_usuario='".$_SESSION['id']."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -2185,7 +2185,7 @@ class Consultas
         $query = "SELECT e.*,date_format(e.fecha_examen, '%d/%m/%Y') as fecha_examen, CONCAT_WS(' ',p.apellido,p.nombre) persona,pc.descripcion poe  FROM examen_practico e "
         . " inner join poe_cabecera pc on pc.id_poe=e.id_poe "
         . " inner join personas p on p.id_persona=e.id_persona  WHERE e.id_examen_practico='".$ide."'" ;
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2198,7 +2198,7 @@ class Consultas
         . " LEFT JOIN usuarios u ON u.id_usuario=e.usuario "
         . " LEFT JOIN personas pr ON pr.id_persona=u.id_persona "
         . " inner join personas p on p.id_persona=e.id_persona " ;
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2215,7 +2215,7 @@ class Consultas
 
             $query .=  " AND pa.id_area='".$id_proceso."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2230,7 +2230,7 @@ class Consultas
 
         $query .=  " AND c.id_poe='".$id_poe."' AND cd.id_persona='".$persona."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -2244,7 +2244,7 @@ class Consultas
 
         $query .=  " WHERE u.id_persona='".$persona."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->id_usuario;
@@ -2259,7 +2259,7 @@ class Consultas
 
         $query .=  " AND e.id_poe='".$id_poe."' AND uc.id_usuario='".$usuario."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->calificacion;
@@ -2273,7 +2273,7 @@ class Consultas
 
         $query .=  " WHERE e.id_poe='".$id_poe."' AND e.id_persona='".$persona."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->calificacion;
@@ -2330,7 +2330,7 @@ class Consultas
 
         $query .=  " WHERE c.id_competencia='".$id_competencia."'";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2344,7 +2344,7 @@ class Consultas
             INNER JOIN areas a ON a.id_area=c.id_proceso
              INNER JOIN personas p on p.id_persona=c.id_persona";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2364,7 +2364,7 @@ class Consultas
         if($id_persona) {
             $query .= " AND e.id_persona='".$id_persona."'";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2383,7 +2383,7 @@ class Consultas
         if($id_persona) {
             $query .= " AND c.id_persona='".$id_persona."'";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2407,7 +2407,7 @@ class Consultas
         if($id_persona) {
             $query .= " AND cd.id_persona='".$id_persona."'";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2511,7 +2511,7 @@ class Consultas
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= " ORDER BY nombre_estado ASC, p.fecha_no_conformidad DESC";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2537,7 +2537,7 @@ class Consultas
             LEFT JOIN personas rsd on rsd.id_persona=rs.id_persona
             WHERE p.usuario='".$_SESSION[id]."' GROUP BY p.id_no_conformidad ORDER BY nombre_estado ASC , p.fecha_no_conformidad  DESC " ;
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2556,7 +2556,7 @@ class Consultas
             LEFT JOIN personas rsd on rsd.id_persona=rs.id_persona
             WHERE p.usuario='".$_SESSION[id]."'  GROUP BY p.id_no_conformidad " ;
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2715,7 +2715,7 @@ class Consultas
         if($id_no_conformidad){
             $query .=  " AND p.id_no_conformidad='".$id_no_conformidad."'";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2730,7 +2730,7 @@ class Consultas
         if($id_no_conformidad){
             $query .=  " AND rnc.id_no_conformidad='".$id_no_conformidad."'";
         }
-        // echo $query;
+        // ;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2819,7 +2819,7 @@ class Consultas
                 FROM poe_cabecera pc LEFT JOIN examen e ON e.id_poe=pc.id_poe
                 WHERE e.id_poe IS NULL";
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2830,7 +2830,7 @@ class Consultas
 
         $query = "SELECT s.* FROM servicio s
                   WHERE s.estado='A' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2873,7 +2873,7 @@ class Consultas
         if($persona){
             $query .= " AND s.id_persona='".$persona."'";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2885,7 +2885,7 @@ class Consultas
         $query = "SELECT p.id_persona, CONCAT_WS(' ', p.nombre, p.apellido ) nombre
                     FROM  personas p
                   WHERE rol='".$rol."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -2915,9 +2915,10 @@ class Consultas
             return false;
     }
     function getDatosUsuario(){
-        $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
+        $query = "SELECT u.*, p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
-                WHERE u.id_usuario='".$_SESSION[id]."'";
+                WHERE u.id_usuario='".$_SESSION['id']."'";
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -2948,7 +2949,7 @@ class Consultas
             $fecha_hasta=substr($fecha_hasta, 6, 4)."-".substr($fecha_hasta, 3, 2)."-".substr($fecha_hasta, 0, 2)." 23:59:00";
             $query .=" AND (ug.fecha_guardia between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
-                //echo $query;
+                //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3011,7 +3012,7 @@ class Consultas
 
         $query = "SELECT s.* FROM lugar_guardia s
                   WHERE s.estado='A' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3032,7 +3033,7 @@ class Consultas
                 LEFT JOIN lugar_guardia l ON l.id_lugar_guardia=ug.id_lugar
                 LEFT JOIN usuarios u ON u.id_persona=ug.id_persona
                 WHERE u.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3095,7 +3096,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .= " AND s.estado_solicitud='".$estado."'";
         }
         $query .= "ORDER BY color_estado ASC, s.fecha_solicitud DESC ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3111,7 +3112,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN personas pr ON pr.id_persona=cd.id_persona "
             . " LEFT JOIN usuarios u ON u.id_persona=pr.id_persona "
             . " WHERE u.id_usuario='".$_SESSION['id']."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3124,7 +3125,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " FROM persona_area pa "
             ." INNER JOIN areas a ON a.id_area=pa.id_area "
             ." WHERE pa.id_persona='".$id_pers."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3151,7 +3152,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=m.id_tipo_equipo"
             . " LEFT JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo"
             . " WHERE m.tipo_mantenimiento=1 AND e.id_equipo='".$idequipo."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3164,7 +3165,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=m.id_tipo_equipo"
             . " LEFT JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo"
             . " WHERE m.tipo_mantenimiento=2 AND e.id_equipo='".$idequipo."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3177,7 +3178,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN tipo_equipo te ON te.id_tipo_equipo=m.id_tipo_equipo"
             . " LEFT JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo"
             . " WHERE m.tipo_mantenimiento=3 AND e.id_equipo='".$idequipo."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3188,7 +3189,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT COUNT(m.id_relacion) total "
             . " FROM equipo_encargados m "
             . " WHERE m.id_equipo='".$idequipo."' ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3207,7 +3208,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         LEFT JOIN usuarios u ON u.id_usuario=s.id_usuario
         LEFT JOIN personas p ON p.id_persona=u.id_persona
         WHERE s.id_solicitud='".$id_solicitud."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3263,7 +3264,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN sector se ON se.id_sector=s.id_sector "
             . " LEFT JOIN proveedor pr ON pr.id_proveedor=s.proveedor_derivado "
             . " WHERE s.id_usuario='".$_SESSION['id']."' ORDER BY color_estado ASC, s.fecha_solicitud DESC ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3273,7 +3274,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getSolicitudesByUsuario_estado($estado){
 
         $query = "SELECT count(s.id_solicitud) total  FROM solicitud_mantenimiento s WHERE s.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
         if($estado){
             $query .= " AND s.estado_solicitud='".$estado."'";
         }
@@ -3286,7 +3287,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getSolicitudesByUsuario_estadoSOL($estado){
 
         $query = "SELECT count(s.id_solicitud) total  FROM solicitud_mantenimiento s WHERE 1 ";
-        //echo $query;
+        //;
         if($estado){
             $query .= " AND s.estado_solicitud='".$estado."'";
         }
@@ -3316,7 +3317,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getNotasSolicitud($solicitud){
         $query = "SELECT s.*, date_format(fecha_hora_nota, '%d/%m/%Y %H:%i') as fecha_hora FROM solicitud_mantenimiento_nota s WHERE s.id_solicitud='".$solicitud."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3326,7 +3327,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getAplicativoSolicitudes(){
 
         $query = "SELECT count(s.id_registro) total  FROM usuario_aplicativos s WHERE id_aplicativo='64' AND s.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
 
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -3337,7 +3338,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     function getAplicativoSolicitudesCompra(){
 
         $query = "SELECT count(s.id_registro) total  FROM usuario_aplicativos s WHERE id_aplicativo='64' AND s.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
 
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -3356,7 +3357,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .= " AND (fecha_solicitud<'".$fecha_inicio." 00:00:00' OR fecha_solicitud='".$fecha_inicio."')";
         }
 
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3382,7 +3383,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " LEFT JOIN sector se ON se.id_sector=s.id_sector "
             . " LEFT JOIN proveedor pr ON pr.id_proveedor=s.proveedor_derivado "
             . " WHERE s.id_equipo='".$id_equipo."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3397,7 +3398,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
                 . " WHERE 1 ";
             $query .= " AND mc.id_equipo='".$idequipo."' AND md.id_item='".$item."' AND mc.tipo_mantenimiento='".$mantenimiento."'" ;
         //}
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3407,11 +3408,11 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
 
     function getMantenimientoEnDichaFecha($item, $fecha, $equipo){
         $fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
-        $query = "SELECT mc.id_mantenimiento,date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
+        $query = "SELECT mc.id_mantenimiento,md.id_mantenimiento_detalle ,date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia, date_format(fecha_debe, '%d-%m-%Y') as fecha_debe, fecha_debe as fecha_debe_sf
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_deberia between '".$fecha_filtro." 00:00:00' AND '".$fecha_filtro." 23:59:59'";
-        //echo $query."<br><br><br><br><br>";
+
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3424,7 +3425,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_debe = '".$fecha_filtro."'";
-        //echo $query."<br><br><br><br><br>";
+        //."<br><br><br><br><br>";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3437,7 +3438,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha_debe, '%Y-%m') = '".$fecha_filtro."'";
-        //echo $query."<br><br><br><br><br>";
+        //."<br><br><br><br><br>";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3450,7 +3451,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha_deberia = '".$fecha_filtro."'";
-        //echo $query."<br><br><br><br><br>";
+        //."<br><br><br><br><br>";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3463,7 +3464,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha_deberia, '%Y-%m') = '".$fecha_filtro."'";
-        //echo $query."<br><br><br><br><br>";
+        //."<br><br><br><br><br>";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3477,7 +3478,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha between '".$fecha." 00:00:00' AND '".$fecha2." 23:59:59'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3491,7 +3492,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%Y-%m') between '".$fecha_filtro."' AND '".$fecha_filtro2."'";
-        // echo $query;
+        // ;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3504,7 +3505,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' ORDER BY fecha_sin_formato DESC";
-        //echo $query."<br><br><br><br><br><br><br>";
+        //."<br><br><br><br><br><br><br>";
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3519,7 +3520,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " WHERE 1 ";
         $query .= " AND mc.id_equipo='".$idequipo."' AND md.id_item='".$item."' AND mc.tipo_mantenimiento='".$mantenimiento."'" ;
         //}
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3532,7 +3533,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' ORDER BY fecha_sin_formato DESC";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3544,7 +3545,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%m-%Y') = '".$fecha."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3558,7 +3559,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%Y-%m') between '".$fecha_filtro."'  AND '".$fecha_filtro2."'";
-        //echo $query;
+        
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3570,8 +3571,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT md.id_mantenimiento_cabecera,md.valor detalle, date_format(mc.fecha, '%d-%m-%Y %H:%i') as fecha_realizado, date_format(mc.fecha_deberia, '%d-%m-%Y') as fecha_deberia
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
-        WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."'";
-        //echo $query;
+        WHERE md.id_mantenimiento_detalle='".$item."' AND mc.id_equipo='".$equipo."'";
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3637,7 +3638,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             }
             $query .= "  ORDER BY nombre ASC";
             
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3648,7 +3649,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT horario as fecha_dia_hora,date_format(horario, '%d-%m-%Y %H:%i:%s') as fecha "
             . " FROM horarios_personas p"
             . " WHERE p.id_persona_reloj='".$idpersona."' AND horario between '".$fecha." 00:00:00' AND '".$fecha." 23:59:59' ORDER BY fecha_dia_hora ASC  ";
-            //echo $query;
+            //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3726,7 +3727,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= "  ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3738,7 +3739,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " FROM personas p"
             ." INNER JOIN usuarios u ON u.id_persona=p.id_persona "
             ." WHERE u.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->id_persona;
@@ -3781,7 +3782,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= "  ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3824,7 +3825,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= "  group by p.id_sector ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3867,7 +3868,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
         }
         $query .= "  group by p.id_proceso ";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -3879,7 +3880,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " FROM personas p"
             ." INNER JOIN usuarios u ON u.id_persona=p.id_persona "
             ." WHERE u.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->id_persona;
@@ -3891,7 +3892,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " FROM personas p"
             ." INNER JOIN usuarios u ON u.id_persona=p.id_persona "
             ." WHERE u.id_usuario='".$_SESSION['id']."'";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->id_persona;
@@ -3914,7 +3915,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         if($equipo){
             $query .=" AND e.id_equipo = '".$equipo."' ";
         }
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)return $result;
         else return 0;
@@ -3925,7 +3926,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             INNER JOIN mantenimiento_detalle d ON d.id_mantenimiento_cabecera =e.id_mantenimiento"
             . " WHERE 1 ";
         $query .=" AND e.fecha_deberia = '".$fecha."' AND  e.id_equipo='".$equipo."' AND  e.tipo_mantenimiento='".$tipomante."' AND  d.id_item='".$item."'";
-       // echo $query;
+        //."</br>";
         $result = $this->db->loadObjectList($query);
         if($result)return $result[0]->total;
         else return 0;
@@ -3982,11 +3983,11 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             $query.=" AND  eq.nro_serie='".$data['num_serie']."'";
         }
         //if($data['desde']){
-            $query .=" AND (e.fecha_deberia between '2017-".$data['desde']."-01 00:00:00' AND '2017-".$data['hasta']."-31 23:59:59')";
+            $query .=" AND (e.fecha_deberia between '2019-".$data['desde']."-01 00:00:00' AND '2019-".$data['hasta']."-31 23:59:59')";
             //$query.=" AND  e.marca='".$data['marca_filtro']."'";
         //}
-        //$query.=" group by d.id_item ";
-        //echo $query;
+//        echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)return $result;
         else return 0;
@@ -4019,7 +4020,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query .= " GROUP BY td.id_item";
 //        $query .=" AND e.fecha_deberia = '01-03-2017 00:00:00";
         //$query .=" AND (fecha_debe between '2017-03-01 00:00:00' AND '2017-03-31 23:59:59')";
-        //echo $query;
+        //;
         $result = $this->db->loadObjectList($query);
         if($result)return $result;
         else return 0;
@@ -4028,7 +4029,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
 
         $query = "SELECT s.* FROM no_conformidad s WHERE modificado='S'";
 
-            //echo $query;
+            //;
 
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4040,7 +4041,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
 
         $query = "SELECT count(s.id_no_conformidad) total  FROM no_conformidad s WHERE modificado='S'";
 
-        //echo $query;
+        //;
 
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4057,7 +4058,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
                 . " LEFT JOIN personas p ON p.id_persona=u.id_persona"
                 . " LEFT JOIN sector sc ON sc.id_sector=s.area_solicitante"
                 . " WHERE 1 ";
-// echo $query;
+// ;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -4073,7 +4074,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
                 . " LEFT JOIN personas p ON p.id_persona=u.id_persona"
                 . " LEFT JOIN sector sc ON sc.id_sector=s.area_solicitante"
                 . " WHERE s.id_solicitante='".$_SESSION['id']."' ";
-// echo $query;
+// ;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result;
@@ -4141,7 +4142,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         $query = "SELECT u.*,p.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac,date_format(fecha_ingreso, '%d/%m/%Y') as fecha_ing FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
                 WHERE u.nombre='".$nombre."'";
-        echo $query;
+        ;
 
         $result = $this->db->loadObjectList($query);
         if($result)

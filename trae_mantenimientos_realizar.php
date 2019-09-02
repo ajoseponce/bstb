@@ -257,23 +257,22 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                     case "1":
                                         if ($Mto_del_Dia) {
 
-                                            $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                            $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento_detalle.",".$_REQUEST['id_equipo'].")'>";
                                         } else {
                                                 /////////////debe carcula fecha proxima///////////////
                                             $fecha_debe = strtotime('+1 day', strtotime($fecha_filtro));
-                                                                                $fecha_debe = date('Y-m-j', $fecha_debe);
-                                                                                $fecha_debe=arregla_dia($fecha_debe);
-                                                                                $fecha_deberia = $fecha_filtro;
+                                            $fecha_debe = date('Y-m-j', $fecha_debe);
+                                            $fecha_debe=arregla_dia($fecha_debe);
+                                            $fecha_deberia = $fecha_filtro;
                                             $icono = "<img style='cursor:pointer;' href='#modal-regular' onclick='verModal(" . $item . ",\"R\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")' data-toggle='modal' src='img/menu_azul.png'>";
                                         }
-                                        
                                         break;
                                     case "7":
                                         //echo $ultimo->fecha_debe;
 //                                        exit;
                                         if ($Mto_del_Dia) {
                                             if($Mto_del_Dia->en_termino=="R"){
-                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento_detalle.",".$_REQUEST['id_equipo'].")'>";
                                             }else{
                                                 if($Mto_del_Dia->en_termino=="NR"){
 
@@ -507,7 +506,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                             if($Mto_del_Dia->en_termino=='NR'){
                                                 $icono = "<img src='img/rojo.png'>";
                                             }else{
-                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(" . $item . "," . $_REQUEST['id_equipo'] . ")'>";
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(" . $Mto_del_Dia->id_mantenimiento_detalle . "," . $_REQUEST['id_equipo'] . ")'>";
                                             }
                                         } else {
                                             $icono = "<img src='img/rojo.png'>";
@@ -520,13 +519,13 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                     case "7":
                                         if ($Mto_del_Dia) {
                                             if($Mto_del_Dia->en_termino=="R"){
-                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento_detalle.",".$_REQUEST['id_equipo'].")'>";
                                             }else{
                                                 if($Mto_del_Dia->en_termino=="NR") {
                                                     $icono = "<img src='img/rojo.png'>";
                                                 }else{
 
-                                                    $icono = "<img src='img/amarillo.png'  onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento.",".$_REQUEST['id_equipo'].")'>";
+                                                    $icono = "<img src='img/amarillo.png'  onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento_detalle.",".$_REQUEST['id_equipo'].")'>";
                                                 }
                                             }
                                         } else {
@@ -535,7 +534,7 @@ $número_dias = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y')); //calcul
                                                 if($Mto_del_Dia->fecha_debe_sf < date('Y-m-d')) {
                                                     $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFecha($item,$fecha_bloke, $_REQUEST['id_equipo']);
                                                     if ($Mto_del_Dia) {
-                                                        $icono = "<img src='img/amarillo.png'  onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento.",".$_REQUEST['id_equipo'].")'>";
+                                                        $icono = "<img src='img/amarillo.png'  onclick='ver_detalle_mantenimiento(".$Mto_del_Dia->id_mantenimiento_detalle.",".$_REQUEST['id_equipo'].")'>";
                                                     }else {
                                                         $icono = "<img src='img/caution.gif'>";
                                                         $alert = "S";
