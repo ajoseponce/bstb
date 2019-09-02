@@ -594,10 +594,10 @@ function convierte_anio_mes($fecha) {
 }
 //(cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")) , 0 );
 ?>
-<div style="display:none; border: 1px solid black; position: fixed; width: 50%; height:80%; margin-top: -400px; background: #FFF; " id="ventana_carga">
+<div style="display:show; border: 1px solid black; position: fixed; width: 50%; height:80%; margin-top: -400px; background: #FFF; " id="ventana_carga">
     <div class="modal-header">
         <button type="button" onclick="cierraModal()" class="close" data-dismiss="modal">×</button>
-        <h4> Carga Mantenimiento  Prreventivo</h4>
+        <h4> Carga Mantenimiento  Preventivo</h4>
     </div>
 
     <form enctype="multipart/form-data" id="formuploadajax" method="post">
