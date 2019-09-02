@@ -3830,8 +3830,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         }
         $query .= "  ";
         //;
-        //echo $query;
-        //echo "</br>";
+        echo $query;
+        echo "</br>";
 
         $result = $this->db->loadObjectList($query);
         if($result)
