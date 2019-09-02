@@ -15,6 +15,7 @@ $externa = $consultas->getNoConformidadByOrigenReporte($_REQUEST['id_proceso'],$
 $proveedor = $consultas->getNoConformidadByOrigenReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'p');
 $reclamo = $consultas->getNoConformidadByOrigenReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'r');
 $sth = $consultas->getNoConformidadByOrigenReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta'],'st');
+$sin_origen = $consultas->getNoConformidadByOrigenReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
 
 $sector = $consultas->getNoConformidadBySectorReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
 $procesos = $consultas->getNoConformidadByProcesoReporte($_REQUEST['id_proceso'],$_REQUEST['id_sector'],$_REQUEST['fecha_desde'],$_REQUEST['fecha_hasta']);
@@ -120,6 +121,7 @@ function porcentaje($total, $parte, $redondear = 2) {
                     ['Auditorias Ext -> <?php echo $externa; ?>',  <?php echo $externa; ?>],
                     ['Proveedor  -> <?php echo $proveedor; ?>',  <?php echo $proveedor; ?>],
                     ['Reclamo de Parte Interesado -> <?php echo $reclamo; ?>',  <?php echo $reclamo; ?>],
+                    ['Sin Origen -> <?php echo $sin_origen; ?>',  <?php echo $sin_origen; ?>],
                     ['STH -> <?php echo $sth; ?>', <?php echo $sth ?>]
 
                 ]

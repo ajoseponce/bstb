@@ -3795,14 +3795,18 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return 0;
     }
-    function getNoConformidadByOrigenReporte($id_proceso=null, $id_sector=null, $fecha_desde=null, $fecha_hasta=null,$principal){
+    function getNoConformidadByOrigenReporte($id_proceso=null, $id_sector=null, $fecha_desde=null, $fecha_hasta=null,$principal=null){
         $query = "SELECT COUNT(p.id_no_conformidad) total
             FROM no_conformidad  p
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
             LEFT JOIN sector sd on sd.id_sector=p.sector_derivado
             WHERE p.origen='".$principal."' " ;
-
+        if($principal){
+            $query .=  " AND p.origen='".$principal."'";
+        }else{
+            $query .=  " AND p.origen IS NULL";
+        }
         if($id_proceso){
             $query .=  " AND p.id_proceso='".$id_proceso."'";
         }
