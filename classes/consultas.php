@@ -2518,6 +2518,56 @@ class Consultas
         else
             return false;
     }
+    function getNoConformidadByFiltroEstadistico($id_proceso=null, $id_sector=null, $estado=null, $tipo=null, $fecha_desde=null, $fecha_hasta=null, $origen=null, $numero=null, $nivel_riesgo=null){
+        $query = "SELECT p.* "
+            . "FROM no_conformidad  p
+            LEFT JOIN areas a ON a.id_area=p.id_proceso
+            LEFT JOIN sector s on s.id_sector=p.id_sector
+            
+            WHERE 1 " ;
+        if($id_proceso){
+            $query .=  " AND p.id_proceso='".$id_proceso."'";
+        }
+        if($id_sector) {
+            $query .= " AND p.id_sector='".$id_sector."'";
+        }
+        if($estado) {
+            $query .= " AND p.estado='".$estado."'";
+        }
+        if($tipo) {
+            $query .= " AND p.tipo='".$tipo."'";
+        }
+        if($origen) {
+            $query .= " AND p.origen='".$origen."'";
+        }
+        if($numero) {
+            $query .= " AND p.id_no_conformidad='".$numero."'";
+        }
+        if($nivel_riesgo) {
+            $query .= " AND p.nivel_riesgo='".$nivel_riesgo."'";
+        }
+        if($fecha_desde && $fecha_hasta==null){
+            $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
+            $query .=" AND p.fecha_no_conformidad>='".$fecha_desde."'";
+        }
+        if($fecha_desde==null && $fecha_hasta){
+            $fecha_hasta=substr($fecha_hasta, 6, 4)."-".substr($fecha_hasta, 3, 2)."-".substr($fecha_hasta, 0, 2)." 23:59:00";
+            $query .=" AND p.fecha_no_conformidad<='".$fecha_hasta."'";
+        }
+
+        if($fecha_desde && $fecha_hasta){
+            $fecha_desde=substr($fecha_desde, 6, 4)."-".substr($fecha_desde, 3, 2)."-".substr($fecha_desde, 0, 2)." 00:00:00";
+            $fecha_hasta=substr($fecha_hasta, 6, 4)."-".substr($fecha_hasta, 3, 2)."-".substr($fecha_hasta, 0, 2)." 23:59:00";
+            $query .=" AND (p.fecha_no_conformidad between '".$fecha_desde."' AND '".$fecha_hasta."')";
+        }
+        $query .= " ORDER BY  p.fecha_no_conformidad DESC";
+        //;
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
     function getNoConformidadByUsuario(){
         $query = "SELECT p.*,date_format(p.fecha_no_conformidad, '%d/%m/%Y') as fecha, date_format(p.fecha_no_conformidad, '%H:%i') as hora, s.descripcion sector, sd.descripcion sector_derivado ,a.descripcion proceso , ncp.descripcion respuesta,ncp.descripcion_analisis,ncp.descripcion_accion,date_format(ncp.fecha_accion, '%d/%m/%Y') as fecha_accion ,CONCAT_WS(' ', ps.nombre, ps.apellido ) responsable, CONCAT_WS(' ', rsd.nombre, rsd.apellido ) responsable_sector,CASE when  p.estado='N' then 1
   when p.estado='As' then 2
@@ -3697,14 +3747,13 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
             LEFT JOIN sector sd on sd.id_sector=p.sector_derivado
-            LEFT JOIN responsable_sector rs on rs.id_sector=p.sector_derivado
-            LEFT JOIN personas prs on prs.id_persona=rs.id_persona
-            LEFT JOIN no_conformidad_respuesta ncp on ncp.id_no_conformidad=p.id_no_conformidad
-            LEFT JOIN personas ps on ps.id_persona=ncp.responsable_accion
-            LEFT JOIN usuarios u on u.id_usuario=p.usuario
-            LEFT JOIN personas i on i.id_persona=u.id_persona
             WHERE p.estado='".$principal."' " ;
-
+//LEFT JOIN responsable_sector rs on rs.id_sector=p.sector_derivado
+//            LEFT JOIN personas prs on prs.id_persona=rs.id_persona
+//            LEFT JOIN no_conformidad_respuesta ncp on ncp.id_no_conformidad=p.id_no_conformidad
+//            LEFT JOIN personas ps on ps.id_persona=ncp.responsable_accion
+//            LEFT JOIN usuarios u on u.id_usuario=p.usuario
+//            LEFT JOIN personas i on i.id_persona=u.id_persona
         if($id_proceso){
             $query .=  " AND p.id_proceso='".$id_proceso."'";
         }
@@ -3752,12 +3801,6 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
             LEFT JOIN sector sd on sd.id_sector=p.sector_derivado
-            LEFT JOIN responsable_sector rs on rs.id_sector=p.sector_derivado
-            LEFT JOIN personas prs on prs.id_persona=rs.id_persona
-            LEFT JOIN no_conformidad_respuesta ncp on ncp.id_no_conformidad=p.id_no_conformidad
-            LEFT JOIN personas ps on ps.id_persona=ncp.responsable_accion
-            LEFT JOIN usuarios u on u.id_usuario=p.usuario
-            LEFT JOIN personas i on i.id_persona=u.id_persona
             WHERE p.origen='".$principal."' " ;
 
         if($id_proceso){
@@ -3783,6 +3826,9 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         }
         $query .= "  ";
         //;
+        //echo $query;
+       // echo "</br>";
+
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0]->total;
@@ -3795,12 +3841,6 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
             LEFT JOIN sector sd on sd.id_sector=p.sector_derivado
-            LEFT JOIN responsable_sector rs on rs.id_sector=p.sector_derivado
-            LEFT JOIN personas prs on prs.id_persona=rs.id_persona
-            LEFT JOIN no_conformidad_respuesta ncp on ncp.id_no_conformidad=p.id_no_conformidad
-            LEFT JOIN personas ps on ps.id_persona=ncp.responsable_accion
-            LEFT JOIN usuarios u on u.id_usuario=p.usuario
-            LEFT JOIN personas i on i.id_persona=u.id_persona
             WHERE p.id_sector IS NOT NULL " ;
 
         if($id_proceso){
