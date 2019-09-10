@@ -53,7 +53,7 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                     /************buscar mantenieminto de equipos    *************/
                     if ($i<10) { $fecha_bloke = "0".$i."-". date('Y'); }else{ $fecha_bloke = $i."-".date('Y'); }
                     $fecha_filtro=substr($fecha_bloke, 3, 4)."-".substr($fecha_bloke, 0, 2)."-".date('d');
-                    //echo $fecha_bloke;
+                   // echo $fecha_bloke."</br></br></br>";
                         if ($count_mantenimiento_prev == 0) {
                                 switch ($v->frecuencia) {
                                     case "30":
@@ -97,6 +97,7 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                             ////////*********tiiene algun mateniemineto ***********8//////
 
                             if ($fecha_bloke == date('m-Y')) {
+                                   // echo "unave";
                                 $Mto_del_Dia = $consultas->getMantenimientoEnDichoPeriodo($item, $fecha_bloke, $_REQUEST['id_equipo']);
                                 switch ($v->frecuencia) {
                                     case "30":
@@ -271,7 +272,7 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                                         break;
                                 }
                             } else {
-
+//echo "-hola";
                                 $icono = "";
                                 $Mto_del_Dia = $consultas->getMantenimientoEnDichoPeriodo($item, $fecha_bloke, $_REQUEST['id_equipo']);
                                 switch ($v->frecuencia) {
@@ -431,6 +432,63 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                                                     }else {
 
                                                         $fechaFutura = strtotime('+6 month', strtotime($ultimo->fecha_debe));
+                                                        $fechaFutura = date('Y-m-j', $fechaFutura);
+                                                        $Mto_entre_fechas = $consultas->getMantenimientoEntreFechasPrev($item, $ultimo->fecha_debe, $_REQUEST['id_equipo'], $fechaFutura);
+                                                        if ($Mto_entre_fechas) {
+                                                            $icono = "<img src='img/amarillo.png'>";
+                                                        }else{
+                                                            if($Mto_del_Dia->fecha_debe_sf>date('Y-m-d')) {
+                                                                $id_cabecera = $consultas->save_mantenimiento_cabecera_manual($_REQUEST['id_equipo'], $_REQUEST['tipo_equipo'], '2', $ultimo->fecha_debe, $fechaFutura);
+                                                                $id_detalle = $consultas->save_mantenimiento_detalle($id_cabecera, $item, "No se realizo");
+                                                                $icono = "<img src='img/rojo.png'>";
+                                                            }else{
+                                                                $icono = "<img src='img/menu_azul.png'>";
+                                                            }
+                                                        }
+
+                                                        //$alert = "S";
+                                                    }
+                                                }
+                                            }else{
+                                                $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
+                                                if ($Mto_del_Dia) {
+                                                    $icono = "<img src='img/amarillo.png'>";
+                                                }else{
+                                                    $icono = "<img src='img/line.png'>";
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case "365":
+                                        if ($Mto_del_Dia) {
+                                            if($Mto_del_Dia->en_termino=="R"){
+                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
+                                            }else{
+                                                if($Mto_del_Dia->en_termino=="NR") {
+                                                    $icono = "<img src='img/rojo.png'>";
+                                                }else{
+                                                    $icono = "<img src='img/line.png'>";
+                                                }
+                                            }
+                                        } else {
+
+                                            $Mto_del_Dia = $consultas->getMantenimientoDebeTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
+                                            if ($Mto_del_Dia) {
+                                                if($Mto_del_Dia->fecha_debe_sf < date('Y-m-d')) {
+                                                    $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item,$fecha_bloke, $_REQUEST['id_equipo']);
+                                                    if ($Mto_del_Dia) {
+                                                        $icono = "<img src='img/amarillo.png'>";
+                                                    }else {
+                                                        $icono = "<img src='img/caution.gif'>";
+                                                        $alert = "S";
+                                                    }
+                                                }else{
+                                                    $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
+                                                    if ($Mto_del_Dia) {
+                                                        $icono = "<img src='img/amarillo.png'>";
+                                                    }else {
+
+                                                        $fechaFutura = strtotime('+12 month', strtotime($ultimo->fecha_debe));
                                                         $fechaFutura = date('Y-m-j', $fechaFutura);
                                                         $Mto_entre_fechas = $consultas->getMantenimientoEntreFechasPrev($item, $ultimo->fecha_debe, $_REQUEST['id_equipo'], $fechaFutura);
                                                         if ($Mto_entre_fechas) {
