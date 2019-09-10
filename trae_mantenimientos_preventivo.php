@@ -89,7 +89,7 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                                 }
                                 if ($fecha_bloke == date('m-Y')){
                                     $icono = "<img src='img/menu_azul.png' style='cursor:pointer;'  onclick='verModal(" . $item . ",\"R\",\"" . $fecha_deberia . "\",\"" . $fecha_debe . "\")'>";
-
+//echo "--";
                                 } else {
                                     $icono = "<img src='img/line.png'>";
                                 }
@@ -458,63 +458,7 @@ $result = $consultas->getItemsMantenimeinto($_REQUEST['tipo_equipo'], $_REQUEST[
                                             }
                                         }
                                         break;
-                                    case "180":
-                                        if ($Mto_del_Dia) {
-                                            if($Mto_del_Dia->en_termino=="R"){
-                                                $icono = "<img src='img/verde.png' style='cursor=pointer;' onclick='ver_detalle_mantenimiento(".$item.",".$_REQUEST['id_equipo'].")'>";
-                                            }else{
-                                                if($Mto_del_Dia->en_termino=="NR") {
-                                                    $icono = "<img src='img/rojo.png'>";
-                                                }else{
-                                                    $icono = "<img src='img/line.png'>";
-                                                }
-                                            }
-                                        } else {
 
-                                            $Mto_del_Dia = $consultas->getMantenimientoDebeTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
-                                            if ($Mto_del_Dia) {
-                                                if($Mto_del_Dia->fecha_debe_sf < date('Y-m-d')) {
-                                                    $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item,$fecha_bloke, $_REQUEST['id_equipo']);
-                                                    if ($Mto_del_Dia) {
-                                                        $icono = "<img src='img/amarillo.png'>";
-                                                    }else {
-                                                        $icono = "<img src='img/caution.gif'>";
-                                                        $alert = "S";
-                                                    }
-                                                }else{
-                                                    $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
-                                                    if ($Mto_del_Dia) {
-                                                        $icono = "<img src='img/amarillo.png'>";
-                                                    }else {
-
-                                                        $fechaFutura = strtotime('+12 month', strtotime($ultimo->fecha_debe));
-                                                        $fechaFutura = date('Y-m-j', $fechaFutura);
-                                                        $Mto_entre_fechas = $consultas->getMantenimientoEntreFechasPrev($item, $ultimo->fecha_debe, $_REQUEST['id_equipo'], $fechaFutura);
-                                                        if ($Mto_entre_fechas) {
-                                                            $icono = "<img src='img/amarillo.png'>";
-                                                        }else{
-                                                            if($Mto_del_Dia->fecha_debe_sf>date('Y-m-d')) {
-                                                                $id_cabecera = $consultas->save_mantenimiento_cabecera_manual($_REQUEST['id_equipo'], $_REQUEST['tipo_equipo'], '2', $ultimo->fecha_debe, $fechaFutura);
-                                                                $id_detalle = $consultas->save_mantenimiento_detalle($id_cabecera, $item, "No se realizo");
-                                                                $icono = "<img src='img/rojo.png'>";
-                                                            }else{
-                                                                $icono = "<img src='img/menu_azul.png'>";
-                                                            }
-                                                        }
-
-                                                        //$alert = "S";
-                                                    }
-                                                }
-                                            }else{
-                                                $Mto_del_Dia = $consultas->getMantenimientoDeberiaTenerFechaPrev($item, $fecha_bloke, $_REQUEST['id_equipo']);
-                                                if ($Mto_del_Dia) {
-                                                    $icono = "<img src='img/amarillo.png'>";
-                                                }else{
-                                                    $icono = "<img src='img/line.png'>";
-                                                }
-                                            }
-                                        }
-                                        break;
 
                                 }
 
@@ -594,7 +538,7 @@ function convierte_anio_mes($fecha) {
 }
 //(cal_to_jd(CAL_GREGORIAN, date("m"),date("d"), date("Y")) , 0 );
 ?>
-<div style="display:show; border: 1px solid black; position: fixed; width: 50%; height:80%; margin-top: -400px; background: #FFF; " id="ventana_carga">
+<div style="display:none; border: 1px solid black; position: fixed; width: 50%; height:80%; margin-top: -400px; background: #FFF; " id="ventana_carga">
     <div class="modal-header">
         <button type="button" onclick="cierraModal()" class="close" data-dismiss="modal">×</button>
         <h4> Carga Mantenimiento  Preventivo</h4>
