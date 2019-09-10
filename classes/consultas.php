@@ -3584,6 +3584,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' ORDER BY fecha_sin_formato DESC";
         //;
+        //echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3595,7 +3596,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%m-%Y') = '".$fecha."'";
-        //;
+        //echo $query;//;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3622,7 +3623,20 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_mantenimiento_detalle='".$item."' AND mc.id_equipo='".$equipo."'";
-        //;
+        //echo $query;//;
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0];
+        else
+            return false;
+    }
+    function getDetalleMantenimientoRealizadoPreventivo($equipo,$item){
+
+        $query = "SELECT md.id_mantenimiento_cabecera,md.valor detalle, date_format(mc.fecha, '%d-%m-%Y %H:%i') as fecha_realizado, date_format(mc.fecha_deberia, '%d-%m-%Y') as fecha_deberia
+        FROM mantenimiento_cabecera mc
+        LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
+        WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."'";
+        //echo $query;//;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];

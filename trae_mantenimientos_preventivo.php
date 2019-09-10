@@ -649,7 +649,7 @@ function arregla_dia($fecha){
     function  ver_detalle_mantenimiento(mantenimiento,equipo){
         $("#detalle_mantenimiento").show();
         
-        $("#detalle_mantenimiento").load('trae_detalle_mantenimiento.php?equipo='+equipo+'&mantenimiento='+mantenimiento);
+        $("#detalle_mantenimiento").load('trae_detalle_mantenimiento_preventivo.php?equipo='+equipo+'&mantenimiento='+mantenimiento);
     }
 </script>
 <script>
