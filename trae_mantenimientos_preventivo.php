@@ -620,7 +620,7 @@ function convierte_anio_mes($fecha) {
     </form>
     <div id="mensaje"></div>
 </div>
-<div style="display:none; border: 1px solid black; position: fixed; width: 80%; height:80%; margin-top: -500px; background: #FFF; " id="detalle_mantenimiento"></div>
+<div style="display:none; border: 1px solid black; position: fixed; width: 50%; height:50%; margin-top: -50px; background: #FFF; " id="detalle_mantenimiento"></div>
 <?php
 function arregla_dia($fecha){
     $cadena=explode("-", $fecha);
