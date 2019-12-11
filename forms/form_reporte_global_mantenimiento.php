@@ -67,7 +67,7 @@
 </table>
       <div id="tabla_listado" class="double-scroll">
       <table class="table">
-          
+
       </table>
       </div>
 </div>
@@ -77,8 +77,8 @@
 <script src="js/AutoSuggest.js" type="text/javascript"></script>
 <script src="js/ClearDefaultText.js" type="text/javascript"></script>
 <script type="text/javascript">
-    newSuggestListaEquipo('lugar', 'lugar_filtro', 'LE');
-    newSuggestListaEquipo('sector_filtro', 'sector_filtroID', 'S');
+    newSuggestListaEquipoGlobal('lugar', 'lugar_filtro', 'LE');
+    newSuggestListaEquipoGlobal('sector_filtro', 'sector_filtroID', 'S');
     newSuggest('personas', 'personasID', 'P');
 </script>
 <?php include_once 'footer.php' ?>

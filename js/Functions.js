@@ -885,3 +885,17 @@ function filtrar_mantenimiento_global(){
     var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
     $("#tabla_listado").load('trae_mantenimientos_global.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro);
 }
+function newSuggestListaEquipoGlobal(input, inputHidden, flag){
+//alert('hola');
+    var options = {
+        script:"lib/ajax.php?flag=" + flag + "&",
+        varname:"search",
+        json:true,
+        callback: function (obj) {
+            document.getElementById(inputHidden).value = obj.id;
+            filtrar_mantenimiento_global()
+        }
+
+    };
+    var as_json = new bsn.AutoSuggest(input, options);
+}
