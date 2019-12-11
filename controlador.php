@@ -2956,7 +2956,7 @@ $action = $_REQUEST["action"];
                 $result = $consultas->getEquipoByID($_REQUEST['id_equipo']);
                 $formulario = 'forms/form_solicitud.php';
             }else{
-                $mensaje = "El equipo seleccionado ya contiene en el sistema informatico una solicitud de mantenimiento correctivo. <br> 
+                $mensaje = "El equipo seleccionado ya contiene en el sistema informatico una solicitud de mantenimiento correctivo. <br>
                 El mismo se encuentra fuera de funcionamiento, de NO ser asi comuniquese con el area de calidad a la brevedad. Gracias  ";
                 $url='controlador.php?action=listado_solicitudes';
                 $formulario = 'forms/form_mensaje.php';
@@ -2997,7 +2997,7 @@ $action = $_REQUEST["action"];
             $mensaje = "Su Solicitud se ha cargado correctamente. Gracias<br>Solicitud Numero: '" . $id_solicitud . "'";
             $formulario = 'forms/form_mensaje.php';
         }else{
-            $mensaje = "El equipo seleccionado ya contiene en el sistema informatico una solicitud de mantenimiento correctivo. <br> 
+            $mensaje = "El equipo seleccionado ya contiene en el sistema informatico una solicitud de mantenimiento correctivo. <br>
                 El mismo se encuentra fuera de funcionamiento, de NO ser asi comuniquese con el area de calidad a la brevedad. Gracias  ";
             $url='controlador.php?action=listado_solicitudes';
             $formulario = 'forms/form_mensaje.php';
@@ -3009,7 +3009,7 @@ $action = $_REQUEST["action"];
             include('header.php');
             include('menu.php');
             /************************************************/
-            
+
                 $id_solicitud = $consultas->save_solicitud_mantenimiento($_REQUEST, $_FILES["archivo"]["name"]);
                 $carpeta = 'archivos_solicitudes/'.$id_solicitud;
                 //echo $carpeta;
@@ -3027,7 +3027,7 @@ $action = $_REQUEST["action"];
                 }
                 $mensaje = "Su Solicitud se ha editado correctamente. Gracias<br>Solicitud Numero: '" . $id_solicitud . "'";
                 $formulario = 'forms/form_mensaje.php';
-            
+
             break;
         case "guardar_deriva_solicitud":
             include('lib/DB_Conectar.php');
@@ -3035,7 +3035,7 @@ $action = $_REQUEST["action"];
             include('header.php');
             include('menu.php');
             $id_nota_solicitud = $consultas->save_nota_solicitud($_REQUEST, $_FILES["archivo"]["name"],'Tratado');
-            
+
             $sql = "UPDATE solicitud_mantenimiento SET proveedor_derivado='".$_REQUEST['proveedor_derivadoID']."', estado_solicitud='TRAT', fecha_derivado=NOW(), obs_derivado='".$_REQUEST['observacion']."' WHERE id_solicitud='" . $_REQUEST['id_solicitud'] . "'";
             //echo $sql;
             mysql_query($sql);
@@ -3200,10 +3200,10 @@ $action = $_REQUEST["action"];
         case "guardarMantenimiento":
             include('lib/DB_Conectar.php');
             include('classes/consultas.php');
-           
+
             $id_cabecera = $consultas->save_mantenimiento_cabecera($_REQUEST);
             $id_detalle = $consultas->save_mantenimiento_detalle($id_cabecera, $_REQUEST['item'], $_REQUEST['obs']);
-            
+
 //            $mensaje = "Su Mantenimiento se ha cargado correctamente. Gracias";
 //            //$formulario = 'forms/form_mensaje.php';
 //            echo $mensaje;
@@ -3311,7 +3311,7 @@ $action = $_REQUEST["action"];
             $formulario = 'forms/form_solicitud_compra.php';
             break;
          case "listar_solcitud_compra":
-            
+
             /***************includes******************/
             include('lib/DB_Conectar.php');
             include('classes/consultas.php');
@@ -3320,7 +3320,7 @@ $action = $_REQUEST["action"];
             /*********************/
             $result = $consultas->getSolicitudCompra();
             $formulario = 'forms/form_lista_solicitud_compra.php';
-            break;   
+            break;
         case "guardar_solicitud_compra":
             include('lib/DB_Conectar.php');
             //include('lib/DB_Conectar_Pg.php');
@@ -3338,7 +3338,7 @@ $action = $_REQUEST["action"];
             //exit;
             break;
         case "listar_mis_solicitudes_compras":
-            
+
             /***************includes******************/
             include('lib/DB_Conectar.php');
             include('classes/consultas.php');
@@ -3446,12 +3446,24 @@ $action = $_REQUEST["action"];
 
             $formulario = 'forms/form_lista_equipos_calibracion.php';
             break;
+          case "reporte_mantenimiento":
+              /***************includes******************/
+              include('lib/DB_Conectar.php');
+              include('classes/consultas.php');
+              include('header.php');
+              include('menu.php');
+              $tipo_equipo = $consultas->getTipoEquipo();
+              $result_marcas = $consultas->getMarcas();
+              $result_lugares = $consultas->getLugares();
+              $result = $consultas->getEquiposFiltros($_REQUEST);
+              $formulario = 'forms/form_reporte_global_mantenimiento.php';
+              break;
+
     }
 
-   
-if($formulario){    
-    include($formulario);
-}    
 
-?>   
-    
+if($formulario){
+    include($formulario);
+}
+
+?>

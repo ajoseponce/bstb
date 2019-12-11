@@ -896,7 +896,7 @@ class Consultas
         global $error;
 
         $table = new Table($this->db, 'usuario_aplicativos');
-        
+
         $table->id_usuario = $data['personaID'];
         $table->id_aplicativo = $data['aplicativoID'];
 
@@ -911,7 +911,7 @@ class Consultas
             global $error;
 
             $table = new Table($this->db, 'menu_aplicativo');
-            
+
             $table->id_menu = $data['id_menu'];
             $table->id_aplicativo = $data['aplicativoID'];
 
@@ -2523,7 +2523,7 @@ class Consultas
             . "FROM no_conformidad  p
             LEFT JOIN areas a ON a.id_area=p.id_proceso
             LEFT JOIN sector s on s.id_sector=p.id_sector
-            
+
             WHERE 1 " ;
         if($id_proceso){
             $query .=  " AND p.id_proceso='".$id_proceso."'";
@@ -2954,7 +2954,7 @@ class Consultas
         }
     }
     function getUsuarios(){
-        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac 
+        $query = "SELECT u.*, u.nombre usuario,concat_ws(p.apellido,' ',p.nombre) persona,date_format(fecha_nacimiento, '%d/%m/%Y') as fecha_nac
                 FROM usuarios u
                 INNER JOIN personas p ON u.id_persona=p.id_persona
                 WHERE u.estado='A' ORDER BY p.apellido, p.nombre";
@@ -3610,7 +3610,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         FROM mantenimiento_cabecera mc
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND date_format(mc.fecha, '%Y-%m') between '".$fecha_filtro."'  AND '".$fecha_filtro2."'";
-        
+
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -3698,10 +3698,10 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             . " FROM personas p"
             ." WHERE p.id_reloj is not null ";
             if($persona){
-               $query .= " AND p.id_persona='".$persona."' "; 
+               $query .= " AND p.id_persona='".$persona."' ";
             }
             $query .= "  ORDER BY nombre ASC";
-            
+
         //;
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4210,7 +4210,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getSolicitudPedidos(){
         $query = "SELECT pm* FROM pedidos_materiales pm
-                
+
                 WHERE 1";
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4220,7 +4220,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
     }
     function getSolicitudPedidosDetalle(){
         $query = "SELECT pm* FROM pedidos_materiales_detalle pm
-                
+
                 WHERE 1";
         $result = $this->db->loadObjectList($query);
         if($result)
@@ -4228,5 +4228,50 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
+		function getMan($equipo, $item){
+        $query = "SELECT date_format(fecha, '%d/%m/%Y') as fecha_formato, fecha_debe
+				FROM mantenimiento_cabecera mc
+				INNER JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
+				WHERE mc.tipo_mantenimiento=1 and id_equipo='".$equipo."' and id_item='".$item."' ORDER by fecha DESC";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0];
+        else
+            return false;
+    }
+		function getUltimoMantenimientoPnEquipo($equipo, $item){
+        $query = "SELECT date_format(fecha, '%d/%m/%Y') as fecha_formato, fecha_debe
+				FROM mantenimiento_cabecera mc
+				INNER JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
+				WHERE mc.tipo_mantenimiento=1 and id_equipo='".$equipo."' and md.id_item='".$item."' ORDER by fecha DESC";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0];
+        else
+            return false;
+    }
+		function getUltimoMantenimientoPrevEquipo($equipo){
+        $query = "SELECT date_format(fecha, '%d/%m/%Y') as fecha_formato, fecha_debe FROM mantenimiento_cabecera mc
+                WHERE tipo_mantenimiento=2 and id_equipo='".$equipo."' ORDER by fecha DESC";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result[0];
+        else
+            return false;
+    }
+		function getMantenimientosEquipo($equipo){
+        $query = "SELECT mi.* FROM mantenimiento_item_tipo_equipo mi
+				INNER JOIN tipo_equipo te ON te.id_tipo_equipo=mi.id_tipo_equipo
+								INNER JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo
+                 WHERE tipo_mantenimiento=1 and id_equipo='".$equipo."'";
+        $result = $this->db->loadObjectList($query);
+        if($result)
+            return $result;
+        else
+            return false;
+    }
+
+
+
 }
 $consultas= new Consultas($db, $dbPg);

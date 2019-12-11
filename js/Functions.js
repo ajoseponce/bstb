@@ -100,7 +100,7 @@ function newSuggestProceso(input, inputHidden, flag){
 function newSuggest(input, inputHidden, flag){
 //alert('hola');
 	var options = {
-		script:"lib/ajax.php?flag=" + flag + "&", 
+		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
 		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; }
@@ -111,10 +111,10 @@ function newSuggest(input, inputHidden, flag){
 function newSuggestReloj(input, inputHidden, flag){
 //alert('hola');
     var options = {
-        script:"lib/ajax.php?flag=" + flag + "&", 
+        script:"lib/ajax.php?flag=" + flag + "&",
         varname:"search",
         json:true,
-        callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+        callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
         buscar_horarios();
         }
 
@@ -170,10 +170,10 @@ function newSuggestalumnno(input, inputHidden, flag){
 		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
-		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 rellena_notas(obj.id);}
 	};
-        
+
 	var as_json = new bsn.AutoSuggest(input, options);
 }
 function newSuggestPoe(input, inputHidden, flag){
@@ -182,10 +182,10 @@ function newSuggestPoe(input, inputHidden, flag){
 		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
-		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 rellena_registros(obj.id, obj.value);}
 	};
-        
+
 	var as_json = new bsn.AutoSuggest(input, options);
 }
 function newSuggestPersApli(input, inputHidden, flag){
@@ -194,10 +194,10 @@ function newSuggestPersApli(input, inputHidden, flag){
 		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
-		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 rellena_aplicaciones(obj.id, obj.value);}
 	};
-        
+
 	var as_json = new bsn.AutoSuggest(input, options);
 }
 function newSuggestMenuApli(input, inputHidden, flag){
@@ -223,10 +223,10 @@ function busca_datos_proveedor(value){
                 $("#telefono").val(data.telefono);
                 $("#contacto").val(data.contacto);
                 $("#mail").val(data.mail);
-                
+
             }
     });
-}        
+}
 function recomendar(){
     var value=$("#tipo_equipo").val();
     if(value==0){
@@ -241,14 +241,14 @@ function recomendar(){
                 $("#num_interno").val(data);
             }
     });
-}        
+}
 function newSuggestPoeExamen(input, inputHidden, flag){
 
 	var options = {
 		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
-		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 //rellena_registros(obj.id);
                 $("#examen_poe").show(1000);
                 $("#poe").attr("readonly", "readonly");
@@ -262,9 +262,9 @@ function newSuggestReporte(input, inputHidden, flag){
 		script:"lib/ajax.php?flag=" + flag + "&",
 		varname:"search",
 		json:true,
-		callback: function (obj) { document.getElementById(inputHidden).value = obj.id; 
+		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 rellena_reporte($("#personaID").val(), $("#examenID").val());
-                
+
                 }
 	};
         var as_json = new bsn.AutoSuggest(input, options);
@@ -282,7 +282,7 @@ function agregar_respuesta(pregunta){
     $("#preguntas").append("<label class='control-label' for='general-text'></label><div class='controls'><input type=radio name='respuesta_pregunta_"+pregunta+"' value='"+num_resp_pregunta+"'><textarea style='width:100%;'  name='respuesta"+pregunta+"_num"+num_resp_pregunta+"'/></div><div class='clearfix'></div>");
     num_resp_pregunta=parseInt(num_resp_pregunta)+1;
     $("#cant_respuestas_preg_"+pregunta).val(num_resp_pregunta);
-    
+
 }
 
 
@@ -307,7 +307,7 @@ function newSuggestAlumnoConducta(input, inputHidden, flag){
 		callback: function (obj) { document.getElementById(inputHidden).value = obj.id;
                 rellena_comportamiento();}
 	};
-        
+
 	var as_json = new bsn.AutoSuggest(input, options);
 }
 
@@ -403,7 +403,7 @@ function buscar_item_matenimiento(){
         }
 
     }
-    
+
 }
 function valor_caja(nombre){
     if($("#"+nombre).val()==""){
@@ -570,12 +570,12 @@ function exporta_equipos(){
 
 }
 function exporta_horarios(){
-    
+
     var value=$("#periodo").val();
     var anio=$("#anio").val();
     var persona=$("#personaID").val();
     var url = 'exporta_horarios.php?periodo='+value+'&anio='+anio+'&persona='+persona;
-    
+
     window.open(url , '_blank');
 
 
@@ -869,4 +869,19 @@ function verPopoupModalCalibracion(value){
     //alert('llega');
     $("#equipoID").val(value);
 
+}
+function filtrar_mantenimiento_global(){
+    //alert('llega');
+    var lugar_filtro=$("#lugar_filtro").val();
+    if($("#lugar").val()==""){
+        lugar_filtro="";
+        $("#lugar_filtro").val("");
+    }
+    var sector_filtroID=$("#sector_filtroID").val();
+    if($("#sector_filtro").val()==""){
+        sector_filtroID="";
+        $("#sector_filtroID").val("");
+    }
+    var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
+    $("#tabla_listado").load('trae_mantenimientos_global.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro);
 }
