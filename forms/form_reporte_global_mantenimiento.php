@@ -53,8 +53,16 @@
                     <?php }} ?>
                 </select>
             </td>
-        </tr>
 
+        </tr>
+        <tr>
+            <td>Fecha Desde
+                <input type="text"  value="" id="fecha_desde"  name="fecha_desde" type="text">
+            </td>
+            <td>Fecha Hasta
+                <input type="text"  value="" id="fecha_hasta"  name="fecha_hasta" type="text">
+            </td>
+        </tr>
         <tr>
             <td  style="text-align: left;">
                 <button onclick="filtrar_mantenimiento_global()" class="btn btn-success">Buscar</button>
@@ -81,5 +89,32 @@
     newSuggestListaEquipoGlobal('sector_filtro', 'sector_filtroID', 'S');
     newSuggest('personas', 'personasID', 'P');
 </script>
+
 <?php include_once 'footer.php' ?>
 </body>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script>
+    $j=jQuery.noConflict();
+    $j(function() {
+        //alert('bueno');
+        $j("#fecha_desde").datepicker({
+            dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            onSelect:  function(dateText) {
+                filtrar_mantenimiento_global();
+            },
+            monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
+        });
+        $j("#fecha_hasta").datepicker({
+            dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            onSelect:  function(dateText) {
+                filtrar_mantenimiento_global();
+            },
+            monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ]
+        });
+    });
+    //        function  ver_cambio(){
+    //
+    //        }
+</script>

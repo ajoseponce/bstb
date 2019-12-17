@@ -882,8 +882,21 @@ function filtrar_mantenimiento_global(){
         sector_filtroID="";
         $("#sector_filtroID").val("");
     }
+		if($("#fecha_desde").val()==""){
+				fecha_desde="";
+				$("#fecha_desde").val("");
+		}
+		if($("#fecha_hasta").val()==""){
+				fecha_hasta="";
+				$("#fecha_hasta").val("");
+		}
+
+		var fecha_desde=$("#fecha_desde").val();
+		var fecha_hasta=$("#fecha_hasta").val();
     var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
-    $("#tabla_listado").load('trae_mantenimientos_global.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro);
+		if(fecha_desde!='' && fecha_hasta!='' && sector_filtroID!=""){
+			$("#tabla_listado").load('trae_mantenimientos_global.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta);
+		}
 }
 function newSuggestListaEquipoGlobal(input, inputHidden, flag){
 //alert('hola');

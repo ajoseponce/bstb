@@ -3,24 +3,24 @@ session_start();
 include('lib/DB_Conectar.php');
 include('classes/consultas.php');
 $result = $consultas->getEquiposFiltros($_REQUEST);
-
+echo  "mostrar fecha de filtro".$_REQUEST['fecha_desde'];
 ?>
 <table class="table">
-    <thead>
+
         <tr style="background: red;" >
           <th>&nbsp;</th>
-            <th>Tipo/Numero</th>
-            <th style="width: 35px;">Equipo</th>
+            <th style="width: 20px;">Tipo/Numero</th>
+            <th style="width: 15px;">Equipo</th>
 
-            <th style="width: 35px;">Personas Asignadas</th>
-            <th style="width: 45px;">Frecuencia</th>
+            <th style="width: 15px;">Personas Asignadas</th>
+            <th style="width: 105px;">Frecuencia</th>
             <th style="width: 45px;">Dias S/M</th>
             <th style="width: 85px;">Descripcion</th>
             <th style="width: 85px; ">Fecha Ult. Mant.</th>
             <th style="width: 85px;">Fecha Prox. Mant.</th>
 
         </tr>
-    </thead>
+
     <tbody>
     <?php
     $k=0;
@@ -32,10 +32,10 @@ $result = $consultas->getEquiposFiltros($_REQUEST);
     ?>
         <tr>
 
-          <td><?php echo $r->id_equipo; ?></td>
-            <td><?php echo $r->armado."-".$r->num_interno; ?></td>
-            <td><?php echo $r->equipo; ?></td>
-            <td>
+          <td style="width: 5px !important;"><?php echo $r->id_equipo; ?></td>
+            <td style="width: 15px !important;"><?php echo $r->armado."-".$r->num_interno; ?></td>
+            <td style="width: 15px !important;"><?php echo $r->equipo; ?></td>
+            <td style="width: 15px;">
                 <?php if($asignado){
                   foreach ($asignado as $r) {
                       echo $r->nombre."<br>";
