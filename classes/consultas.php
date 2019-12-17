@@ -4240,11 +4240,12 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             return false;
     }
 		function getUltimoMantenimientoPnEquipo($equipo, $item){
-        $query = "SELECT date_format(fecha, '%d/%m/%Y') as fecha_formato, fecha_debe
+        $query = "SELECT date_format(fecha, '%d/%m/%Y') as fecha_formato, date_format(fecha_debe, '%d/%m/%Y') as fecha_debe_formato,date_format(fecha_deberia, '%d/%m/%Y') as fecha_deberia_formato, mc.en_termino
 				FROM mantenimiento_cabecera mc
 				INNER JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
 				WHERE mc.tipo_mantenimiento=1 and id_equipo='".$equipo."' and md.id_item='".$item."' ORDER by fecha DESC";
-        $result = $this->db->loadObjectList($query);
+//echo $query;
+				$result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
         else
@@ -4260,7 +4261,8 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
             return false;
     }
 		function getMantenimientosEquipo($equipo){
-        $query = "SELECT mi.* FROM mantenimiento_item_tipo_equipo mi
+        $query = "SELECT mi.*
+				FROM mantenimiento_item_tipo_equipo mi
 				INNER JOIN tipo_equipo te ON te.id_tipo_equipo=mi.id_tipo_equipo
 								INNER JOIN equipos e ON e.tipo_equipo=te.id_tipo_equipo
                  WHERE tipo_mantenimiento=1 and id_equipo='".$equipo."'";
