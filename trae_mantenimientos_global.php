@@ -12,8 +12,12 @@ $result = $consultas->getEquiposFiltros($_REQUEST);
             <th>Tipo/Numero</th>
             <th style="width: 35px;">Equipo</th>
 
-            <th style="width: 45px;">Personas Asignadas</th>
-<th style="width: 45px;"></th>
+            <th style="width: 35px;">Personas Asignadas</th>
+            <th style="width: 45px;">Frecuencia</th>
+            <th style="width: 45px;">Dias S/M</th>
+            <th style="width: 85px;">Descripcion</th>
+            <th style="width: 85px; ">Fecha Ult. Mant.</th>
+            <th style="width: 85px;">Fecha Prox. Mant.</th>
 
         </tr>
     </thead>
@@ -28,9 +32,9 @@ $result = $consultas->getEquiposFiltros($_REQUEST);
     ?>
         <tr>
 
-          <td class="span1 text-left"><?php echo $r->id_equipo; ?></td>
-            <td class="span1 text-left"><?php echo $r->armado."-".$r->num_interno; ?></td>
-            <td class="span1 text-left"><?php echo $r->equipo; ?></td>
+          <td><?php echo $r->id_equipo; ?></td>
+            <td><?php echo $r->armado."-".$r->num_interno; ?></td>
+            <td><?php echo $r->equipo; ?></td>
             <td>
                 <?php if($asignado){
                   foreach ($asignado as $r) {
@@ -39,13 +43,9 @@ $result = $consultas->getEquiposFiltros($_REQUEST);
                 }else{ echo "No contiene personas asignadas"; }
                 ?>
             </td>
-            <td>
+            <td colspan="6">
               <table class="table">
-                <th style="width: auto;">Frecuencia</th>
-                <th style="width: auto;">Dias Sin Mantenimiento</th>
-                <th style="width: auto;">Descripcion</th>
-                <th style="width: auto;">Fecha Ult. Mant.</th>
-                <th style="width: auto;">Fecha Prox. Mant.</th>
+
               <?php
               if($mantenimientos){
                     foreach ($mantenimientos as $m) {
@@ -61,9 +61,9 @@ $result = $consultas->getEquiposFiltros($_REQUEST);
                         echo "<tr>";
                         if($m->titulo!="N/A"){
                         $ultimo_pn=$consultas->getUltimoMantenimientoPnEquipo($r->id_equipo, $m->id_registro);
-                        echo "<td>".$frecuencia."</td>";
+                        echo "<td style='width: 45px;'>".$frecuencia."</td>";
                         ///££££££££££££££contado
-                        echo "<td>".$contador."</td>";
+                        echo "<td style='width: 45px;text-align: center; '>9".$contador."</td>";
                         ///////////
                         echo "<td>".$m->titulo."</td>";
                         echo "<td> "; echo ($ultimo_pn->fecha_formato)?$ultimo_pn->fecha_formato:"S/D"; echo "</td>";
