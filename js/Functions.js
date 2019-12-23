@@ -894,7 +894,7 @@ function filtrar_mantenimiento_global(){
 		var fecha_desde=$("#fecha_desde").val();
 		var fecha_hasta=$("#fecha_hasta").val();
     var tipo_equipo_filtro=$("#tipo_equipo_filtro").val();
-		if(fecha_desde!='' && fecha_hasta!='' && sector_filtroID!=""){
+		if(fecha_desde!='' && fecha_hasta!=''){
 			$("#tabla_listado").load('trae_mantenimientos_global.php?lugar_filtro='+lugar_filtro+'&sector_filtroID='+sector_filtroID+'&tipo_equipo_filtro='+tipo_equipo_filtro+'&fecha_desde='+fecha_desde+'&fecha_hasta='+fecha_hasta);
 		}
 }

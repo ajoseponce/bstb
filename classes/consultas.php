@@ -3529,6 +3529,7 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
         WHERE md.id_item='".$item."' AND mc.id_equipo='".$equipo."' AND mc.fecha between '".$fecha." 00:00:00' AND '".$fecha2." 23:59:59'";
         //;
+			//	echo $query;
         $result = $this->db->loadObjectList($query);
         if($result)
             return $result[0];
@@ -4272,7 +4273,21 @@ INNER JOIN sector s ON s.id_sector=e.id_sector WHERE 1";
         else
             return false;
     }
-
+		function getMantenimientoEntreFechasGlobal($item, $fecha, $equipo, $fecha2){
+				//$fecha_filtro=substr($fecha, 6, 4)."-".substr($fecha, 3, 2)."-".substr($fecha, 0, 2);
+				//$fecha_filtro2=substr($fecha2, 6, 4)."-".substr($fecha2, 3, 2)."-".substr($fecha2, 0, 2);
+				$query = "SELECT mc.id_mantenimiento, date_format(fecha, '%d-%m-%Y') as fecha, date_format(fecha, '%Y-%m-%d') as fecha_sf, md.valor ,mc.en_termino, date_format(fecha_deberia, '%d-%m-%Y') as fecha_deberia
+				FROM mantenimiento_cabecera mc
+				LEFT JOIN mantenimiento_detalle md ON md.id_mantenimiento_cabecera=mc.id_mantenimiento
+				WHERE md.id_item='".$item."' AND mc.en_termino!='NR' AND mc.id_equipo='".$equipo."' AND mc.fecha_deberia between '".$fecha." 00:00:00' AND '".$fecha2." 23:59:59'";
+				//;
+				//echo $query;
+				$result = $this->db->loadObjectList($query);
+				if($result)
+						return $result;
+				else
+						return false;
+		}
 
 
 }

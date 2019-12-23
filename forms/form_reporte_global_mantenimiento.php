@@ -101,6 +101,7 @@
         //alert('bueno');
         $j("#fecha_desde").datepicker({
             dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            format: "dd-mm-yyyy",
             onSelect:  function(dateText) {
                 filtrar_mantenimiento_global();
             },
@@ -108,6 +109,7 @@
         });
         $j("#fecha_hasta").datepicker({
             dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+            format: "dd-mm-yyyy",
             onSelect:  function(dateText) {
                 filtrar_mantenimiento_global();
             },

@@ -11,14 +11,12 @@ echo  "mostrar fecha de filtro".$_REQUEST['fecha_desde'];
           <th>&nbsp;</th>
             <th style="width: 20px;">Tipo/Numero</th>
             <th style="width: 15px;">Equipo</th>
-
             <th style="width: 15px;">Personas Asignadas</th>
             <th style="width: 105px;">Frecuencia</th>
             <th style="width: 45px;">Dias S/M</th>
             <th style="width: 85px;">Descripcion</th>
             <th style="width: 85px; ">Fecha Ult. Mant.</th>
             <th style="width: 85px;">Fecha Prox. Mant.</th>
-
         </tr>
 
     <tbody>
@@ -53,20 +51,41 @@ echo  "mostrar fecha de filtro".$_REQUEST['fecha_desde'];
                           case "7": $frecuencia="Semanal"; break;
                           case "1": $frecuencia="Diario"; break;
                           case "15": $frecuencia="Quincena"; break;
-                          case "30": $frecuencia="Mensual"; break;
-                          case "90": $frecuencia="Trimestral"; break;
-                          case "180": $frecuencia="Semestral"; break;
-                          case "365": $frecuencia="Anual"; break;
+
                       }
                         echo "<tr>";
                         if($m->titulo!="N/A"){
                         $ultimo_pn=$consultas->getUltimoMantenimientoPnEquipo($r->id_equipo, $m->id_registro);
                         echo "<td style='width: 45px;'>".$frecuencia."</td>";
                         ///££££££££££££££contado
-                        echo "<td style='width: 45px;text-align: center; '>9".$contador."</td>";
+                        $contador=0;
+                        $porciones = explode("/", $_REQUEST['fecha_desde']);
+                        $fecha_desde=$porciones[2]."-".$porciones[1]."-".$porciones[0];
+                        $porciones = explode("/", $_REQUEST['fecha_hasta']);
+                        $fecha_hasta=$porciones[2]."-".$porciones[1]."-".$porciones[0];
+
+                        if($m->frecuencia==1){
+                            $fechaInicio=strtotime($fecha_desde);
+                            $fechaFin=strtotime($fecha_hasta);
+                            for($i=$fechaInicio; $i<=$fechaFin; $i+=86400){
+                                    $dia=date("N",$i);
+                                    if ($dia!=6 && $dia!=7) { $contador+=1; }
+                            }
+                        }
+                        if($m->frecuencia==7){
+                          $datetime1 = new DateTime($fecha_desde);
+                          $datetime2 = new DateTime($fecha_hasta);
+                          $interval = $datetime1->diff($datetime2);
+                          $contador=floor(($interval->format('%a') / 7));
+                        }
+                          $contador_mantenimientos=$consultas->getMantenimientoEntreFechasGlobal($m->id_registro, $fecha_desde, $r->id_equipo, $fecha_hasta);
+                          //  echo "mateniemintos-->".count($contador_mantenimientos);
+                        echo "<td>".count($contador_mantenimientos)."/".$contador."</td>";
                         ///////////
                         echo "<td>".$m->titulo."</td>";
+                        //////////////////////-------------
                         echo "<td> "; echo ($ultimo_pn->fecha_formato)?$ultimo_pn->fecha_formato:"S/D"; echo "</td>";
+
                         echo "<td> "; echo ($ultimo_pn->fecha_debe_formato)?$ultimo_pn->fecha_debe_formato:"S/D"; echo "</td>";
                           echo "<td> "; echo ($ultimo_pn->fecha_debe>date('Y-m-d'))?"<img style='white:22px;' src='img/validar.png'>":"<img src='img/caution.gif'>"; echo "</td>";
                         }else{
