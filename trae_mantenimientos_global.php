@@ -3,7 +3,7 @@ session_start();
 include('lib/DB_Conectar.php');
 include('classes/consultas.php');
 $result = $consultas->getEquiposFiltros($_REQUEST);
-echo  "mostrar fecha de filtro".$_REQUEST['fecha_desde'];
+//echo  "mostrar fecha de filtro".$_REQUEST['fecha_desde'];
 ?>
 <table class="table">
 
