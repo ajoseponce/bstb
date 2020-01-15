@@ -13,7 +13,8 @@
                         <option value='2016'>2016</option>
                         <option value='2017'>2017</option>
                         <option value='2018'>2018</option>
-                        <option value='2019' selected="selected">2019</option>
+                        <option value='2019'>2019</option>
+                        <option value='2020' selected="selected">2020</option>
                     </select>
                 </div>
             </div>
@@ -33,7 +34,7 @@
                     <div class="controls">
                         <input  id="persona"  name="persona"  class="input-large" value="" type="text">
                         <input  id="personaID"  name="personaID"  class="input-large" value="" type="hidden">
-                        <img src="img/limpiar.png" style="cursor: pointer;" onclick="borrar_filtros_horarios()">    
+                        <img src="img/limpiar.png" style="cursor: pointer;" onclick="borrar_filtros_horarios()">
                     </div>
                 </div>
                 <div class="control-group" >
